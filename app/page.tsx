@@ -35,7 +35,7 @@ const slides = [
 
 const categories = [
   { name: "Individuelle Kamine", img: "/kamine.jpg" },
-  { name: "Kaminöfen", img: "/Kaminofen.jpg" },
+  { name: "Kaminöfen", img: "/kaminofen.jpg" },
   { name: "Gaskamine", img: "/gaskamin.jpg" },
   { name: "Speicheröfen", img: "/specksteinofen.jpg" },
   { name: "Kachelöfen", img: "/kachelofen.jpg" },
