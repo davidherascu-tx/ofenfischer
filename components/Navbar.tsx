@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, ArrowRight, ChevronDown, Flame, Settings, Info, MapPin, Briefcase, ChevronRight, Droplets, Building2, FileText, Users } from 'lucide-react';
+import { Menu, X, Phone, ArrowRight, ChevronDown, Flame, Settings, Info, MapPin, Briefcase, ChevronRight, Building2, FileText, Users } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 
@@ -44,7 +44,8 @@ export default function Navbar() {
           title: 'Kamine & Öfen',
           icon: <Flame className="text-orange-500" size={18} />,
           items: [
-            { name: 'Individuelle Kaminanlagen', href: '#kaminanlagen' },
+            // HIER WURDE DER LINK ANGEPASST
+            { name: 'Individuelle Kaminanlagen', href: '/produkte/kaminanlagen' },
             { name: 'Kaminöfen', href: '#kaminoefen' },
             { name: 'Gaskamine', href: '#gaskamine' },
             { name: 'Speicheröfen', href: '#speicheroefen' },
@@ -76,10 +77,8 @@ export default function Navbar() {
       name: 'Service', 
       href: '#',
       submenu: [
-        // HIER WURDE DER LINK ANGEPASST
         { name: 'Kundendienst', href: '/kundendienst', icon: <Settings size={16}/> },
         { name: 'FAQ\'s', href: '#faq', icon: <Info size={16}/> },
-        // HIER WURDE DER LINK ANGEPASST
         { name: 'Mediathek', href: '/mediathek', icon: <Briefcase size={16}/> },
       ]
     },
@@ -87,7 +86,6 @@ export default function Navbar() {
       name: 'Filialen', 
       href: '#',
       submenu: [
-        // HIER WURDE DER LINK ANGEPASST
         { name: 'Berlin', href: '/filialen/berlin', icon: <MapPin size={16}/> },
         { name: 'Dresden', href: '#dresden', icon: <MapPin size={16}/> },
         { name: 'Plessa', href: '#plessa', icon: <MapPin size={16}/> },
@@ -322,7 +320,7 @@ export default function Navbar() {
                   </div>
                 ))}
 
-                {/* HIER HABE ICH DIE FEHLENDEN BUTTONS EINGEFÜGT */}
+                {/* BUTTONS */}
                 <div className="flex flex-col gap-3 mt-6 pt-6 border-t border-white/10">
                    <a href="tel:+49353348120" className="w-full bg-white/5 hover:bg-white/10 text-white py-3 rounded-xl font-bold flex items-center justify-center gap-3 border border-white/10 transition-colors">
                       <Phone size={20} className="text-orange-500" />
