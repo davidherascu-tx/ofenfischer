@@ -30,7 +30,7 @@ const Footer = () => {
       phone: "+49 (0) 3533 / 4812 0",
       fax: "+49 (0) 3533 / 4812 16",
       mail: "info@ofenfischer.de",
-      hours: ["Ostern - Oktober: Mo - Fr 7 - 16 Uhr", "Oktober - Ostern: Mo - Fr 7 - 18 Uhr"]
+      hours: ["Ostern - Oktober:","Mo - Fr 7 - 16 Uhr", "Oktober - Ostern:","Mo - Fr 7 - 18 Uhr"]
     }
   ];
 

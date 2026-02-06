@@ -76,16 +76,19 @@ export default function Navbar() {
       name: 'Service', 
       href: '#',
       submenu: [
-        { name: 'Kundendienst', href: '#kundendienst', icon: <Settings size={16}/> },
+        // HIER WURDE DER LINK ANGEPASST
+        { name: 'Kundendienst', href: '/kundendienst', icon: <Settings size={16}/> },
         { name: 'FAQ\'s', href: '#faq', icon: <Info size={16}/> },
-        { name: 'Mediathek', href: '#mediathek', icon: <Briefcase size={16}/> },
+        // HIER WURDE DER LINK ANGEPASST
+        { name: 'Mediathek', href: '/mediathek', icon: <Briefcase size={16}/> },
       ]
     },
     { 
       name: 'Filialen', 
       href: '#',
       submenu: [
-        { name: 'Berlin', href: '#berlin', icon: <MapPin size={16}/> },
+        // HIER WURDE DER LINK ANGEPASST
+        { name: 'Berlin', href: '/filialen/berlin', icon: <MapPin size={16}/> },
         { name: 'Dresden', href: '#dresden', icon: <MapPin size={16}/> },
         { name: 'Plessa', href: '#plessa', icon: <MapPin size={16}/> },
       ]
