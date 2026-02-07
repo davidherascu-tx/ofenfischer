@@ -6,39 +6,77 @@ import { Users, MapPin, Hammer, Award, ChevronLeft, ChevronRight, X, ZoomIn } fr
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
-// --- PLATZHALTER-BILDER FÜR ZERTIFIKATE ---
+// --- ECHTE ZERTIFIKATE ---
 const certificateImages = [
-  { src: "https://placehold.co/600x850/EEE/31343C?text=Meisterbrief", alt: "Meisterbrief Handwerkskammer" },
-  { src: "https://placehold.co/600x850/EEE/31343C?text=TÜV+Zertifikat", alt: "TÜV Zertifizierung" },
-  { src: "https://placehold.co/600x850/EEE/31343C?text=Innungs+Mitglied", alt: "Mitgliedsurkunde Innung" },
-  { src: "https://placehold.co/600x850/EEE/31343C?text=Brandschutz", alt: "Fachbetrieb Brandschutz" },
-  { src: "https://placehold.co/600x850/EEE/31343C?text=WHG+Fachbetrieb", alt: "Zertifikat nach Wasserhaushaltsgesetz" },
-  { src: "https://placehold.co/600x850/EEE/31343C?text=Spartherm+Partner", alt: "Premium Partner Spartherm" },
-  { src: "https://placehold.co/600x850/EEE/31343C?text=Brunner+Partner", alt: "Autorisierter Brunner Partner" },
-  { src: "https://placehold.co/600x850/EEE/31343C?text=Energie+Effizienz", alt: "Schulung Energieeffizienz" },
-  { src: "https://placehold.co/600x850/EEE/31343C?text=Ausbildungsbetrieb", alt: "Urkunde Ausbildungsbetrieb" },
+  { 
+    src: "/zertifikate/Meisterbrief_kachelofen_und_luftheizungsbauer.jpg", 
+    alt: "Meisterbrief Kachelofen- & Luftheizungsbauer" 
+  },
+  { 
+    src: "/zertifikate/meisterbrief_zentralheizungs_und_lueftungsbauer.jpg", 
+    alt: "Meisterbrief Zentralheizungs- & Lüftungsbauer" 
+  },
+  { 
+    src: "/zertifikate/technischer_fachwirt_1.jpg", 
+    alt: "Staatlich gepr. Technischer Fachwirt" 
+  },
+  { 
+    src: "/zertifikate/Zertifikat_Fachbetrieb_Wasserhaushalt.jpg", 
+    alt: "Fachbetrieb nach Wasserhaushaltsgesetz" 
+  },
+  { 
+    src: "/zertifikate/vdi-qualifizierungsnachweis.jpg", 
+    alt: "Sachkundiger Wärmepumpensysteme VDI 4645" 
+  },
+  { 
+    src: "/zertifikate/zertifikat2019_deutsches_pelletsinstitug.jpg", 
+    alt: "Zertifizierter Pelletfachbetrieb (DEPI)" 
+  },
+  { 
+    src: "/zertifikate/zertifikat2019_windhager.jpg", 
+    alt: "Biomasse- & Pelletsfachbetrieb (Windhager)" 
+  },
+  { 
+    src: "/zertifikate/hoxter_technisches_training.jpg", 
+    alt: "Hoxter Technisches Training" 
+  },
+  { 
+    src: "/zertifikate/fachbetrieb_gemaess_wasserhaushaltgesetz.jpg", 
+    alt: "Fachbetrieb WHG (TÜV Rheinland)" 
+  }
 ];
+
+// Wir verdoppeln die Liste für den Endlos-Effekt
+const infiniteCertificates = [...certificateImages, ...certificateImages];
 
 export default function UnternehmenPage() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Scroll-Funktion
+  // Verbesserte Endlos-Scroll-Funktion
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
       const { current } = scrollContainerRef;
-      const scrollAmount = 320; 
+      const scrollAmount = 320; // Breite einer Karte + Gap
+      
+      // Die Hälfte der Gesamtbreite entspricht einem kompletten Satz Zertifikate
+      // (ungefähr, da padding/margin variieren kann, aber für den Reset reicht es)
+      const oneSetWidth = current.scrollWidth / 2;
       
       if (direction === 'left') {
+        // Wenn wir ganz am Anfang sind (0), springen wir unsichtbar in die Mitte
+        if (current.scrollLeft <= 10) {
+          current.scrollLeft = oneSetWidth;
+        }
         current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
       } else {
-        const maxScrollLeft = current.scrollWidth - current.clientWidth;
-        if (current.scrollLeft >= maxScrollLeft - 10) {
-          current.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-          current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        // Wenn wir bereits im zweiten Satz (der Kopie) sind, 
+        // springen wir unsichtbar zurück in den ersten Satz an die gleiche relative Stelle
+        if (current.scrollLeft >= oneSetWidth) {
+          current.scrollLeft = current.scrollLeft - oneSetWidth;
         }
+        current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
       }
     }
   };
@@ -195,7 +233,7 @@ export default function UnternehmenPage() {
         </div>
       </section>
 
-      {/* --- ZERTIFIKATE KARUSSELL --- */}
+      {/* --- ZERTIFIKATE KARUSSELL (ENDLOS) --- */}
       <section className="py-24 bg-[#F8FAFC]">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="text-center mb-12">
@@ -211,6 +249,7 @@ export default function UnternehmenPage() {
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
+            {/* Pfeil Links */}
             <button 
               onClick={() => scroll('left')} 
               className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-full flex items-center justify-center text-[#1A1A1A] shadow-lg hover:bg-[#E67E22] hover:text-white hover:border-[#E67E22] transition-all transform hover:scale-110 -ml-2 md:-ml-6"
@@ -219,26 +258,28 @@ export default function UnternehmenPage() {
               <ChevronLeft size={24} />
             </button>
 
+            {/* Scroll Container */}
             <div 
               ref={scrollContainerRef}
-              className="flex gap-6 overflow-x-auto py-8 snap-x snap-mandatory scrollbar-hide"
+              className="flex gap-6 overflow-x-auto py-8 scrollbar-hide"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
-              {certificateImages.map((cert, index) => (
+              {/* Wir nutzen das verdoppelte Array für den Endlos-Effekt */}
+              {infiniteCertificates.map((cert, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  className="flex-none w-[280px] md:w-[320px] snap-center group cursor-pointer"
+                  transition={{ delay: 0.05 }} // Weniger Delay für flüssiges Scrollen
+                  className="flex-none w-[280px] md:w-[320px] group cursor-pointer"
                   onClick={() => setSelectedImage(cert.src)}
                 >
                   <div className="relative aspect-[3/4] bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden transform group-hover:-translate-y-2 transition-transform duration-300">
                     <img 
                       src={cert.src} 
                       alt={cert.alt} 
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain p-4 bg-white"
                     />
                     <div className="absolute inset-0 bg-[#1A1A1A]/40 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
                       <div className="w-14 h-14 bg-[#E67E22] rounded-full flex items-center justify-center text-white transform scale-50 group-hover:scale-100 transition-all duration-300 shadow-xl">
@@ -246,14 +287,14 @@ export default function UnternehmenPage() {
                       </div>
                     </div>
                   </div>
-                  <p className="text-center mt-4 font-bold text-[#1A1A1A] group-hover:text-[#E67E22] transition-colors">
+                  <p className="text-center mt-4 font-bold text-[#1A1A1A] group-hover:text-[#E67E22] transition-colors text-sm px-4">
                     {cert.alt}
                   </p>
                 </motion.div>
               ))}
-              <div className="flex-none w-4" />
             </div>
 
+            {/* Pfeil Rechts */}
             <button 
               onClick={() => scroll('right')} 
               className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-full flex items-center justify-center text-[#1A1A1A] shadow-lg hover:bg-[#E67E22] hover:text-white hover:border-[#E67E22] transition-all transform hover:scale-110 -mr-2 md:-mr-6"
@@ -265,7 +306,7 @@ export default function UnternehmenPage() {
         </div>
       </section>
 
-      {/* --- VIDEO SECTION (UPDATED LINKS) --- */}
+      {/* --- VIDEO SECTION --- */}
       <section className="py-24 bg-[#1A1A1A] text-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -277,7 +318,7 @@ export default function UnternehmenPage() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {/* Video 1: 5EGvKcMd2jU */}
+            {/* Video 1 */}
             <div className="bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
               <div className="aspect-video relative">
                 <iframe 
@@ -294,7 +335,7 @@ export default function UnternehmenPage() {
               </div>
             </div>
 
-            {/* Video 2: RuvYxY5AO84 */}
+            {/* Video 2 */}
             <div className="bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
               <div className="aspect-video relative">
                 <iframe 

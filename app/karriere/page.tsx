@@ -14,8 +14,9 @@ export default function KarrierePage() {
       {/* --- HERO SECTION --- */}
       <section className="relative h-[50vh] bg-[#1A1A1A] overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 z-0">
+          {/* HIER WURDE DAS BILD GEÄNDERT */}
           <img 
-            src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2000" 
+            src="/karriere.jpg" 
             alt="Karriere bei Ofenfischer" 
             className="w-full h-full object-cover opacity-30 grayscale"
           />

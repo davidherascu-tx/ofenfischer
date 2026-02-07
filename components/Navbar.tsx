@@ -87,8 +87,8 @@ export default function Navbar() {
       href: '#',
       submenu: [
         { name: 'Berlin', href: '/filialen/berlin', icon: <MapPin size={16}/> },
-        { name: 'Dresden', href: '#dresden', icon: <MapPin size={16}/> },
-        { name: 'Plessa', href: '#plessa', icon: <MapPin size={16}/> },
+        { name: 'Dresden', href: '/filialen/dresden', icon: <MapPin size={16}/> },
+        { name: 'Plessa', href: '/filialen/plessa', icon: <MapPin size={16}/> },
       ]
     },
     { 
@@ -98,11 +98,11 @@ export default function Navbar() {
         { name: 'Unternehmen', href: '/unternehmen', icon: <Building2 size={16}/> },
         // HIER WURDE DER LINK ANGEPASST
         { name: 'AGB\'s', href: '/agb', icon: <FileText size={16}/> },
-        { name: 'Referenzen', href: '#referenzen', icon: <Users size={16}/> },
+        { name: 'Referenzen', href: '/referenzen', icon: <Users size={16}/> },
         { name: 'Karriere', href: '/karriere', icon: <Briefcase size={16}/> },
       ]
     },
-    { name: 'EU-Förderung', href: '#eu-foerderung' },
+    { name: 'EU-Förderung', href: '/eu-foerderung' },
   ];
 
   return (

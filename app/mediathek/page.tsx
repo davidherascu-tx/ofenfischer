@@ -2,123 +2,243 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, X, Film, Flame, Settings, ChevronRight } from 'lucide-react';
+import { Play, X, Filter, Clock, Tag, Film, Youtube, Video } from 'lucide-react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
-// --- TYPEN ---
-type Category = 'alle' | 'kamine' | 'heizung';
-
-interface Video {
-  id: string; // YouTube Video ID
+// Typ-Definition für unsere Videos
+interface VideoItem {
+  id: number;
   title: string;
-  category: 'kamine' | 'heizung';
-  duration: string;
+  category: "Kamine" | "Heizung";
+  platform: "youtube" | "vimeo";
+  videoId: string; // Die ID von Youtube oder Vimeo
+  thumbnail: string;
 }
 
-// --- VIDEODATEN (12 Kamine, 5 Heizung) ---
-// HINWEIS: Hier müssen die echten YouTube-IDs ("dQw4w9WgXcQ") eingetragen werden.
-const videoData: Video[] = [
-  // 12x Kamine
-  { id: "video_id_k1", title: "Traumkamin Planung & Aufbau", category: "kamine", duration: "03:45" },
-  { id: "video_id_k2", title: "Das erste Anfeuern: Anleitung", category: "kamine", duration: "02:10" },
-  { id: "video_id_k3", title: "Moderne Gaskamine im Test", category: "kamine", duration: "05:30" },
-  { id: "video_id_k4", title: "Speicheröfen Funktionsweise", category: "kamine", duration: "04:15" },
-  { id: "video_id_k5", title: "Kaminofen Design Trends 2025", category: "kamine", duration: "03:00" },
-  { id: "video_id_k6", title: "Reinigung & Wartung Tipps", category: "kamine", duration: "06:20" },
-  { id: "video_id_k7", title: "Panorama-Kamine Referenz", category: "kamine", duration: "01:50" },
-  { id: "video_id_k8", title: "Holz richtig lagern", category: "kamine", duration: "02:45" },
-  { id: "video_id_k9", title: "Elektrokamine: Täuschend echt", category: "kamine", duration: "03:10" },
-  { id: "video_id_k10", title: "Outdoor Kamine & Feuerstellen", category: "kamine", duration: "02:30" },
-  { id: "video_id_k11", title: "Der Tunnelkamin: Raumteiler", category: "kamine", duration: "03:55" },
-  { id: "video_id_k12", title: "Ofenfischer Imagefilm Kamine", category: "kamine", duration: "04:00" },
+// --- DATEN: VIDEOS ---
+const videos: VideoItem[] = [
+  // --- KATEGORIE: KAMINE ---
+  {
+    id: 1,
+    title: "Ofenfischer Imagefilm",
+    category: "Kamine",
+    platform: "youtube",
+    videoId: "5EGvKcMd2jU",
+    thumbnail: "https://img.youtube.com/vi/5EGvKcMd2jU/maxresdefault.jpg"
+  },
+  {
+    id: 2,
+    title: "Handwerk & Leidenschaft",
+    category: "Kamine",
+    platform: "youtube",
+    videoId: "RuvYxY5AO84",
+    thumbnail: "https://img.youtube.com/vi/RuvYxY5AO84/maxresdefault.jpg"
+  },
+  {
+    id: 3,
+    title: "Kamin Projektvorstellung 1",
+    category: "Kamine",
+    platform: "youtube",
+    videoId: "xJ8_-GjngCY",
+    thumbnail: "https://img.youtube.com/vi/xJ8_-GjngCY/maxresdefault.jpg"
+  },
+  {
+    id: 4,
+    title: "Kamin Projektvorstellung 2",
+    category: "Kamine",
+    platform: "youtube",
+    videoId: "J6hg0P8-CkM",
+    thumbnail: "https://img.youtube.com/vi/J6hg0P8-CkM/maxresdefault.jpg"
+  },
+  {
+    id: 5,
+    title: "Kamin Projektvorstellung 3",
+    category: "Kamine",
+    platform: "youtube",
+    videoId: "JX2QpbA0o1w",
+    thumbnail: "https://img.youtube.com/vi/JX2QpbA0o1w/maxresdefault.jpg"
+  },
+  {
+    id: 6,
+    title: "Kamin Projektvorstellung 4",
+    category: "Kamine",
+    platform: "youtube",
+    videoId: "kqzzdLZ9NDU",
+    thumbnail: "https://img.youtube.com/vi/kqzzdLZ9NDU/maxresdefault.jpg"
+  },
+  {
+    id: 7,
+    title: "Kamin Projektvorstellung 5",
+    category: "Kamine",
+    platform: "youtube",
+    videoId: "vVhkyP71aBY",
+    thumbnail: "https://img.youtube.com/vi/vVhkyP71aBY/maxresdefault.jpg"
+  },
+  {
+    id: 8,
+    title: "Kamin Projektvorstellung 6",
+    category: "Kamine",
+    platform: "youtube",
+    videoId: "XuB_1VdWuMQ",
+    thumbnail: "https://img.youtube.com/vi/XuB_1VdWuMQ/maxresdefault.jpg"
+  },
+  {
+    id: 9,
+    title: "Kamin Projektvorstellung 7",
+    category: "Kamine",
+    platform: "youtube",
+    videoId: "eHMXFRSlZuk",
+    thumbnail: "https://img.youtube.com/vi/eHMXFRSlZuk/maxresdefault.jpg"
+  },
+  {
+    id: 10,
+    title: "Kamin Projektvorstellung 8",
+    category: "Kamine",
+    platform: "youtube",
+    videoId: "drtws9Z6cc4",
+    thumbnail: "https://img.youtube.com/vi/drtws9Z6cc4/maxresdefault.jpg"
+  },
+  // Vimeo Videos (Da Vimeo keine einfachen statischen Thumbnails hat, nutzen wir hier Platzhalterbilder, die thematisch passen)
+  {
+    id: 11,
+    title: "Exklusive Einblicke (Vimeo)",
+    category: "Kamine",
+    platform: "vimeo",
+    videoId: "164693972",
+    thumbnail: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200" 
+  },
+  {
+    id: 12,
+    title: "Ofenbau Kunst (Vimeo)",
+    category: "Kamine",
+    platform: "vimeo",
+    videoId: "164228281",
+    thumbnail: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=1200"
+  },
 
-  // 5x Heizung
-  { id: "video_id_h1", title: "Wärmepumpen einfach erklärt", category: "heizung", duration: "05:10" },
-  { id: "video_id_h2", title: "Fussbodenheizung Vorteile", category: "heizung", duration: "03:20" },
-  { id: "video_id_h3", title: "Hydraulischer Abgleich", category: "heizung", duration: "04:45" },
-  { id: "video_id_h4", title: "Bad-Sanierung Vorher/Nachher", category: "heizung", duration: "02:15" },
-  { id: "video_id_h5", title: "Smart Home Heizungssteuerung", category: "heizung", duration: "03:50" },
+  // --- KATEGORIE: HEIZUNG ---
+  {
+    id: 13,
+    title: "Heizungstechnik Info 1",
+    category: "Heizung",
+    platform: "youtube",
+    videoId: "HdDKYMtz4Ng",
+    thumbnail: "https://img.youtube.com/vi/HdDKYMtz4Ng/maxresdefault.jpg"
+  },
+  {
+    id: 14,
+    title: "Heizungstechnik Info 2",
+    category: "Heizung",
+    platform: "youtube",
+    videoId: "qVh9exM49kI",
+    thumbnail: "https://img.youtube.com/vi/qVh9exM49kI/maxresdefault.jpg"
+  },
+  {
+    id: 15,
+    title: "Heizungstechnik Info 3",
+    category: "Heizung",
+    platform: "youtube",
+    videoId: "cBEiKrRlxTc",
+    thumbnail: "https://img.youtube.com/vi/cBEiKrRlxTc/maxresdefault.jpg"
+  },
+  {
+    id: 16,
+    title: "Heizungstechnik Info 4",
+    category: "Heizung",
+    platform: "youtube",
+    videoId: "rkJgswzwKSA",
+    thumbnail: "https://img.youtube.com/vi/rkJgswzwKSA/maxresdefault.jpg"
+  },
+  {
+    id: 17,
+    title: "Heizungstechnik Info 5",
+    category: "Heizung",
+    platform: "youtube",
+    videoId: "SAhR7TYED1o",
+    thumbnail: "https://img.youtube.com/vi/SAhR7TYED1o/maxresdefault.jpg"
+  },
 ];
 
+// Kategorien extrahieren
+const categories = ["Alle", "Kamine", "Heizung"];
+
 export default function MediathekPage() {
-  const [activeCategory, setActiveCategory] = useState<Category>('alle');
-  const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
+  const [activeCategory, setActiveCategory] = useState("Alle");
+  const [selectedVideo, setSelectedVideo] = useState<VideoItem | null>(null);
 
   // Filter Logik
-  const filteredVideos = videoData.filter(
-    (v) => activeCategory === 'alle' || v.category === activeCategory
-  );
+  const filteredVideos = activeCategory === "Alle" 
+    ? videos 
+    : videos.filter(v => v.category === activeCategory);
 
   return (
-    <main className="min-h-screen bg-white font-sans selection:bg-[#E67E22] selection:text-white">
+    <main className="min-h-screen bg-[#F8FAFC] font-sans selection:bg-[#E67E22] selection:text-white">
       <Navbar />
 
       {/* --- HERO SECTION --- */}
       <section className="relative h-[50vh] bg-[#1A1A1A] overflow-hidden flex items-center justify-center">
-        <div className="absolute inset-0 z-0 opacity-20">
-           {/* Platzhalter für Hintergrundbild */}
-           <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1492619877527-42777176a928?q=80&w=2000')] bg-cover bg-center" />
+        <div className="absolute inset-0 z-0">
+          {/* HIER WURDE DAS BILD GEÄNDERT */}
+          <img 
+            src="/mediathek.jpg" 
+            alt="Ofenfischer Mediathek" 
+            className="w-full h-full object-cover opacity-40 grayscale"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent" />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent z-10" />
 
-        <div className="relative z-20 text-center px-6">
+        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
             <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="h-[2px] w-12 bg-[#E67E22]"></div>
-              <span className="text-[#E67E22] font-bold uppercase tracking-[0.3em] text-xs">Inspiration & Wissen</span>
-              <div className="h-[2px] w-12 bg-[#E67E22]"></div>
+              <Film className="text-[#E67E22]" size={32} />
             </div>
-            <h1 className="text-5xl md:text-7xl font-black text-white uppercase italic tracking-tighter mb-4">
+            <h1 className="text-4xl md:text-6xl font-black text-white uppercase italic tracking-tighter mb-4">
               Mediathek
             </h1>
-            <p className="text-slate-400 text-lg max-w-xl mx-auto">
-              Tauchen Sie ein in die Welt von Ofenfischer. Erleben Sie unsere Projekte und Technik in Bewegung.
+            <p className="text-xl text-slate-300 font-light max-w-2xl mx-auto leading-relaxed">
+              Lassen Sie sich inspirieren. Erleben Sie unsere Projekte und erfahren Sie mehr über unsere Technik in bewegten Bildern.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* --- FILTER TABS --- */}
-      <section className="sticky top-20 z-40 bg-white/80 backdrop-blur-md border-b border-slate-100 py-4">
-        <div className="max-w-7xl mx-auto px-6 flex justify-center gap-4">
-          <FilterButton 
-            active={activeCategory === 'alle'} 
-            onClick={() => setActiveCategory('alle')} 
-            icon={<Film size={18} />} 
-            label="Alle Videos" 
-          />
-          <FilterButton 
-            active={activeCategory === 'kamine'} 
-            onClick={() => setActiveCategory('kamine')} 
-            icon={<Flame size={18} />} 
-            label="Kamine & Öfen" 
-          />
-          <FilterButton 
-            active={activeCategory === 'heizung'} 
-            onClick={() => setActiveCategory('heizung')} 
-            icon={<Settings size={18} />} 
-            label="Heizung & Sanitär" 
-          />
-        </div>
-      </section>
+      {/* --- FILTER & GALLERY SECTION --- */}
+      <section className="py-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          
+          {/* Filter Buttons */}
+          <div className="flex flex-wrap justify-center gap-4 mb-16">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-6 py-2 rounded-full font-bold text-sm transition-all flex items-center gap-2 border ${
+                  activeCategory === cat 
+                  ? "bg-[#E67E22] text-white border-[#E67E22] shadow-lg shadow-orange-500/20" 
+                  : "bg-white text-slate-600 border-slate-200 hover:border-[#E67E22] hover:text-[#E67E22]"
+                }`}
+              >
+                {activeCategory === cat && <Filter size={14} />}
+                {cat}
+              </button>
+            ))}
+          </div>
 
-      {/* --- VIDEO GRID --- */}
-      <section className="py-16 bg-[#F8FAFC]">
-        <div className="max-w-7xl mx-auto px-6">
+          {/* Video Grid */}
           <motion.div 
-            layout 
+            layout
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             <AnimatePresence mode='popLayout'>
               {filteredVideos.map((video) => (
                 <motion.div
-                  layout
                   key={video.id}
+                  layout
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
@@ -126,86 +246,98 @@ export default function MediathekPage() {
                   className="group cursor-pointer"
                   onClick={() => setSelectedVideo(video)}
                 >
-                  {/* Thumbnail Card */}
-                  <div className="relative aspect-video rounded-2xl overflow-hidden shadow-lg bg-black">
-                    {/* YouTube Thumbnail Image Fetcher */}
-                    <img 
-                      src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`} 
-                      // Fallback, falls maxresdefault nicht existiert (passiert bei manchen Videos)
-                      onError={(e) => { e.currentTarget.src = `https://img.youtube.com/vi/${video.id}/hqdefault.jpg` }}
-                      alt={video.title}
-                      className="w-full h-full object-cover opacity-80 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700"
-                    />
+                  {/* Card Container */}
+                  <div className="bg-white rounded-2xl overflow-hidden shadow-xl border border-slate-100 hover:shadow-2xl hover:border-[#E67E22]/30 transition-all duration-300 h-full flex flex-col">
                     
-                    {/* Play Button Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-16 h-16 bg-white/10 backdrop-blur-sm border border-white/30 rounded-full flex items-center justify-center group-hover:bg-[#E67E22] group-hover:border-[#E67E22] transition-all duration-300 shadow-2xl">
-                        <Play fill="white" className="text-white ml-1" size={24} />
+                    {/* Thumbnail mit Overlay */}
+                    <div className="relative aspect-video overflow-hidden bg-slate-100">
+                      <img 
+                        src={video.thumbnail} 
+                        alt={video.title} 
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      
+                      {/* Dark Overlay & Play Button */}
+                      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-300 flex items-center justify-center">
+                        <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/50 group-hover:scale-110 group-hover:bg-[#E67E22] group-hover:border-[#E67E22] transition-all duration-300">
+                           <Play size={28} className="text-white fill-white translate-x-1" />
+                        </div>
+                      </div>
+
+                      {/* Platform Badge */}
+                      <div className="absolute bottom-3 right-3 bg-black/70 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded flex items-center gap-1">
+                        {video.platform === 'youtube' ? <Youtube size={12} /> : <Video size={12} />}
+                        {video.platform === 'youtube' ? 'YouTube' : 'Vimeo'}
                       </div>
                     </div>
 
-                    {/* Duration Badge */}
-                    <div className="absolute bottom-3 right-3 bg-black/70 text-white text-xs font-bold px-2 py-1 rounded-md backdrop-blur-sm">
-                      {video.duration}
+                    {/* Content */}
+                    <div className="p-6 flex flex-col flex-grow">
+                      <div className="flex items-center gap-2 text-[#E67E22] text-xs font-bold uppercase tracking-wider mb-2">
+                        <Tag size={12} />
+                        {video.category}
+                      </div>
+                      <h3 className="text-lg font-bold text-[#1A1A1A] group-hover:text-[#E67E22] transition-colors mb-2 line-clamp-2">
+                        {video.title}
+                      </h3>
                     </div>
-                  </div>
-
-                  {/* Text Info */}
-                  <div className="mt-4 px-2">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
-                        video.category === 'kamine' ? 'bg-orange-100 text-orange-600' : 'bg-blue-100 text-blue-600'
-                      }`}>
-                        {video.category === 'kamine' ? 'Kamine' : 'Heizung'}
-                      </span>
-                    </div>
-                    <h3 className="text-lg font-bold text-[#1A1A1A] group-hover:text-[#E67E22] transition-colors leading-tight">
-                      {video.title}
-                    </h3>
+                    
                   </div>
                 </motion.div>
               ))}
             </AnimatePresence>
           </motion.div>
 
-          {filteredVideos.length === 0 && (
-            <div className="text-center py-20 text-slate-400">
-              Keine Videos in dieser Kategorie gefunden.
-            </div>
-          )}
         </div>
       </section>
 
-      {/* --- VIDEO MODAL (Overlay) --- */}
+      {/* --- LIGHTBOX (VIDEO OVERLAY) --- */}
       <AnimatePresence>
         {selectedVideo && (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[1000] bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 md:p-12"
-            onClick={() => setSelectedVideo(null)} // Close on backdrop click
+            className="fixed inset-0 z-[9999] bg-[#1A1A1A]/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-12"
+            onClick={() => setSelectedVideo(null)}
           >
-            <div className="relative w-full max-w-5xl aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl border border-white/10">
-              <button 
-                onClick={() => setSelectedVideo(null)}
-                className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 hover:bg-[#E67E22] text-white rounded-full flex items-center justify-center transition-colors backdrop-blur-md"
-              >
-                <X size={20} />
-              </button>
-              
-              <iframe 
-                className="w-full h-full"
-                src={`https://www.youtube-nocookie.com/embed/${selectedVideo.id}?autoplay=1&rel=0&modestbranding=1`} 
-                title={selectedVideo.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
-              ></iframe>
-            </div>
-            
-            <div className="absolute bottom-10 left-0 w-full text-center pointer-events-none">
-              <h2 className="text-white text-xl font-bold">{selectedVideo.title}</h2>
-            </div>
+            {/* Schließen Button */}
+            <button 
+              className="absolute top-6 right-6 z-10 w-12 h-12 bg-white/10 hover:bg-[#E67E22] text-white rounded-full flex items-center justify-center transition-colors"
+              onClick={() => setSelectedVideo(null)}
+            >
+              <X size={28} />
+            </button>
+
+            {/* Video Container */}
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="w-full max-w-5xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+               {selectedVideo.platform === 'youtube' ? (
+                 <iframe 
+                    width="100%" 
+                    height="100%" 
+                    src={`https://www.youtube-nocookie.com/embed/${selectedVideo.videoId}?autoplay=1&modestbranding=1&rel=0`}
+                    title={selectedVideo.title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowFullScreen
+                  ></iframe>
+               ) : (
+                 <iframe 
+                    src={`https://player.vimeo.com/video/${selectedVideo.videoId}?autoplay=1&color=E67E22&title=0&byline=0&portrait=0`} 
+                    width="100%" 
+                    height="100%" 
+                    frameBorder="0" 
+                    allow="autoplay; fullscreen; picture-in-picture" 
+                    allowFullScreen
+                 ></iframe>
+               )}
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -214,20 +346,3 @@ export default function MediathekPage() {
     </main>
   );
 }
-
-// --- HELPER COMPONENT: FILTER BUTTON ---
-const FilterButton = ({ active, onClick, icon, label }: { active: boolean, onClick: () => void, icon: React.ReactNode, label: string }) => (
-  <button 
-    onClick={onClick}
-    className={`
-      flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300
-      ${active 
-        ? 'bg-[#1A1A1A] text-white shadow-lg scale-105' 
-        : 'bg-white text-slate-500 hover:bg-slate-100 hover:text-[#1A1A1A] border border-slate-200'
-      }
-    `}
-  >
-    {icon}
-    <span>{label}</span>
-  </button>
-);

@@ -4,37 +4,40 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   MapPin, Clock, Phone, Mail, Navigation, 
-  CheckCircle2, Car, Calendar, Star, Camera, X, ZoomIn
+  CheckCircle2, Car, Calendar, Star, Camera, X, ZoomIn, View
 } from 'lucide-react';
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
 
-// --- MOCK-DATEN FÜR DIE GALERIE ---
-// Ersetze diese URLs später durch echte Fotos deiner Berliner Filiale.
+// --- BILDER FÜR DIE GALERIE BERLIN ---
 const galleryImages = [
   {
-    src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200",
-    alt: "Moderne Kaminofen Ausstellung Berlin"
+    src: "/filialen/berlin/filiale_berlin_01.jpg",
+    alt: "Blick in den Ausstellungsraum"
   },
   {
-    src: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200",
-    alt: "Gaskamin Studio Schönefeld"
+    src: "/filialen/berlin/filiale_berlin_02_v2.jpg",
+    alt: "Kaminofen Präsentation"
   },
   {
-    src: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200",
-    alt: "Beratungsbereich und Materialmuster"
+    src: "/filialen/berlin/filiale_berlin_03.jpg",
+    alt: "Moderne Wohnlandschaften"
   },
   {
-    src: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=1200",
-    alt: "Exklusive Designkamine"
+    src: "/filialen/berlin/filiale_berlin_04.jpg",
+    alt: "Hoxter Studio & Designkamine"
   },
   {
-    src: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1200",
-    alt: "Live befeuerte Anlagen"
+    src: "/filialen/berlin/filiale_berlin_05.jpg",
+    alt: "Beratungsbereich & Kinderecke"
   },
   {
-    src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200",
-    alt: "Großzügige Ausstellungsfläche"
+    src: "/filialen/berlin/filiale_berlin_06.jpg",
+    alt: "Kachelofen und Essbereich"
+  },
+  {
+    src: "/filialen/berlin/filiale_berlin_07.jpg",
+    alt: "Klassische Kamine"
   }
 ];
 
@@ -60,8 +63,8 @@ export default function BerlinPage() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="/kamine.jpg" // Nutzt eines deiner hochgeladenen Bilder
-            alt="Ofenfischer Ausstellung Berlin" 
+            src="/filialen/berlin/berlin.jpg" 
+            alt="Ofenfischer Ausstellung Berlin Außenansicht" 
             className="w-full h-full object-cover opacity-40"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent" />
@@ -209,15 +212,15 @@ export default function BerlinPage() {
             </div>
           </div>
 
-          {/* Kleiner Teaser (die großen Bilder sind jetzt unten in der Galerie) */}
+          {/* Kleiner Teaser - Innenansicht */}
           <div className="relative h-full min-h-[400px] rounded-3xl overflow-hidden shadow-2xl">
               <img 
-                src={galleryImages[0].src} 
+                src="/filialen/berlin/berlin.jpg" 
                 className="w-full h-full object-cover" 
-                alt="Ausstellung Teaser"
+                alt="Außenansicht Filiale Berlin"
               />
-            {/* Badge */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#1A1A1A]/90 backdrop-blur-md text-white p-6 rounded-full shadow-2xl border-4 border-[#E67E22] text-center w-36 h-36 flex flex-col items-center justify-center">
+            {/* Badge - JETZT RECHTS OBEN */}
+            <div className="absolute top-6 right-6 bg-[#1A1A1A]/90 backdrop-blur-md text-white p-6 rounded-full shadow-2xl border-4 border-[#E67E22] text-center w-36 h-36 flex flex-col items-center justify-center">
               <span className="text-3xl font-black italic">400</span>
               <span className="text-[10px] uppercase tracking-widest">m² Fläche</span>
             </div>
@@ -226,7 +229,38 @@ export default function BerlinPage() {
         </div>
       </section>
 
-      {/* --- NEUE BILDER GALERIE --- */}
+      {/* --- VIRTUELLE TOUR SECTION --- */}
+      <section className="py-24 bg-[#1A1A1A] text-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center gap-2 text-[#E67E22] font-bold uppercase tracking-widest text-xs mb-4">
+              <View size={16} />
+              <span>Digitaler Besuch</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black uppercase italic tracking-tighter">
+              Virtueller Rundgang
+            </h2>
+            <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
+              Erkunden Sie unsere Ausstellung in Berlin Schönefeld ganz bequem von zu Hause aus.
+            </p>
+          </div>
+
+          <div className="rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-black">
+             <iframe 
+                src="https://www.google.com/maps/embed?pb=!4v1664277602925!6m8!1m7!1sCAoSLEFGMVFpcE5kWU1SeWkwRWlpYWJtZHNKMUVBSmUtNG1RVWJueEJJUWxqOTVT!2m2!1d52.365480288017!2d13.558523901191!3f342.97657254996744!4f-8.01416777099709!5f0.7820865974627469" 
+                width="100%" 
+                height="750" 
+                style={{ border: 0, minHeight: '500px' }} 
+                allowFullScreen={true} 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full"
+             ></iframe>
+          </div>
+        </div>
+      </section>
+
+      {/* --- BILDER GALERIE --- */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -290,7 +324,7 @@ export default function BerlinPage() {
         </div>
       </section>
 
-      {/* --- LIGHTBOX MODAL (Für Großansicht) --- */}
+      {/* --- LIGHTBOX MODAL --- */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div 
@@ -298,7 +332,7 @@ export default function BerlinPage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[9999] bg-[#1A1A1A]/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-12"
-            onClick={() => setSelectedImage(null)} // Schließen beim Klick auf Hintergrund
+            onClick={() => setSelectedImage(null)} 
           >
             {/* Schließen Button */}
             <button 
@@ -317,7 +351,7 @@ export default function BerlinPage() {
               src={selectedImage} 
               alt="Großansicht"
               className="w-auto h-auto max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
-              onClick={(e) => e.stopPropagation()} // Verhindert Schließen beim Klick auf das Bild selbst
+              onClick={(e) => e.stopPropagation()} 
             />
           </motion.div>
         )}

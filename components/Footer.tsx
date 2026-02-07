@@ -155,7 +155,7 @@ const Footer = () => {
           </p>
           <div className="flex gap-8 text-[9px] uppercase tracking-[0.3em] text-slate-600 font-medium">
             <a href="#" className="hover:text-[#E67E22] transition-colors">IMPRESSUM</a>
-            <a href="#" className="hover:text-[#E67E22] transition-colors">DATENSCHUTZ</a>
+            <a href="/datenschutz" className="hover:text-[#E67E22] transition-colors">DATENSCHUTZ</a>
           </div>
         </div>
       </div>
