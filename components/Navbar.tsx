@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+// HIER KORRIGIERT: ChevronRight hinzugefügt
 import { Menu, X, Phone, ArrowRight, ChevronDown, Flame, Settings, Info, MapPin, Briefcase, ChevronRight, Building2, FileText, Users } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
@@ -44,7 +45,6 @@ export default function Navbar() {
           title: 'Kamine & Öfen',
           icon: <Flame className="text-orange-500" size={18} />,
           items: [
-            // HIER WURDE DER LINK ANGEPASST
             { name: 'Individuelle Kaminanlagen', href: '/produkte/kaminanlagen' },
             { name: 'Kaminöfen', href: '#kaminoefen' },
             { name: 'Gaskamine', href: '#gaskamine' },
@@ -78,7 +78,7 @@ export default function Navbar() {
       href: '#',
       submenu: [
         { name: 'Kundendienst', href: '/kundendienst', icon: <Settings size={16}/> },
-        { name: 'FAQ\'s', href: '#faq', icon: <Info size={16}/> },
+        { name: 'FAQ\'s', href: '/faq', icon: <Info size={16}/> },
         { name: 'Mediathek', href: '/mediathek', icon: <Briefcase size={16}/> },
       ]
     },
@@ -95,10 +95,11 @@ export default function Navbar() {
       name: 'Über uns', 
       href: '#',
       submenu: [
-        { name: 'Unternehmen', href: '#unternehmen', icon: <Building2 size={16}/> },
-        { name: 'AGB\'s', href: '#agb', icon: <FileText size={16}/> },
+        { name: 'Unternehmen', href: '/unternehmen', icon: <Building2 size={16}/> },
+        // HIER WURDE DER LINK ANGEPASST
+        { name: 'AGB\'s', href: '/agb', icon: <FileText size={16}/> },
         { name: 'Referenzen', href: '#referenzen', icon: <Users size={16}/> },
-        { name: 'Karriere', href: '#karriere', icon: <Briefcase size={16}/> },
+        { name: 'Karriere', href: '/karriere', icon: <Briefcase size={16}/> },
       ]
     },
     { name: 'EU-Förderung', href: '#eu-foerderung' },
