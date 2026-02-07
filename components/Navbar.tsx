@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-// HIER KORRIGIERT: ChevronRight hinzugefügt
 import { Menu, X, Phone, ArrowRight, ChevronDown, Flame, Settings, Info, MapPin, Briefcase, ChevronRight, Building2, FileText, Users } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
@@ -96,7 +95,6 @@ export default function Navbar() {
       href: '#',
       submenu: [
         { name: 'Unternehmen', href: '/unternehmen', icon: <Building2 size={16}/> },
-        // HIER WURDE DER LINK ANGEPASST
         { name: 'AGB\'s', href: '/agb', icon: <FileText size={16}/> },
         { name: 'Referenzen', href: '/referenzen', icon: <Users size={16}/> },
         { name: 'Karriere', href: '/karriere', icon: <Briefcase size={16}/> },
@@ -171,10 +169,15 @@ export default function Navbar() {
             <a href="tel:+49353348120" className="hidden xl:flex text-white/70 hover:text-orange-500 transition-colors items-center gap-2 text-xs font-bold">
               <Phone size={16} /> <span className="hidden 2xl:inline">+49 3533 48120</span>
             </a>
-            <button className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg shadow-orange-500/20 flex items-center gap-2 text-sm">
+            
+            {/* Desktop KONTAKT Button (aktualisiert zu Link) */}
+            <Link 
+              href="/kontakt"
+              className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg shadow-orange-500/20 flex items-center gap-2 text-sm"
+            >
               <span>Kontakt</span>
               <ArrowRight size={16} />
-            </button>
+            </Link>
             
             {/* MOBILE HAMBURGER */}
             <button className="lg:hidden text-white ml-2" onClick={() => setIsOpen(!isOpen)}>
@@ -230,7 +233,8 @@ export default function Navbar() {
                         Vereinbaren Sie einen Termin in einer unserer Ausstellungen. Wir nehmen uns Zeit für Ihr Projekt.
                       </p>
                     </div>
-                    <Link href="#kontakt" className="text-orange-500 text-sm font-bold flex items-center gap-2 group mt-4 bg-orange-500/10 p-3 rounded-lg justify-center hover:bg-orange-500 hover:text-white transition-all">
+                    {/* HIER GEÄNDERT: Link zu /projekt-starten */}
+                    <Link href="/projekt-starten" className="text-orange-500 text-sm font-bold flex items-center gap-2 group mt-4 bg-orange-500/10 p-3 rounded-lg justify-center hover:bg-orange-500 hover:text-white transition-all">
                       Jetzt anfragen <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>
@@ -327,10 +331,11 @@ export default function Navbar() {
                       <Phone size={20} className="text-orange-500" />
                       +49 3533 48120
                    </a>
-                   <button className="w-full bg-orange-500 hover:bg-orange-600 text-[#353535] py-3 rounded-xl font-bold shadow-lg shadow-orange-500/20 flex items-center justify-center gap-2 transition-all">
+                   {/* HIER GEÄNDERT: Mobile Projekt starten Button zu Link */}
+                   <Link href="/projekt-starten" onClick={closeMenu} className="w-full bg-orange-500 hover:bg-orange-600 text-[#353535] py-3 rounded-xl font-bold shadow-lg shadow-orange-500/20 flex items-center justify-center gap-2 transition-all">
                       <span>Projekt starten</span>
                       <ArrowRight size={20} />
-                   </button>
+                   </Link>
                 </div>
 
               </div>

@@ -12,9 +12,17 @@ import Footer from '../../components/Footer';
 export default function KundendienstPage() {
   // Formular State
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [privacyAccepted, setPrivacyAccepted] = useState(false); // NEUER STATE
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validierung: Datenschutz muss akzeptiert sein
+    if (!privacyAccepted) {
+      alert("Bitte akzeptieren Sie die Datenschutzerklärung.");
+      return;
+    }
+
     setFormStatus('submitting');
     // Hier würde die API-Logik hinkommen
     setTimeout(() => setFormStatus('success'), 1500);
@@ -262,6 +270,21 @@ export default function KundendienstPage() {
                   <div className="space-y-2">
                     <label className="text-xs font-bold uppercase tracking-wider text-slate-500">Ihre Nachricht</label>
                     <textarea required rows={4} placeholder="Bitte beschreiben Sie Ihr Anliegen..." className="w-full bg-[#F8FAFC] border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:border-[#E67E22] focus:ring-1 focus:ring-[#E67E22] transition-all resize-none"></textarea>
+                  </div>
+
+                  {/* --- NEU: DATENSCHUTZ CHECKBOX --- */}
+                  <div className="flex items-start gap-3 mt-4">
+                    <input 
+                      type="checkbox" 
+                      id="privacy"
+                      checked={privacyAccepted}
+                      onChange={(e) => setPrivacyAccepted(e.target.checked)}
+                      required
+                      className="mt-1 h-4 w-4 rounded border-gray-300 text-[#E67E22] focus:ring-[#E67E22] cursor-pointer"
+                    />
+                    <label htmlFor="privacy" className="text-xs text-slate-500 cursor-pointer">
+                      Ich habe die <a href="/datenschutz" target="_blank" className="text-[#E67E22] hover:underline font-bold">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zu.
+                    </label>
                   </div>
 
                   <button 

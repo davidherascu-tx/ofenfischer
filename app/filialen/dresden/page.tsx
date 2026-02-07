@@ -10,7 +10,6 @@ import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
 
 // --- NEUE BILDER FÜR DIE GALERIE DRESDEN ---
-// Bitte speichern unter: public/filialen/dresden/
 const galleryImages = [
   {
     src: "/filialen/dresden/filiale_dresden_01.jpg",
@@ -167,9 +166,13 @@ export default function DresdenPage() {
               <Mail size={16} /> dresden@ofenfischer.de
             </a>
             
-            <button className="mt-auto bg-[#E67E22] text-white px-6 py-3 rounded-xl font-bold text-sm shadow-lg hover:bg-orange-600 transition-all flex items-center gap-2">
+            {/* HIER WURDE DER LINK GEÄNDERT - DESIGN BLEIBT IDENTISCH */}
+            <a 
+              href="/kontakt"
+              className="mt-auto bg-[#E67E22] text-white px-6 py-3 rounded-xl font-bold text-sm shadow-lg hover:bg-orange-600 transition-all flex items-center gap-2"
+            >
               <Calendar size={16} /> Termin anfragen
-            </button>
+            </a>
           </motion.div>
 
         </div>
@@ -249,7 +252,7 @@ export default function DresdenPage() {
           </div>
 
           <div className="rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-black">
-             <iframe 
+              <iframe 
                 src="https://www.google.com/maps/embed?pb=!4v1664270464208!6m8!1m7!1sCAoSLEFGMVFpcE5Kc1RyZFFobTdUX3REZGU5bGJVZnVpcC15UnV4NFJMS0k1VDNR!2m2!1d51.092168429282!2d13.7209050872!3f332.65110803044206!4f-0.664497277095478!5f0.7820865974627469" 
                 width="100%" 
                 height="750" 
@@ -258,7 +261,7 @@ export default function DresdenPage() {
                 loading="lazy" 
                 referrerPolicy="no-referrer-when-downgrade"
                 className="w-full"
-             ></iframe>
+              ></iframe>
           </div>
         </div>
       </section>

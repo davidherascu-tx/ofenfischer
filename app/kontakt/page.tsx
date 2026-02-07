@@ -16,7 +16,7 @@ export default function KontaktPage() {
     phone: '',
     subject: '',
     message: '',
-    privacyAccepted: false // Neuer State für die Checkbox
+    privacyAccepted: false
   });
   
   const [file, setFile] = useState<File | null>(null);
@@ -27,7 +27,6 @@ export default function KontaktPage() {
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
     
-    // Spezialbehandlung für Checkbox
     const val = type === 'checkbox' 
       ? (e.target as HTMLInputElement).checked 
       : value;
@@ -48,7 +47,6 @@ export default function KontaktPage() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     
-    // Zusätzliche Sicherheitsprüfung (obwohl 'required' im HTML schon blockt)
     if (!formData.privacyAccepted) {
       alert("Bitte akzeptieren Sie die Datenschutzerklärung.");
       return;
@@ -139,12 +137,14 @@ export default function KontaktPage() {
             ) : (
               // --- FORMULAR STATE ---
               <form onSubmit={handleSubmit} className="p-8 md:p-12">
+                
+                {/* HIER WURDEN DIE TEXTE GEÄNDERT */}
                 <div className="mb-10 text-center">
                   <h2 className="text-2xl md:text-3xl font-black text-[#1A1A1A] uppercase italic mb-2">
-                    Ihr Projekt startet hier
+                    Ihre Nachricht an uns
                   </h2>
                   <p className="text-slate-500">
-                    Füllen Sie das Formular aus. Anhänge wie Grundrisse oder Fotos helfen uns bei der Beratung.
+                    Haben Sie Fragen, Wünsche oder Anregungen? Wir helfen Ihnen gerne weiter.
                   </p>
                 </div>
 
@@ -210,10 +210,9 @@ export default function KontaktPage() {
                       className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 pl-12 pr-4 text-[#1A1A1A] font-medium focus:outline-none focus:border-[#E67E22] focus:ring-1 focus:ring-[#E67E22] transition-all appearance-none cursor-pointer"
                     >
                       <option value="" disabled>Bitte Thema wählen...</option>
-                      <option value="beratung">Beratungstermin vereinbaren</option>
-                      <option value="angebot">Angebot anfordern</option>
+                      <option value="allgemein">Allgemeine Anfrage</option>
+                      <option value="beratung">Beratungswunsch</option>
                       <option value="service">Service / Wartung</option>
-                      <option value="karriere">Bewerbung / Karriere</option>
                       <option value="sonstiges">Sonstiges</option>
                     </select>
                   </div>
@@ -228,7 +227,7 @@ export default function KontaktPage() {
                     name="message"
                     required
                     rows={5}
-                    placeholder="Wie können wir Ihnen helfen?" 
+                    placeholder="Ihre Nachricht an uns..." 
                     value={formData.message}
                     onChange={handleInputChange}
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 pl-12 pr-4 text-[#1A1A1A] font-medium focus:outline-none focus:border-[#E67E22] focus:ring-1 focus:ring-[#E67E22] transition-all placeholder:text-slate-400 resize-none"
@@ -282,7 +281,7 @@ export default function KontaktPage() {
                   )}
                 </div>
 
-                {/* --- DATENSCHUTZ CHECKBOX (NEU) --- */}
+                {/* --- DATENSCHUTZ CHECKBOX --- */}
                 <div className="mb-8">
                   <label className="flex items-start gap-3 cursor-pointer group">
                     <div className="relative flex items-center mt-0.5">

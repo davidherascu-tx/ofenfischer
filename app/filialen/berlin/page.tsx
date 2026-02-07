@@ -164,9 +164,13 @@ export default function BerlinPage() {
               <Mail size={16} /> berlin@ofenfischer.de
             </a>
             
-            <button className="mt-auto bg-[#E67E22] text-white px-6 py-3 rounded-xl font-bold text-sm shadow-lg hover:bg-orange-600 transition-all flex items-center gap-2">
+            {/* HIER WURDE DER LINK GEÄNDERT - DESIGN BLEIBT IDENTISCH */}
+            <a 
+              href="/kontakt"
+              className="mt-auto bg-[#E67E22] text-white px-6 py-3 rounded-xl font-bold text-sm shadow-lg hover:bg-orange-600 transition-all flex items-center gap-2"
+            >
               <Calendar size={16} /> Termin anfragen
-            </button>
+            </a>
           </motion.div>
 
         </div>
@@ -246,7 +250,7 @@ export default function BerlinPage() {
           </div>
 
           <div className="rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-black">
-             <iframe 
+              <iframe 
                 src="https://www.google.com/maps/embed?pb=!4v1664277602925!6m8!1m7!1sCAoSLEFGMVFpcE5kWU1SeWkwRWlpYWJtZHNKMUVBSmUtNG1RVWJueEJJUWxqOTVT!2m2!1d52.365480288017!2d13.558523901191!3f342.97657254996744!4f-8.01416777099709!5f0.7820865974627469" 
                 width="100%" 
                 height="750" 
@@ -255,7 +259,7 @@ export default function BerlinPage() {
                 loading="lazy" 
                 referrerPolicy="no-referrer-when-downgrade"
                 className="w-full"
-             ></iframe>
+              ></iframe>
           </div>
         </div>
       </section>

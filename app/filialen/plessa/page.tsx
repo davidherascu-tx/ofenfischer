@@ -10,7 +10,6 @@ import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
 
 // --- NEUE BILDER FÜR DIE GALERIE PLESSA ---
-// Bitte speichern unter: public/filialen/plessa/
 const galleryImages = [
   {
     src: "/filialen/plessa/plessa_2021_gallery_01.jpg",
@@ -165,9 +164,13 @@ export default function PlessaPage() {
               <Mail size={16} /> info@ofenfischer.de
             </a>
             
-            <button className="mt-auto bg-[#E67E22] text-white px-6 py-3 rounded-xl font-bold text-sm shadow-lg hover:bg-orange-600 transition-all flex items-center gap-2">
+            {/* HIER WURDE DER LINK GEÄNDERT - DESIGN BLEIBT IDENTISCH */}
+            <a 
+              href="/kontakt"
+              className="mt-auto bg-[#E67E22] text-white px-6 py-3 rounded-xl font-bold text-sm shadow-lg hover:bg-orange-600 transition-all flex items-center gap-2"
+            >
               <Calendar size={16} /> Termin anfragen
-            </button>
+            </a>
           </motion.div>
 
         </div>
@@ -247,7 +250,7 @@ export default function PlessaPage() {
           </div>
 
           <div className="rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-black">
-             <iframe 
+              <iframe 
                 src="https://www.google.com/maps/embed?pb=!4v1664273361936!6m8!1m7!1sCAoSLEFGMVFpcE5WdU81RUVuX0U4ZXVUeWpOcmpDc051TzNGUER6eTAyTjgxbEVF!2m2!1d51.465368659416!2d13.608752384915!3f0!4f0!5f0.7820865974627469" 
                 width="100%" 
                 height="750" 
@@ -256,7 +259,7 @@ export default function PlessaPage() {
                 loading="lazy" 
                 referrerPolicy="no-referrer-when-downgrade"
                 className="w-full"
-             ></iframe>
+              ></iframe>
           </div>
         </div>
       </section>

@@ -247,7 +247,7 @@ export default function FaqPage() {
               Unsere Experten beraten Sie gerne persönlich zu Ihrem individuellen Projekt.
             </p>
             <a 
-              href="/#kontakt" 
+              href="/kontakt" 
               className="inline-block bg-[#1A1A1A] text-white px-8 py-3 rounded-full font-bold hover:bg-[#E67E22] transition-colors"
             >
               Kontakt aufnehmen
