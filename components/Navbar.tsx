@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+// FIX: ChevronRight wurde hier hinzugefügt
 import { Menu, X, Phone, ArrowRight, ChevronDown, Flame, Settings, Info, MapPin, Briefcase, ChevronRight, Building2, FileText, Users } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import Image from 'next/image'; // WICHTIG: Import für LCP Optimierung
+import Image from 'next/image';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -268,14 +269,26 @@ export default function Navbar() {
               <div className="flex flex-col p-4">
                 {navLinks.map((link) => (
                   <div key={link.name} className="border-b border-white/5 last:border-0">
-                    <div 
-                      onClick={() => (link.submenu || link.isMega) ? setMobileExpanded(mobileExpanded === link.name ? null : link.name) : closeMenu()}
-                      className="flex items-center justify-between text-white font-bold py-4 px-2 cursor-pointer hover:bg-white/5 rounded-lg"
-                    >
-                      <span className="text-lg">{link.name}</span>
-                      {(link.submenu || link.isMega) && <ChevronDown size={20} className={`transition-transform duration-300 ${mobileExpanded === link.name ? 'rotate-180 text-orange-500' : 'opacity-40'}`} />}
-                    </div>
+                    {/* FIX: Unterscheidung zwischen Dropdown (div) und Link (Link) */}
+                    {link.submenu || link.isMega ? (
+                      <div 
+                        onClick={() => setMobileExpanded(mobileExpanded === link.name ? null : link.name)}
+                        className="flex items-center justify-between text-white font-bold py-4 px-2 cursor-pointer hover:bg-white/5 rounded-lg"
+                      >
+                        <span className="text-lg">{link.name}</span>
+                        <ChevronDown size={20} className={`transition-transform duration-300 ${mobileExpanded === link.name ? 'rotate-180 text-orange-500' : 'opacity-40'}`} />
+                      </div>
+                    ) : (
+                      <Link 
+                        href={link.href} 
+                        onClick={closeMenu}
+                        className="flex items-center justify-between text-white font-bold py-4 px-2 cursor-pointer hover:bg-white/5 rounded-lg"
+                      >
+                        <span className="text-lg">{link.name}</span>
+                      </Link>
+                    )}
 
+                    {/* Mobile Dropdown Inhalt */}
                     <AnimatePresence>
                       {(link.submenu || link.isMega) && mobileExpanded === link.name && (
                         <motion.div 

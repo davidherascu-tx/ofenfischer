@@ -14,7 +14,6 @@ export default function DatenschutzPage() {
       {/* --- HERO SECTION --- */}
       <section className="relative h-[40vh] bg-[#1A1A1A] overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 z-0">
-          {/* Abstraktes Hintergrundbild oder Muster für Datenschutz */}
           <div className="w-full h-full bg-[#1A1A1A]" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent" />
         </div>
@@ -39,8 +38,10 @@ export default function DatenschutzPage() {
       </section>
 
       {/* --- CONTENT SECTION --- */}
-      <section className="py-24 px-6 bg-[#F8FAFC]">
-        <div className="max-w-4xl mx-auto bg-white p-8 md:p-16 rounded-3xl shadow-xl border border-slate-100 text-slate-700 leading-relaxed">
+      {/* FIX: Mobile Padding angepasst (py-12 px-4 statt py-24 px-6) */}
+      <section className="py-12 px-4 md:py-24 md:px-6 bg-[#F8FAFC]">
+        {/* FIX: Mobile Padding innerhalb der Karte angepasst (p-6 statt p-8/16) */}
+        <div className="max-w-4xl mx-auto bg-white p-6 md:p-16 rounded-3xl shadow-xl border border-slate-100 text-slate-700 leading-relaxed">
           
           {/* 1. Datenschutz auf einen Blick */}
           <div className="mb-12">
