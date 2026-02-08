@@ -158,28 +158,33 @@ export default function FaqPage() {
     <main className="min-h-screen bg-[#F8FAFC] font-sans selection:bg-[#E67E22] selection:text-white">
       <Navbar />
 
-      {/* --- HERO SECTION --- */}
-      <section className="relative h-[40vh] bg-[#1A1A1A] overflow-hidden flex items-center justify-center">
+{/* --- HERO SECTION FAQ --- */}
+      <section className="relative h-[60vh] bg-[#1A1A1A] overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 z-0">
-           {/* Platzhalterbild - idealerweise ein Bild von Beratung oder Kaminfeuer */}
-          <div className="w-full h-full bg-gradient-to-br from-slate-900 to-slate-800" />
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+          <img
+            src="/faq_banner.webp"
+            alt="Häufig gestellte Fragen - Kaminfeuer"
+            className="w-full h-full object-cover object-center opacity-40"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent" />
         </div>
 
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
             <div className="flex items-center justify-center gap-3 mb-6">
-              <HelpCircle className="text-[#E67E22]" size={32} />
+              <div className="h-[2px] w-12 bg-[#E67E22]"></div>
+              <span className="text-[#E67E22] font-bold uppercase tracking-[0.3em] text-xs">Wissen & Hilfe</span>
+              <div className="h-[2px] w-12 bg-[#E67E22]"></div>
             </div>
-            <h1 className="text-4xl md:text-6xl font-black text-white uppercase italic tracking-tighter mb-4">
-              Häufige Fragen
+            <h1 className="text-4xl md:text-6xl font-black text-white uppercase italic tracking-tighter mb-6">
+              Häufig gestellte <br/> Fragen (FAQ)
             </h1>
             <p className="text-xl text-slate-300 font-light max-w-2xl mx-auto leading-relaxed">
-              Wissenswertes rund um Kamine, Öfen und gesetzliche Vorschriften.
+              Hier finden Sie schnelle Antworten auf die wichtigsten Fragen rund um die Planung, Installation und Pflege Ihres Kamins.
             </p>
           </motion.div>
         </div>

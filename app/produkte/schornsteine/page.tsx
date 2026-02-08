@@ -47,10 +47,11 @@ export default function SchornsteinePage() {
       {/* --- HERO SECTION --- */}
       <section className="relative h-[60vh] bg-[#1A1A1A] overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 z-0">
+          {/* KORREKTUR: .webp statt .jpg und object-center */}
           <img 
-            src="/schornsteine/schornstein_3.jpg" 
+            src="/schornsteine/schornstein_3.webp" 
             alt="Schornstein Hero" 
-            className="w-full h-full object-cover opacity-40"
+            className="w-full h-full object-cover object-center opacity-40"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent" />
         </div>
@@ -83,9 +84,10 @@ export default function SchornsteinePage() {
             
             {/* Linke Seite: Text */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }} // Startet früher (bei 10% Sichtbarkeit)
+              transition={{ duration: 0.5, ease: "easeOut" }}
             >
               <div className="flex items-center gap-2 text-[#E67E22] font-bold uppercase tracking-widest text-xs mb-6">
                 <Wind size={18} />
@@ -105,10 +107,10 @@ export default function SchornsteinePage() {
             {/* Rechte Seite: Feature Cards */}
             <div className="grid gap-6">
               <motion.div 
-                initial={{ opacity: 0, x: 30 }}
+                initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
                 className="flex items-start gap-4 p-6 bg-[#F8FAFC] rounded-2xl border border-slate-100 hover:border-[#E67E22]/30 hover:shadow-lg transition-all"
               >
                 <div className="bg-white p-3 rounded-full shadow-sm text-[#E67E22]">
@@ -121,10 +123,10 @@ export default function SchornsteinePage() {
               </motion.div>
 
               <motion.div 
-                initial={{ opacity: 0, x: 30 }}
+                initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
                 className="flex items-start gap-4 p-6 bg-[#F8FAFC] rounded-2xl border border-slate-100 hover:border-[#E67E22]/30 hover:shadow-lg transition-all"
               >
                 <div className="bg-white p-3 rounded-full shadow-sm text-[#E67E22]">
@@ -137,10 +139,10 @@ export default function SchornsteinePage() {
               </motion.div>
 
               <motion.div 
-                initial={{ opacity: 0, x: 30 }}
+                initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
                 className="flex items-start gap-4 p-6 bg-[#F8FAFC] rounded-2xl border border-slate-100 hover:border-[#E67E22]/30 hover:shadow-lg transition-all"
               >
                 <div className="bg-white p-3 rounded-full shadow-sm text-[#E67E22]">
@@ -172,8 +174,8 @@ export default function SchornsteinePage() {
                 key={index}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="group relative h-64 lg:h-80 rounded-2xl overflow-hidden shadow-lg cursor-pointer bg-slate-100"
                 onClick={() => setSelectedImage(img.src)}
               >
@@ -211,8 +213,8 @@ export default function SchornsteinePage() {
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="bg-white/5 border border-white/10 p-12 rounded-3xl flex flex-col items-center text-center hover:bg-white/10 transition-colors group max-w-4xl w-full"
               >
                 {/* LOGO CONTAINER */}

@@ -61,7 +61,6 @@ export default function UnternehmenPage() {
       const scrollAmount = 320; // Breite einer Karte + Gap
       
       // Die Hälfte der Gesamtbreite entspricht einem kompletten Satz Zertifikate
-      // (ungefähr, da padding/margin variieren kann, aber für den Reset reicht es)
       const oneSetWidth = current.scrollWidth / 2;
       
       if (direction === 'left') {
@@ -96,13 +95,13 @@ export default function UnternehmenPage() {
     <main className="min-h-screen bg-white font-sans selection:bg-[#E67E22] selection:text-white">
       <Navbar />
 
-      {/* --- HERO SECTION --- */}
+{/* --- HERO SECTION --- */}
       <section className="relative h-[60vh] bg-[#1A1A1A] overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 z-0">
           <img 
-            src="/kamine.jpg" 
+            src="/unternehmen_banner.webp" 
             alt="Ofenfischer Tradition" 
-            className="w-full h-full object-cover opacity-30 grayscale"
+            className="w-full h-full object-cover object-center opacity-40"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent" />
         </div>
@@ -264,14 +263,13 @@ export default function UnternehmenPage() {
               className="flex gap-6 overflow-x-auto py-8 scrollbar-hide"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
-              {/* Wir nutzen das verdoppelte Array für den Endlos-Effekt */}
               {infiniteCertificates.map((cert, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.05 }} // Weniger Delay für flüssiges Scrollen
+                  transition={{ delay: 0.05 }}
                   className="flex-none w-[280px] md:w-[320px] group cursor-pointer"
                   onClick={() => setSelectedImage(cert.src)}
                 >
