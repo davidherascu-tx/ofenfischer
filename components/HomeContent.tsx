@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Flame, Droplets, Home, Settings, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image'; // Import hinzugefügt
+import Image from 'next/image';
 
 const categories = [
   { name: "Individuelle Kamine", img: "/kamine.webp", link: "/produkte/kaminanlagen" },
@@ -92,14 +92,16 @@ export default function HomeContent() {
                   className="relative z-10"
                 >
                   <div className="rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white">
-                    {/* FIX: next/image statt img für CLS-Vermeidung */}
                     <Image 
                       src="/kamine_homepage_v1.webp" 
                       alt="Ofenfischer Kamin Design"
-                      width={800} // Explizite Breite
-                      height={1000} // Explizite Höhe (Verhältnis)
+                      width={800} 
+                      height={1000}
                       className="w-full h-auto object-cover"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      // OPTIMIERUNG: "sizes" angepasst. 
+                      // 90vw für Mobile.
+                      // 550px fix für Desktop (da Container max-width hat, wird das Bild nicht breiter als ca. 550px).
+                      sizes="(max-width: 1024px) 90vw, 550px"
                     />
                   </div>
 
@@ -139,7 +141,6 @@ export default function HomeContent() {
             {categories.map((cat, i) => (
               <Link href={cat.link} key={i}>
                 <motion.div whileHover={{ scale: 1.05 }} className="group flex flex-col items-center cursor-pointer">
-                  {/* FIX: next/image mit fill */}
                   <div className="relative w-36 h-36 md:w-52 md:h-52 rounded-full bg-[#0A0A0A] overflow-hidden shadow-2xl border-2 border-white/5 transition-all group-hover:border-orange-500/50">
                     <Image 
                       src={cat.img} 
@@ -189,14 +190,16 @@ export default function HomeContent() {
               </div>
             </div>
             <div className="relative">
-              {/* FIX: relative und feste Höhe für das Parent-Element, damit fill funktioniert */}
               <div className="rounded-[3rem] overflow-hidden shadow-2xl transform rotate-1 hover:rotate-0 transition-transform duration-700 border-8 border-slate-50 relative h-[600px] w-full">
                 <Image 
                   src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1000" 
                   alt="Sanitär Design"
                   fill
                   className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  // OPTIMIERUNG: "sizes" angepasst.
+                  // 90vw für Mobile.
+                  // 600px fix für Desktop (Halbe Container-Breite, capped).
+                  sizes="(max-width: 1024px) 90vw, 600px"
                 />
               </div>
               <div className="absolute -bottom-6 -left-6 bg-orange-500 p-8 rounded-2xl shadow-xl hidden xl:block font-black text-4xl italic tracking-tighter leading-none text-[#1A1A1A]">100%</div>
