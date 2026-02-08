@@ -1,12 +1,18 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  images: {
+    // Erlaubt Bilder von externen Quellen (wie Unsplash)
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
+  },
   experimental: {
-    // Inlined kritisches CSS, um Render-Blocking zu verhindern
-    optimizeCss: true,
-    
-    // Verbessert Tree-Shaking für diese großen Bibliotheken
-    optimizePackageImports: ["lucide-react", "framer-motion"],
+    optimizeCss: true, // Für die vorherige Optimierung
+    optimizePackageImports: ["lucide-react", "framer-motion", "date-fns"],
   },
 };
 
