@@ -142,7 +142,7 @@ export default function UnternehmenPage() {
             >
               <div className="relative aspect-[4/5] md:aspect-square lg:aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
                 <img 
-                  src="/kaminofen.jpg" 
+                  src="/kaminofen.webp" 
                   alt="Ofenfischer Handwerkskunst" 
                   className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-1000"
                 />
