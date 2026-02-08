@@ -2,10 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   experimental: {
-    // Inlined das CSS für den sichtbaren Bereich (Critical CSS).
-    // Behebt "Render blocking requests" für CSS-Dateien.
-    // Erfordert: npm install -D critters
-    optimizeCss: true,
+    // FIX: 'inlineCss' statt 'optimizeCss'.
+    // Inlined CSS direkt in den Head, was bei kleinen Dateien (wie Tailwind)
+    // den "Render blocking"-Fehler komplett behebt.
+    inlineCss: true,
 
     // Optimiert die Ladezeit großer Libraries
     optimizePackageImports: [
