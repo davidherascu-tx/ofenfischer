@@ -50,7 +50,7 @@ export default function SanitaerPage() {
         <div className="absolute inset-0 z-0">
           {/* Platzhalterbild - Bitte 'sanitaer_banner.webp' in public ordner legen */}
           <img 
-            src="/sanitaer_banner.webp" 
+            src="/bad_banner.webp" 
             alt="Moderne Sanitärinstallation" 
             className="w-full h-full object-cover object-center opacity-40"
           />
