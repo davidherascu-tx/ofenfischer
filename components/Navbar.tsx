@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-// FIX: ChevronRight wurde hier hinzugefügt
 import { Menu, X, Phone, ArrowRight, ChevronDown, Flame, Settings, Info, MapPin, Briefcase, ChevronRight, Building2, FileText, Users } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
@@ -11,7 +10,6 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   
-  // States
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [mobileSubExpanded, setMobileSubExpanded] = useState<string | null>(null);
@@ -22,7 +20,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Schließt alles
   const closeMenu = () => {
     setIsOpen(false);
     setActiveMegaMenu(null);
@@ -30,7 +27,6 @@ export default function Navbar() {
     setMobileSubExpanded(null);
   };
 
-  // Hilfsfunktion: Prüft, ob wir gerade über dem Nav-Bereich schweben
   const handleMouseLeaveNav = () => {
     setActiveMegaMenu(null);
   };
@@ -40,7 +36,7 @@ export default function Navbar() {
     { 
       name: 'Produkte', 
       href: '#',
-      isMega: true, // Markiert dies als MegaMenu
+      isMega: true,
       columns: [
         {
           title: 'Kamine & Öfen',
@@ -53,7 +49,6 @@ export default function Navbar() {
           ]
         },
         {
-          // Titel leer gelassen, damit er nicht angezeigt wird, Items bleiben aber
           title: '', 
           icon: <Flame className="text-transparent" size={18} />,
           items: [
@@ -69,7 +64,6 @@ export default function Navbar() {
           items: [
             { name: 'Heizungssysteme', href: '#heizung' },
             { name: 'Sanitärinstallation', href: '#sanitaer' },
-            // Wärmepumpen entfernt
           ]
         }
       ]
@@ -108,10 +102,9 @@ export default function Navbar() {
   return (
     <header 
       className="fixed w-full z-[999] px-4 py-6 text-left font-sans"
-      onMouseLeave={handleMouseLeaveNav} // Schließt Menü, wenn Maus den Header verlässt
+      onMouseLeave={handleMouseLeaveNav}
     >
       <motion.nav 
-        // Initial Animation entfernt für schnelleres LCP
         className={`max-w-7xl mx-auto transition-all duration-500 rounded-2xl relative ${
           scrolled || isOpen || activeMegaMenu
           ? "bg-[#1A1A1A]/95 backdrop-blur-xl border border-white/10 shadow-2xl py-3 px-6" 
@@ -125,12 +118,13 @@ export default function Navbar() {
             <div className={`relative transition-all duration-500 ${
               scrolled ? "h-8 w-28 md:h-10 md:w-40" : "h-10 w-40 md:h-12 md:w-52"
             }`}>
-              {/* LCP OPTIMIERUNG: 'priority' fügt fetchpriority="high" hinzu */}
+              {/* FIX: fetchPriority="high" explizit hinzugefügt */}
               <Image 
                 src="/ofenfischer_logo.webp" 
                 alt="Ofenfischer GmbH Logo" 
                 fill
                 priority
+                fetchPriority="high"
                 className="object-contain"
                 sizes="(max-width: 768px) 160px, 208px"
               />
@@ -155,7 +149,6 @@ export default function Navbar() {
                   )}
                 </Link>
                 
-                {/* STANDARD DROPDOWN */}
                 {link.submenu && !link.isMega && (
                   <div className="absolute top-full left-0 pt-6 w-56 opacity-0 translate-y-2 pointer-events-none group-hover/item:opacity-100 group-hover/item:translate-y-0 group-hover/item:pointer-events-auto transition-all duration-200">
                     <div className="bg-[#252525] border border-white/10 rounded-xl shadow-2xl p-2 backdrop-blur-xl">
@@ -174,7 +167,6 @@ export default function Navbar() {
 
           {/* CTA BUTTONS */}
           <div className="flex items-center gap-4">
-            {/* ACCESSIBILITY: aria-label wiederhergestellt */}
             <a 
               href="tel:+49353348120" 
               className="hidden xl:flex text-white/70 hover:text-orange-500 transition-colors items-center gap-2 text-xs font-bold"
@@ -183,7 +175,6 @@ export default function Navbar() {
               <Phone size={16} /> <span className="hidden 2xl:inline">+49 3533 48120</span>
             </a>
             
-            {/* CONTRAST: bg-orange-700 wiederhergestellt */}
             <Link 
               href="/kontakt"
               className="bg-orange-700 hover:bg-orange-800 text-white px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg shadow-orange-500/20 flex items-center gap-2 text-sm"
@@ -192,7 +183,6 @@ export default function Navbar() {
               <ArrowRight size={16} />
             </Link>
             
-            {/* MOBILE HAMBURGER: aria-label wiederhergestellt */}
             <button 
               className="lg:hidden text-white ml-2" 
               onClick={() => setIsOpen(!isOpen)}
@@ -203,7 +193,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* --- MEGA MENU PANEL (Desktop) --- */}
+        {/* MEGA MENU PANEL */}
         <AnimatePresence>
           {activeMegaMenu === 'Produkte' && (
             <motion.div
@@ -239,7 +229,6 @@ export default function Navbar() {
                     </div>
                   ))}
 
-                  {/* Promo Box */}
                   <div className="bg-gradient-to-br from-orange-500/10 to-orange-500/0 rounded-2xl p-6 border border-orange-500/20 flex flex-col justify-between h-full">
                     <div>
                       <h4 className="text-white font-bold mb-2 italic text-lg">Projekt starten</h4>
@@ -257,7 +246,7 @@ export default function Navbar() {
           )}
         </AnimatePresence>
 
-        {/* --- MOBILE MENU --- */}
+        {/* MOBILE MENU */}
         <AnimatePresence>
           {isOpen && (
             <motion.div 
@@ -269,7 +258,6 @@ export default function Navbar() {
               <div className="flex flex-col p-4">
                 {navLinks.map((link) => (
                   <div key={link.name} className="border-b border-white/5 last:border-0">
-                    {/* FIX: Unterscheidung zwischen Dropdown (div) und Link (Link) */}
                     {link.submenu || link.isMega ? (
                       <div 
                         onClick={() => setMobileExpanded(mobileExpanded === link.name ? null : link.name)}
@@ -288,7 +276,6 @@ export default function Navbar() {
                       </Link>
                     )}
 
-                    {/* Mobile Dropdown Inhalt */}
                     <AnimatePresence>
                       {(link.submenu || link.isMega) && mobileExpanded === link.name && (
                         <motion.div 
@@ -350,7 +337,6 @@ export default function Navbar() {
                       <Phone size={20} className="text-orange-500" />
                       +49 3533 48120
                    </a>
-                   {/* CONTRAST: bg-orange-700 wiederhergestellt */}
                    <Link href="/projekt-starten" onClick={closeMenu} className="w-full bg-orange-700 hover:bg-orange-800 text-white py-3 rounded-xl font-bold shadow-lg shadow-orange-500/20 flex items-center justify-center gap-2 transition-all">
                       <span>Projekt starten</span>
                       <ArrowRight size={20} />

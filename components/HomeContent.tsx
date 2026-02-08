@@ -92,16 +92,14 @@ export default function HomeContent() {
                   className="relative z-10"
                 >
                   <div className="rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white">
+                    {/* OPTIMIERUNG: sizes verfeinert, um das Laden der 750w Version zu vermeiden, wenn 640w reicht */}
                     <Image 
                       src="/kamine_homepage_v1.webp" 
                       alt="Ofenfischer Kamin Design"
                       width={800} 
-                      height={1000}
+                      height={1000} 
                       className="w-full h-auto object-cover"
-                      // OPTIMIERUNG: "sizes" angepasst. 
-                      // 90vw für Mobile.
-                      // 550px fix für Desktop (da Container max-width hat, wird das Bild nicht breiter als ca. 550px).
-                      sizes="(max-width: 1024px) 90vw, 550px"
+                      sizes="(max-width: 640px) 90vw, (max-width: 1024px) 80vw, 600px"
                     />
                   </div>
 
@@ -196,9 +194,6 @@ export default function HomeContent() {
                   alt="Sanitär Design"
                   fill
                   className="object-cover"
-                  // OPTIMIERUNG: "sizes" angepasst.
-                  // 90vw für Mobile.
-                  // 600px fix für Desktop (Halbe Container-Breite, capped).
                   sizes="(max-width: 1024px) 90vw, 600px"
                 />
               </div>

@@ -2,6 +2,7 @@
 
 import React, { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image'; // Import hinzugefügt
 
 const slides = [
   {
@@ -30,7 +31,6 @@ const slides = [
 export default function HeroSlider() {
   const [index, setIndex] = useState(0);
 
-  // Callback zum Wechseln des Slides
   const next = useCallback(() => {
     setIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
   }, []);
@@ -46,20 +46,26 @@ export default function HeroSlider() {
           exit={{ opacity: 0 }} 
           transition={{ duration: 1.2 }}
         >
-          {/* Bild Animation */}
-          <motion.img 
-            src={slides[index].image} 
-            alt={slides[index].title}
-            className="absolute inset-0 w-full h-full object-cover" 
+          {/* FIX: next/image in einem motion.div Container statt motion.img */}
+          {/* Dies verbessert LCP massiv, da next/image optimiert lädt */}
+          <motion.div 
+            className="absolute inset-0 w-full h-full"
             initial={{ scale: 1.1 }} 
             animate={{ scale: 1 }} 
-            transition={{ duration: 8 }} 
-          />
+            transition={{ duration: 8 }}
+          >
+            <Image
+              src={slides[index].image}
+              alt={slides[index].title}
+              fill
+              priority // Banner ist wichtigstes LCP Element
+              className="object-cover"
+              sizes="100vw"
+            />
+          </motion.div>
           
-          {/* Overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#2D2D2D] via-[#2D2D2D]/40 to-transparent z-10" />
           
-          {/* Text Content */}
           <div className="absolute inset-0 z-20 flex items-center px-8 md:pl-48">
             <div className="max-w-2xl text-white">
               <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} className="flex items-center gap-4 mb-4 text-[#E67E22]">
@@ -73,18 +79,16 @@ export default function HeroSlider() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Progress Bar & Counter */}
       <div className="absolute bottom-12 left-8 md:left-48 z-30 flex flex-col gap-2">
         <span className="text-white/50 font-mono text-xs tracking-widest uppercase">0{index + 1} / 0{slides.length}</span>
         <div className="w-48 md:w-64 h-[2px] bg-white/10 relative overflow-hidden">
-          {/* REFLOW FIX: Statt setInterval nutzen wir hier eine native Animation */}
           <motion.div 
-            key={index} // Der Key-Wechsel erzwingt einen Neustart der Animation bei Slide-Wechsel
+            key={index} 
             className="absolute h-full bg-[#E67E22] left-0 top-0 shadow-[0_0_8px_#E67E22]" 
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ duration: 6, ease: "linear" }}
-            onAnimationComplete={next} // Ruft next() auf, wenn der Balken voll ist
+            onAnimationComplete={next}
           />
         </div>
       </div>
