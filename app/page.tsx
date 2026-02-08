@@ -70,7 +70,7 @@ const HeroSlider = () => {
     <section className="relative h-[90vh] w-full overflow-hidden bg-[#2D2D2D]">
       <AnimatePresence mode="wait">
         <motion.div key={index} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1.2 }}>
-          {/* FIX: alt-Attribut hinzugefügt. Nutzt den Titel des Slides als Beschreibung. */}
+          {/* FIX: alt-Attribut hinzugefügt */}
           <motion.img 
             src={slides[index].image} 
             alt={slides[index].title}
@@ -155,7 +155,8 @@ export default function LandingPage() {
               >
                 <div className="flex items-center gap-2 mb-4">
                   <Flame className="text-[#E67E22] animate-pulse" size={18} />
-                  <h2 className="text-[#E67E22] font-black tracking-[0.2em] uppercase text-xs">Expertise & Leidenschaft</h2>
+                  {/* CONTRAST FIX: text-orange-700 statt #E67E22 */}
+                  <h2 className="text-orange-700 font-black tracking-[0.2em] uppercase text-xs">Expertise & Leidenschaft</h2>
                 </div>
                 <h3 className="text-5xl md:text-7xl font-black text-[#2D2D2D] leading-[0.85] uppercase tracking-tighter italic mb-8">
                   Qualität aus <br/> Meisterhand
@@ -218,7 +219,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 2. PRODUKTWELTEN (JETZT MIT LINKS) */}
+      {/* 2. PRODUKTWELTEN */}
       <section className="py-32 bg-[#1A1A1A] relative overflow-hidden text-white text-center">
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="mb-24">
@@ -234,7 +235,8 @@ export default function LandingPage() {
                   <div className="relative w-36 h-36 md:w-52 md:h-52 rounded-full bg-[#0A0A0A] overflow-hidden shadow-2xl border-2 border-white/5 transition-all group-hover:border-orange-500/50">
                     <img src={cat.img} alt={cat.name} className="w-full h-full rounded-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110" />
                   </div>
-                  <h4 className="mt-8 font-bold text-sm uppercase tracking-widest group-hover:text-orange-500 transition-colors">{cat.name}</h4>
+                  {/* FIX: h4 -> h3 für korrekte Hierarchie (h2 -> h3) */}
+                  <h3 className="mt-8 font-bold text-sm uppercase tracking-widest group-hover:text-orange-500 transition-colors">{cat.name}</h3>
                 </motion.div>
               </Link>
             ))}
@@ -247,8 +249,10 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-20 items-center text-left">
             <div className="space-y-8">
-              <span className="text-[#E67E22] font-bold tracking-[0.2em] uppercase text-xs">Innovation</span>
-              <h3 className="text-5xl md:text-7xl font-black leading-tight uppercase italic tracking-tighter">Heizung <br/> & Sanitär</h3>
+              {/* CONTRAST FIX: text-orange-700 statt #E67E22 */}
+              <span className="text-orange-700 font-bold tracking-[0.2em] uppercase text-xs">Innovation</span>
+              {/* FIX: h3 -> h2 für Konsistenz mit anderen Sektionen */}
+              <h2 className="text-5xl md:text-7xl font-black leading-tight uppercase italic tracking-tighter">Heizung <br/> & Sanitär</h2>
               <p className="text-slate-500 text-lg leading-relaxed border-l-2 border-[#E67E22] pl-6 italic">
                 Wir verbinden moderne Ästhetik mit hocheffizienter Haustechnik. Sauberkeit und Präzision sind unser Maßstab.
               </p>
@@ -258,8 +262,9 @@ export default function LandingPage() {
                     <Settings size={22}/>
                   </div>
                   <div>
-                    <h5 className="font-black uppercase text-sm tracking-widest">Wärmepumpen</h5>
-                    <p className="text-slate-400 text-xs mt-1 italic">Maximale Effizienz durch Umweltwärme.</p>
+                    <h3 className="font-black uppercase text-sm tracking-widest">Wärmepumpen</h3>
+                    {/* CONTRAST FIX: text-slate-600 statt text-slate-400 */}
+                    <p className="text-slate-600 text-xs mt-1 italic">Maximale Effizienz durch Umweltwärme.</p>
                   </div>
                 </div>
                 <div className="flex gap-4 items-start group">
@@ -267,8 +272,9 @@ export default function LandingPage() {
                     <Droplets size={22}/>
                   </div>
                   <div>
-                    <h5 className="font-black uppercase text-sm tracking-widest">Bad-Wellness</h5>
-                    <p className="text-slate-400 text-xs mt-1 italic">Individuelle Planung für höchste Ansprüche.</p>
+                    <h3 className="font-black uppercase text-sm tracking-widest">Bad-Wellness</h3>
+                    {/* CONTRAST FIX: text-slate-600 statt text-slate-400 */}
+                    <p className="text-slate-600 text-xs mt-1 italic">Individuelle Planung für höchste Ansprüche.</p>
                   </div>
                 </div>
               </div>

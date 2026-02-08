@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Instagram, Facebook, ArrowUpRight, MapPin, Phone, Mail, Clock, Printer } from 'lucide-react';
+import Image from 'next/image';
 
 const Footer = () => {
   const branches = [
@@ -43,30 +44,34 @@ const Footer = () => {
           
           {/* 1. Branding mit Logo & Social Media */}
           <div className="space-y-6">
-            <div className="mb-6">
-              <img 
+            <div className="mb-6 relative h-12 w-48">
+              <Image 
                 src="/ofenfischer_logo.webp" 
                 alt="Ofenfischer Logo" 
-                className="h-12 w-auto object-contain mb-4"
+                fill
+                className="object-contain object-left"
+                sizes="(max-width: 768px) 100vw, 200px"
               />
-              <h4 className="text-[#E67E22] font-black text-xl uppercase italic tracking-tighter">
-                Meisterbetrieb
-              </h4>
             </div>
-            <p className="text-slate-500 text-sm leading-relaxed">
+            <h4 className="text-[#E67E22] font-black text-xl uppercase italic tracking-tighter">
+                Meisterbetrieb
+            </h4>
+            {/* CONTRAST FIX: text-slate-400 statt text-slate-500 */}
+            <p className="text-slate-400 text-sm leading-relaxed">
               Handwerkliche Perfektion und innovative Technik seit über 25 Jahren.
             </p>
             <div className="flex gap-4 pt-2">
-              {/* Instagram Link */}
+              {/* FIX: aria-label für Screenreader */}
               <a 
                 href="https://www.instagram.com/ofenfischer/" 
                 target="_blank" 
                 rel="noopener noreferrer"
+                aria-label="Instagram"
                 className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-[#E67E22] transition-all cursor-pointer"
               >
                 <Instagram size={18} />
               </a>
-              {/* Houzz Link - Custom Icon/Text da kein Standard-Icon */}
+              {/* Houzz Link */}
               <a 
                 href="https://www.houzz.de/experten/kamine/ofen-fischer-gmbh-pfvwde-pf~2082523877" 
                 target="_blank" 
@@ -106,7 +111,8 @@ const Footer = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail size={16} className="text-[#E67E22] shrink-0" />
-                  <p className="text-[#E67E22]/80">{branch.mail}</p>
+                  {/* CONTRAST FIX: Deckkraft /80 entfernt */}
+                  <p className="text-[#E67E22]">{branch.mail}</p>
                 </div>
               </div>
 
@@ -135,12 +141,17 @@ const Footer = () => {
               rel="noopener noreferrer" 
               className="group cursor-pointer block"
             >
-              <img 
-                src="/Eisbaeren_Berlin_Logo_150.png" 
-                alt="Eisbären Berlin Logo" 
-                className="h-24 w-auto object-contain opacity-50 group-hover:opacity-100 transition-opacity duration-500"
-              />
-              <div className="mt-4 flex lg:justify-end items-center gap-2 text-[10px] text-slate-600 uppercase tracking-widest">
+              <div className="relative h-24 w-full lg:w-32 ml-auto">
+                <Image 
+                  src="/Eisbaeren_Berlin_Logo_150.png" 
+                  alt=""
+                  fill
+                  className="object-contain object-left lg:object-right opacity-50 group-hover:opacity-100 transition-opacity duration-500"
+                  sizes="(max-width: 768px) 100vw, 150px"
+                />
+              </div>
+              {/* CONTRAST FIX: text-slate-400 statt text-slate-600 */}
+              <div className="mt-4 flex lg:justify-end items-center gap-2 text-[10px] text-slate-400 uppercase tracking-widest">
                 <span>Eisbären Berlin</span>
                 <ArrowUpRight size={12} className="text-[#E67E22]" />
               </div>
@@ -150,10 +161,12 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-slate-600 text-[9px] uppercase tracking-[0.3em]">
+          {/* CONTRAST FIX: text-slate-400 statt text-slate-600 */}
+          <p className="text-slate-400 text-[9px] uppercase tracking-[0.3em]">
             © {new Date().getFullYear()} Ofenfischer Meisterbetrieb. Alle Rechte vorbehalten.
           </p>
-          <div className="flex gap-8 text-[9px] uppercase tracking-[0.3em] text-slate-600 font-medium">
+          {/* CONTRAST FIX: text-slate-400 statt text-slate-600 */}
+          <div className="flex gap-8 text-[9px] uppercase tracking-[0.3em] text-slate-400 font-medium">
             <a href="#" className="hover:text-[#E67E22] transition-colors">IMPRESSUM</a>
             <a href="/datenschutz" className="hover:text-[#E67E22] transition-colors">DATENSCHUTZ</a>
           </div>

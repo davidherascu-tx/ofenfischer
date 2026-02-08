@@ -110,7 +110,6 @@ export default function Navbar() {
       onMouseLeave={handleMouseLeaveNav} // Schließt Menü, wenn Maus den Header verlässt
     >
       <motion.nav 
-        // OPTIMIERUNG: 'initial' und 'animate' entfernt, damit das Logo sofort sichtbar ist (kein Fade-in Delay)
         className={`max-w-7xl mx-auto transition-all duration-500 rounded-2xl relative ${
           scrolled || isOpen || activeMegaMenu
           ? "bg-[#1A1A1A]/95 backdrop-blur-xl border border-white/10 shadow-2xl py-3 px-6" 
@@ -124,7 +123,6 @@ export default function Navbar() {
             <div className={`relative transition-all duration-500 ${
               scrolled ? "h-8 w-28 md:h-10 md:w-40" : "h-10 w-40 md:h-12 md:w-52"
             }`}>
-              {/* OPTIMIERUNG: next/image mit priority und fill für sofortiges Laden */}
               <Image 
                 src="/ofenfischer_logo.webp" 
                 alt="Ofenfischer GmbH Logo" 
@@ -177,16 +175,17 @@ export default function Navbar() {
               <Phone size={16} /> <span className="hidden 2xl:inline">+49 3533 48120</span>
             </a>
             
-            {/* Desktop KONTAKT Button (aktualisiert zu Link) */}
+            {/* Desktop KONTAKT Button */}
+            {/* CONTRAST FIX: bg-orange-500 zu bg-orange-700 geändert für weißen Text */}
             <Link 
               href="/kontakt"
-              className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg shadow-orange-500/20 flex items-center gap-2 text-sm"
+              className="bg-orange-700 hover:bg-orange-800 text-white px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg shadow-orange-500/20 flex items-center gap-2 text-sm"
             >
               <span>Kontakt</span>
               <ArrowRight size={16} />
             </Link>
             
-            {/* MOBILE HAMBURGER - KORRIGIERT: aria-label hinzugefügt */}
+            {/* MOBILE HAMBURGER */}
             <button 
               className="lg:hidden text-white ml-2" 
               onClick={() => setIsOpen(!isOpen)}
@@ -342,8 +341,8 @@ export default function Navbar() {
                       <Phone size={20} className="text-orange-500" />
                       +49 3533 48120
                    </a>
-                   {/* HIER GEÄNDERT: Mobile Projekt starten Button zu Link */}
-                   <Link href="/projekt-starten" onClick={closeMenu} className="w-full bg-orange-500 hover:bg-orange-600 text-[#353535] py-3 rounded-xl font-bold shadow-lg shadow-orange-500/20 flex items-center justify-center gap-2 transition-all">
+                   {/* CONTRAST FIX: Auch hier bg-orange-700 */}
+                   <Link href="/projekt-starten" onClick={closeMenu} className="w-full bg-orange-700 hover:bg-orange-800 text-white py-3 rounded-xl font-bold shadow-lg shadow-orange-500/20 flex items-center justify-center gap-2 transition-all">
                       <span>Projekt starten</span>
                       <ArrowRight size={20} />
                    </Link>
