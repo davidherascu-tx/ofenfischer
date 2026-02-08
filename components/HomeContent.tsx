@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Flame, Droplets, Home, Settings, ArrowUpRight } from 'lucide-react';
+import { Flame, Droplets, Home, Settings, ArrowUpRight, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -92,7 +92,6 @@ export default function HomeContent() {
                   className="relative z-10"
                 >
                   <div className="rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white">
-                    {/* OPTIMIERUNG: sizes verfeinert, um das Laden der 750w Version zu vermeiden, wenn 640w reicht */}
                     <Image 
                       src="/kamine_homepage_v1.webp" 
                       alt="Ofenfischer Kamin Design"
@@ -166,6 +165,7 @@ export default function HomeContent() {
               <p className="text-slate-500 text-lg leading-relaxed border-l-2 border-[#E67E22] pl-6 italic">
                 Wir verbinden moderne Ästhetik mit hocheffizienter Haustechnik. Sauberkeit und Präzision sind unser Maßstab.
               </p>
+              
               <div className="grid sm:grid-cols-2 gap-8 pt-4">
                 <div className="flex gap-4 items-start group">
                   <div className="bg-[#1A1A1A] p-3 rounded-xl text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-all duration-300 shadow-lg">
@@ -186,6 +186,23 @@ export default function HomeContent() {
                   </div>
                 </div>
               </div>
+
+              {/* NEUE BUTTONS */}
+              <div className="flex flex-wrap gap-4 pt-6">
+                <Link 
+                  href="/produkte/heizungssysteme" 
+                  className="bg-[#1A1A1A] hover:bg-[#E67E22] text-white px-8 py-4 rounded-full font-bold uppercase text-xs tracking-widest transition-all duration-300 flex items-center gap-2 shadow-lg"
+                >
+                  Heizung <ArrowRight size={16} />
+                </Link>
+                <Link 
+                  href="/produkte/sanitaer" 
+                  className="bg-white border-2 border-[#1A1A1A] hover:border-[#E67E22] hover:text-[#E67E22] text-[#1A1A1A] px-8 py-4 rounded-full font-bold uppercase text-xs tracking-widest transition-all duration-300 flex items-center gap-2 shadow-md"
+                >
+                  Sanitär <ArrowRight size={16} />
+                </Link>
+              </div>
+
             </div>
             <div className="relative">
               <div className="rounded-[3rem] overflow-hidden shadow-2xl transform rotate-1 hover:rotate-0 transition-transform duration-700 border-8 border-slate-50 relative h-[600px] w-full">
@@ -197,7 +214,8 @@ export default function HomeContent() {
                   sizes="(max-width: 1024px) 90vw, 600px"
                 />
               </div>
-              <div className="absolute -bottom-6 -left-6 bg-orange-500 p-8 rounded-2xl shadow-xl hidden xl:block font-black text-4xl italic tracking-tighter leading-none text-[#1A1A1A]">100%</div>
+              {/* NEUES BADGE: Smart */}
+              <div className="absolute -bottom-6 -left-6 bg-orange-500 p-8 rounded-2xl shadow-xl hidden xl:block font-black text-4xl italic tracking-tighter leading-none text-[#1A1A1A]">Smart</div>
             </div>
           </div>
         </div>

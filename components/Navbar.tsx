@@ -62,8 +62,8 @@ export default function Navbar() {
           title: 'Haustechnik',
           icon: <Settings className="text-slate-400" size={18} />,
           items: [
-            { name: 'Heizungssysteme', href: '#heizung' },
-            { name: 'Sanitärinstallation', href: '#sanitaer' },
+            { name: 'Heizungssysteme', href: '/produkte/heizungssysteme' },
+            { name: 'Sanitärinstallation', href: '/produkte/sanitaer' },
           ]
         }
       ]
