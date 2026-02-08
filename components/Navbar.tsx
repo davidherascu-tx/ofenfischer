@@ -123,6 +123,7 @@ export default function Navbar() {
             <div className={`relative transition-all duration-500 ${
               scrolled ? "h-8 w-28 md:h-10 md:w-40" : "h-10 w-40 md:h-12 md:w-52"
             }`}>
+              {/* LCP OPTIMIERUNG: next/image statt img */}
               <Image 
                 src="/ofenfischer_logo.webp" 
                 alt="Ofenfischer GmbH Logo" 
@@ -171,12 +172,17 @@ export default function Navbar() {
 
           {/* CTA BUTTONS */}
           <div className="flex items-center gap-4">
-            <a href="tel:+49353348120" className="hidden xl:flex text-white/70 hover:text-orange-500 transition-colors items-center gap-2 text-xs font-bold">
+            {/* ACCESSIBILITY FIX: aria-label hinzugefügt, da Text auf manchen Breakpoints ausgeblendet wird */}
+            <a 
+              href="tel:+49353348120" 
+              className="hidden xl:flex text-white/70 hover:text-orange-500 transition-colors items-center gap-2 text-xs font-bold"
+              aria-label="Rufen Sie uns an unter +49 3533 48120"
+            >
               <Phone size={16} /> <span className="hidden 2xl:inline">+49 3533 48120</span>
             </a>
             
             {/* Desktop KONTAKT Button */}
-            {/* CONTRAST FIX: bg-orange-500 zu bg-orange-700 geändert für weißen Text */}
+            {/* CONTRAST FIX: bg-orange-700 für besseren Kontrast */}
             <Link 
               href="/kontakt"
               className="bg-orange-700 hover:bg-orange-800 text-white px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg shadow-orange-500/20 flex items-center gap-2 text-sm"
@@ -186,6 +192,7 @@ export default function Navbar() {
             </Link>
             
             {/* MOBILE HAMBURGER */}
+            {/* ACCESSIBILITY FIX: aria-label hinzugefügt */}
             <button 
               className="lg:hidden text-white ml-2" 
               onClick={() => setIsOpen(!isOpen)}
@@ -341,7 +348,7 @@ export default function Navbar() {
                       <Phone size={20} className="text-orange-500" />
                       +49 3533 48120
                    </a>
-                   {/* CONTRAST FIX: Auch hier bg-orange-700 */}
+                   {/* CONTRAST FIX: bg-orange-700 */}
                    <Link href="/projekt-starten" onClick={closeMenu} className="w-full bg-orange-700 hover:bg-orange-800 text-white py-3 rounded-xl font-bold shadow-lg shadow-orange-500/20 flex items-center justify-center gap-2 transition-all">
                       <span>Projekt starten</span>
                       <ArrowRight size={20} />

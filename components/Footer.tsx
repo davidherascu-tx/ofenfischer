@@ -56,12 +56,10 @@ const Footer = () => {
             <h4 className="text-[#E67E22] font-black text-xl uppercase italic tracking-tighter">
                 Meisterbetrieb
             </h4>
-            {/* CONTRAST FIX: text-slate-400 statt text-slate-500 */}
             <p className="text-slate-400 text-sm leading-relaxed">
               Handwerkliche Perfektion und innovative Technik seit über 25 Jahren.
             </p>
             <div className="flex gap-4 pt-2">
-              {/* FIX: aria-label für Screenreader */}
               <a 
                 href="https://www.instagram.com/ofenfischer/" 
                 target="_blank" 
@@ -111,13 +109,13 @@ const Footer = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail size={16} className="text-[#E67E22] shrink-0" />
-                  {/* CONTRAST FIX: Deckkraft /80 entfernt */}
                   <p className="text-[#E67E22]">{branch.mail}</p>
                 </div>
               </div>
 
               <div className="space-y-3 border-t border-white/5 pt-4">
-                <div className="flex items-center gap-3 text-slate-500 mb-1">
+                {/* CONTRAST FIX: text-slate-500 -> text-slate-400 */}
+                <div className="flex items-center gap-3 text-slate-400 mb-1">
                   <Clock size={16} className="text-[#E67E22] shrink-0" />
                   <p className="text-[10px] uppercase tracking-widest">Öffnungszeiten</p>
                 </div>
@@ -150,7 +148,6 @@ const Footer = () => {
                   sizes="(max-width: 768px) 100vw, 150px"
                 />
               </div>
-              {/* CONTRAST FIX: text-slate-400 statt text-slate-600 */}
               <div className="mt-4 flex lg:justify-end items-center gap-2 text-[10px] text-slate-400 uppercase tracking-widest">
                 <span>Eisbären Berlin</span>
                 <ArrowUpRight size={12} className="text-[#E67E22]" />
@@ -161,11 +158,9 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          {/* CONTRAST FIX: text-slate-400 statt text-slate-600 */}
           <p className="text-slate-400 text-[9px] uppercase tracking-[0.3em]">
             © {new Date().getFullYear()} Ofenfischer Meisterbetrieb. Alle Rechte vorbehalten.
           </p>
-          {/* CONTRAST FIX: text-slate-400 statt text-slate-600 */}
           <div className="flex gap-8 text-[9px] uppercase tracking-[0.3em] text-slate-400 font-medium">
             <a href="#" className="hover:text-[#E67E22] transition-colors">IMPRESSUM</a>
             <a href="/datenschutz" className="hover:text-[#E67E22] transition-colors">DATENSCHUTZ</a>
