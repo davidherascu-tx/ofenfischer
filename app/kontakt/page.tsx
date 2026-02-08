@@ -71,13 +71,13 @@ export default function KontaktPage() {
     <main className="min-h-screen bg-[#F8FAFC] font-sans selection:bg-[#E67E22] selection:text-white">
       <Navbar />
 
-      {/* --- HERO SECTION --- */}
-      <section className="relative h-[40vh] bg-[#1A1A1A] overflow-hidden flex items-center justify-center">
+    {/* --- HERO SECTION --- */}
+      <section className="relative h-[60vh] bg-[#1A1A1A] overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1423666639041-f1400517185b?q=80&w=2000" 
+            src="/kontakt_banner.webp" 
             alt="Kontakt Ofenfischer" 
-            className="w-full h-full object-cover opacity-30 grayscale"
+            className="w-full h-full object-cover object-center opacity-40 grayscale"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent" />
         </div>
@@ -93,11 +93,11 @@ export default function KontaktPage() {
               <span className="text-[#E67E22] font-bold uppercase tracking-[0.3em] text-xs">Wir sind für Sie da</span>
               <div className="h-[2px] w-12 bg-[#E67E22]"></div>
             </div>
-            <h1 className="text-4xl md:text-6xl font-black text-white uppercase italic tracking-tighter mb-4">
-              Kontakt aufnehmen
+            <h1 className="text-4xl md:text-6xl font-black text-white uppercase italic tracking-tighter mb-6">
+              Kontakt
             </h1>
             <p className="text-xl text-slate-300 font-light max-w-2xl mx-auto leading-relaxed">
-              Sie haben eine Idee oder Fragen zu unseren Öfen? Schreiben Sie uns.
+              Planung, Beratung oder Service – schreiben Sie uns oder rufen Sie an. Wir freuen uns auf Ihr Projekt.
             </p>
           </motion.div>
         </div>

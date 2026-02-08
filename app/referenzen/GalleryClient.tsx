@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ZoomIn, X, Camera, ArrowDown } from 'lucide-react';
+import { ZoomIn, X, Camera, ArrowDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
@@ -11,8 +11,8 @@ interface GalleryClientProps {
 }
 
 export default function GalleryClient({ images }: GalleryClientProps) {
-  // State für Lightbox
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  // State für Lightbox: Wir speichern jetzt den INDEX statt nur die URL
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   
   // State für "Mehr laden" Funktion (Startwert 24 Bilder)
   const [visibleCount, setVisibleCount] = useState(24);
@@ -20,6 +20,42 @@ export default function GalleryClient({ images }: GalleryClientProps) {
   const showMoreImages = () => {
     setVisibleCount(prev => prev + 24);
   };
+
+  // --- NAVIGATION IM LIGHTBOX ---
+  
+  // Nächstes Bild
+  const showNext = useCallback((e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setSelectedIndex((prev) => {
+      if (prev === null) return null;
+      // Wenn wir am Ende sind, fangen wir vorne wieder an (Loop)
+      return prev === images.length - 1 ? 0 : prev + 1;
+    });
+  }, [images.length]);
+
+  // Vorheriges Bild
+  const showPrev = useCallback((e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setSelectedIndex((prev) => {
+      if (prev === null) return null;
+      // Wenn wir am Anfang sind, springen wir ans Ende
+      return prev === 0 ? images.length - 1 : prev - 1;
+    });
+  }, [images.length]);
+
+  // Tastatur-Steuerung (Pfeiltasten & ESC)
+  useEffect(() => {
+    if (selectedIndex === null) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') showNext();
+      if (e.key === 'ArrowLeft') showPrev();
+      if (e.key === 'Escape') setSelectedIndex(null);
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedIndex, showNext, showPrev]);
 
   return (
     <main className="min-h-screen bg-white font-sans selection:bg-[#E67E22] selection:text-white">
@@ -55,7 +91,6 @@ export default function GalleryClient({ images }: GalleryClientProps) {
             <h1 className="text-4xl md:text-6xl font-black text-white uppercase italic tracking-tighter mb-4">
               Referenzen
             </h1>
-            {/* HIER WURDE DIE ZAHL ENTFERNT */}
             <p className="text-xl text-slate-300 font-light max-w-2xl mx-auto leading-relaxed">
               Von der Idee bis zur Umsetzung – unsere Projekte. <br/>
               Lassen Sie sich von unseren <strong>zahlreichen realisierten Träumen</strong> inspirieren.
@@ -86,7 +121,7 @@ export default function GalleryClient({ images }: GalleryClientProps) {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                     className="break-inside-avoid group cursor-pointer relative rounded-2xl overflow-hidden shadow-lg border border-slate-100 bg-white"
-                    onClick={() => setSelectedImage(src)}
+                    onClick={() => setSelectedIndex(index)} // Hier wird jetzt der Index gesetzt
                   >
                     <img 
                       src={src} 
@@ -115,7 +150,6 @@ export default function GalleryClient({ images }: GalleryClientProps) {
                     <span>Mehr Projekte anzeigen</span>
                     <ArrowDown size={20} className="group-hover:translate-y-1 transition-transform" />
                   </button>
-                  {/* Dieser Zähler ist hilfreich für den User, bleibt also drin */}
                   <p className="text-slate-400 text-sm mt-4">
                     Zeige {Math.min(visibleCount, images.length)} von {images.length} Bildern
                   </p>
@@ -126,30 +160,55 @@ export default function GalleryClient({ images }: GalleryClientProps) {
         </div>
       </section>
 
-      {/* --- LIGHTBOX --- */}
+      {/* --- LIGHTBOX (Mit Navigation) --- */}
       <AnimatePresence>
-        {selectedImage && (
+        {selectedIndex !== null && (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[9999] bg-[#1A1A1A]/95 backdrop-blur-xl flex items-center justify-center p-4"
-            onClick={() => setSelectedImage(null)}
+            onClick={() => setSelectedIndex(null)}
           >
+            {/* Schließen Button */}
             <button 
-              className="absolute top-6 right-6 z-10 w-12 h-12 bg-black/50 hover:bg-[#E67E22] text-white rounded-full flex items-center justify-center transition-colors"
-              onClick={() => setSelectedImage(null)}
+              className="absolute top-6 right-6 z-20 w-12 h-12 bg-black/50 hover:bg-[#E67E22] text-white rounded-full flex items-center justify-center transition-colors"
+              onClick={() => setSelectedIndex(null)}
             >
               <X size={24} />
             </button>
+
+            {/* Linker Pfeil (Zurück) - Nur sichtbar wenn mehr als 1 Bild */}
+            {images.length > 1 && (
+              <button 
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-black/50 hover:bg-[#E67E22] text-white rounded-full flex items-center justify-center transition-colors hidden md:flex"
+                onClick={showPrev}
+              >
+                <ChevronLeft size={32} />
+              </button>
+            )}
+
+            {/* Rechter Pfeil (Weiter) - Nur sichtbar wenn mehr als 1 Bild */}
+            {images.length > 1 && (
+              <button 
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-black/50 hover:bg-[#E67E22] text-white rounded-full flex items-center justify-center transition-colors hidden md:flex"
+                onClick={showNext}
+              >
+                <ChevronRight size={32} />
+              </button>
+            )}
+
+            {/* Bild Container */}
             <motion.img 
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              src={selectedImage} 
+              key={selectedIndex} // Key sorgt für Animation beim Wechsel
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.3 }}
+              src={images[selectedIndex]} 
               alt="Referenz Großansicht"
-              className="w-auto h-auto max-w-full max-h-[95vh] object-contain rounded shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
+              className="w-auto h-auto max-w-full max-h-[90vh] object-contain rounded shadow-2xl z-10"
+              onClick={(e) => e.stopPropagation()} // Verhindert Schließen beim Klick aufs Bild
             />
           </motion.div>
         )}

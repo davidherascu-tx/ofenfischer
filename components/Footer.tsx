@@ -1,8 +1,9 @@
 "use client";
 
 import React from 'react';
-import { Instagram, Facebook, ArrowUpRight, MapPin, Phone, Mail, Clock, Printer } from 'lucide-react';
+import { Instagram, ArrowUpRight, MapPin, Phone, Mail, Clock, Printer } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link'; // Import hinzugefügt für interne Links
 
 const Footer = () => {
   const branches = [
@@ -31,7 +32,7 @@ const Footer = () => {
       phone: "+49 (0) 3533 / 4812 0",
       fax: "+49 (0) 3533 / 4812 16",
       mail: "info@ofenfischer.de",
-      hours: ["Ostern - Oktober:","Mo - Fr 7 - 16 Uhr", "Oktober - Ostern:","Mo - Fr 7 - 18 Uhr"]
+      hours: ["Ostern - Oktober:","Mo - Fr: 7 - 16 Uhr", "Oktober - Ostern:","Mo - Fr: 7 - 18 Uhr"]
     }
   ];
 
@@ -114,7 +115,6 @@ const Footer = () => {
               </div>
 
               <div className="space-y-3 border-t border-white/5 pt-4">
-                {/* CONTRAST FIX: text-slate-500 -> text-slate-400 */}
                 <div className="flex items-center gap-3 text-slate-400 mb-1">
                   <Clock size={16} className="text-[#E67E22] shrink-0" />
                   <p className="text-[10px] uppercase tracking-widest">Öffnungszeiten</p>
@@ -128,9 +128,9 @@ const Footer = () => {
             </div>
           ))}
 
-          {/* 5. Wir Unterstützen (Eisbären Berlin) */}
-          <div className="lg:text-right flex flex-col lg:items-end">
-            <h5 className="font-bold uppercase tracking-[0.2em] text-[10px] text-[#E67E22] mb-6">
+          {/* 5. Wir Unterstützen (Eisbären Berlin) - SYMMETRISCH ANGEPASST */}
+          <div className="space-y-6">
+            <h5 className="font-bold uppercase tracking-[0.2em] text-[10px] text-[#E67E22]">
               Wir Unterstützen
             </h5>
             <a 
@@ -139,16 +139,17 @@ const Footer = () => {
               rel="noopener noreferrer" 
               className="group cursor-pointer block"
             >
-              <div className="relative h-24 w-full lg:w-32 ml-auto">
+              {/* Bild Container linksbündig wie der Rest */}
+              <div className="relative h-20 w-32">
                 <Image 
                   src="/Eisbaeren_Berlin_Logo_150.png" 
-                  alt=""
+                  alt="Eisbären Berlin Logo"
                   fill
-                  className="object-contain object-left lg:object-right opacity-50 group-hover:opacity-100 transition-opacity duration-500"
+                  className="object-contain object-left opacity-50 group-hover:opacity-100 transition-opacity duration-500"
                   sizes="(max-width: 768px) 100vw, 150px"
                 />
               </div>
-              <div className="mt-4 flex lg:justify-end items-center gap-2 text-[10px] text-slate-400 uppercase tracking-widest">
+              <div className="mt-3 flex items-center gap-2 text-[10px] text-slate-400 uppercase tracking-widest group-hover:text-white transition-colors">
                 <span>Eisbären Berlin</span>
                 <ArrowUpRight size={12} className="text-[#E67E22]" />
               </div>
@@ -162,8 +163,16 @@ const Footer = () => {
             © {new Date().getFullYear()} Ofenfischer Meisterbetrieb. Alle Rechte vorbehalten.
           </p>
           <div className="flex gap-8 text-[9px] uppercase tracking-[0.3em] text-slate-400 font-medium">
-            <a href="#" className="hover:text-[#E67E22] transition-colors">IMPRESSUM</a>
-            <a href="/datenschutz" className="hover:text-[#E67E22] transition-colors">DATENSCHUTZ</a>
+            {/* LINK ZUM IMPRESSUM KORRIGIERT */}
+            <Link href="/impressum" className="hover:text-[#E67E22] transition-colors">
+              IMPRESSUM
+            </Link>
+            <Link href="/datenschutz" className="hover:text-[#E67E22] transition-colors">
+              DATENSCHUTZ
+            </Link>
+            <Link href="/agb" className="hover:text-[#E67E22] transition-colors">
+              AGB
+            </Link>
           </div>
         </div>
       </div>
