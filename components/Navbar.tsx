@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone, ArrowRight, ChevronDown, Flame, Settings, Info, MapPin, Briefcase, ChevronRight, Building2, FileText, Users } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -109,8 +110,7 @@ export default function Navbar() {
       onMouseLeave={handleMouseLeaveNav} // Schließt Menü, wenn Maus den Header verlässt
     >
       <motion.nav 
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        // OPTIMIERUNG: 'initial' und 'animate' entfernt, damit das Logo sofort sichtbar ist (kein Fade-in Delay)
         className={`max-w-7xl mx-auto transition-all duration-500 rounded-2xl relative ${
           scrolled || isOpen || activeMegaMenu
           ? "bg-[#1A1A1A]/95 backdrop-blur-xl border border-white/10 shadow-2xl py-3 px-6" 
@@ -124,8 +124,15 @@ export default function Navbar() {
             <div className={`relative transition-all duration-500 ${
               scrolled ? "h-8 w-28 md:h-10 md:w-40" : "h-10 w-40 md:h-12 md:w-52"
             }`}>
-              {/* Logo Bild hier einfügen */}
-              <img src="/ofenfischer_logo.webp" alt="Logo" className="h-full w-full object-contain" />
+              {/* OPTIMIERUNG: next/image mit priority und fill für sofortiges Laden */}
+              <Image 
+                src="/ofenfischer_logo.webp" 
+                alt="Ofenfischer GmbH Logo" 
+                fill
+                priority
+                className="object-contain"
+                sizes="(max-width: 768px) 160px, 208px"
+              />
             </div>
           </Link>
 
@@ -179,8 +186,12 @@ export default function Navbar() {
               <ArrowRight size={16} />
             </Link>
             
-            {/* MOBILE HAMBURGER */}
-            <button className="lg:hidden text-white ml-2" onClick={() => setIsOpen(!isOpen)}>
+            {/* MOBILE HAMBURGER - KORRIGIERT: aria-label hinzugefügt */}
+            <button 
+              className="lg:hidden text-white ml-2" 
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Menü schließen" : "Menü öffnen"}
+            >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>

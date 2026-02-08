@@ -39,10 +39,10 @@ const categories = [
   { name: "Individuelle Kamine", img: "/kamine.webp", link: "/produkte/kaminanlagen" },
   { name: "Kaminöfen", img: "/kaminofen.webp", link: "/produkte/kaminoefen" },
   { name: "Gaskamine", img: "/gaskamin.webp", link: "/produkte/gaskamine" },
-  { name: "Speicheröfen", img: "/specksteinofen.webp", link: "/produkte/speicheroefen" }, // Link angepasst
+  { name: "Speicheröfen", img: "/specksteinofen.webp", link: "/produkte/speicheroefen" }, 
   { name: "Kachelöfen", img: "/kachelofen.webp", link: "/produkte/kacheloefen" },
   { name: "Specksteinöfen", img: "/specksteinofen.webp", link: "/produkte/specksteinoefen" },
-  { name: "Elektrokamine", img: "/elektrokamin.webp", link: "/produkte/elektrokamine" }, // Ggf. noch erstellen
+  { name: "Elektrokamine", img: "/elektrokamin.webp", link: "/produkte/elektrokamine" },
   { name: "Schornsteine", img: "/schornstein.webp", link: "/produkte/schornsteine" },
 ];
 
@@ -70,7 +70,15 @@ const HeroSlider = () => {
     <section className="relative h-[90vh] w-full overflow-hidden bg-[#2D2D2D]">
       <AnimatePresence mode="wait">
         <motion.div key={index} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1.2 }}>
-          <motion.img src={slides[index].image} className="absolute inset-0 w-full h-full object-cover" initial={{ scale: 1.1 }} animate={{ scale: 1 }} transition={{ duration: 8 }} />
+          {/* FIX: alt-Attribut hinzugefügt. Nutzt den Titel des Slides als Beschreibung. */}
+          <motion.img 
+            src={slides[index].image} 
+            alt={slides[index].title}
+            className="absolute inset-0 w-full h-full object-cover" 
+            initial={{ scale: 1.1 }} 
+            animate={{ scale: 1 }} 
+            transition={{ duration: 8 }} 
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-[#2D2D2D] via-[#2D2D2D]/40 to-transparent z-10" />
           <div className="absolute inset-0 z-20 flex items-center px-8 md:pl-48">
             <div className="max-w-2xl text-white">
