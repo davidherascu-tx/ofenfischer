@@ -67,7 +67,8 @@ export default function AGBPage() {
       </div>
 
       {/* --- HERO SECTION --- */}
-      <section className="relative h-[40vh] bg-[#1A1A1A] overflow-hidden flex items-center justify-center print:h-auto print:py-8 print:bg-white print:text-black">
+      {/* ANPASSUNG: Höhe auf h-[60vh] gesetzt */}
+      <section className="relative h-[60vh] bg-[#1A1A1A] overflow-hidden flex items-center justify-center print:h-auto print:py-8 print:bg-white print:text-black">
         {/* Background Overlay - beim Drucken ausblenden */}
         <div className="absolute inset-0 z-0 opacity-20 print:hidden">
            <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2000')] bg-cover bg-center grayscale" />

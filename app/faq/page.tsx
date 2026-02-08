@@ -164,7 +164,7 @@ export default function FaqPage() {
           <img
             src="/faq_banner.webp"
             alt="Häufig gestellte Fragen - Kaminfeuer"
-            className="w-full h-full object-cover object-center opacity-40"
+            className="w-full h-full object-cover object-center opacity-40 grayscale"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent" />
         </div>

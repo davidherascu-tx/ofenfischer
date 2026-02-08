@@ -95,13 +95,14 @@ export default function UnternehmenPage() {
     <main className="min-h-screen bg-white font-sans selection:bg-[#E67E22] selection:text-white">
       <Navbar />
 
-{/* --- HERO SECTION --- */}
+      {/* --- HERO SECTION --- */}
       <section className="relative h-[60vh] bg-[#1A1A1A] overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 z-0">
+          {/* ANPASSUNG: 'grayscale' hinzugefügt für Schwarz-Weiß-Effekt */}
           <img 
             src="/unternehmen_banner.webp" 
             alt="Ofenfischer Tradition" 
-            className="w-full h-full object-cover object-center opacity-40"
+            className="w-full h-full object-cover object-center opacity-40 grayscale"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent" />
         </div>

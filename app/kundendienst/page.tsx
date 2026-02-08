@@ -61,7 +61,7 @@ export default function KundendienstPage() {
         <div className="absolute inset-0 z-0">
            {/* Platzhalterbild */}
           <img 
-            src="/kaminofen.jpg" 
+            src="/unternehmen_banner.webp" 
             alt="Ofenfischer Kundendienst" 
             className="w-full h-full object-cover opacity-30 grayscale"
           />
