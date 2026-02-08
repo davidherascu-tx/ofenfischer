@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import Link from 'next/link';
 
 // --- DATEN ---
 const slides = [
@@ -15,14 +16,14 @@ const slides = [
     title: "Meisterhafte Kamine",
     highlight: "Tradition & Design",
     text: "Wir vereinen handwerkliche Präzision mit modernster Technik für Ihr perfektes Feuererlebnis.",
-    image: "/Copilot_20250813_204840.jpg",
+    image: "/banner_1.webp",
   },
   {
     id: 2,
     title: "Zukunft Heiztechnik",
     highlight: "Effizienz erleben",
     text: "Nachhaltige Wärmepumpen und intelligente Systeme für ein energieeffizientes Zuhause.",
-    image: "/ChatGPT-Image-Aug-13-2025-08_38_53-PM.jpg",
+    image: "/banner_2.webp",
   },
   {
     id: 3,
@@ -33,15 +34,16 @@ const slides = [
   }
 ];
 
+// Aktualisierte Links für die Kategorien
 const categories = [
-  { name: "Individuelle Kamine", img: "/kamine.jpg" },
-  { name: "Kaminöfen", img: "/kaminofen.jpg" },
-  { name: "Gaskamine", img: "/gaskamin.jpg" },
-  { name: "Speicheröfen", img: "/specksteinofen.jpg" },
-  { name: "Kachelöfen", img: "/kachelofen.jpg" },
-  { name: "Specksteinöfen", img: "/specksteinofen.jpg" },
-  { name: "Elektrokamine", img: "/elektrokamin.jpg" },
-  { name: "Schornsteine", img: "/schornstein.jpg" },
+  { name: "Individuelle Kamine", img: "/kamine.webp", link: "/produkte/kaminanlagen" },
+  { name: "Kaminöfen", img: "/kaminofen.webp", link: "/produkte/kaminoefen" },
+  { name: "Gaskamine", img: "/gaskamin.webp", link: "/produkte/gaskamine" },
+  { name: "Speicheröfen", img: "/specksteinofen.webp", link: "/produkte/speicheroefen" }, // Link angepasst
+  { name: "Kachelöfen", img: "/kachelofen.webp", link: "/produkte/kacheloefen" },
+  { name: "Specksteinöfen", img: "/specksteinofen.webp", link: "/produkte/specksteinoefen" },
+  { name: "Elektrokamine", img: "/elektrokamin.webp", link: "/produkte/elektrokamine" }, // Ggf. noch erstellen
+  { name: "Schornsteine", img: "/schornstein.webp", link: "/produkte/schornsteine" },
 ];
 
 // --- HERO SLIDER ---
@@ -93,7 +95,7 @@ const HeroSlider = () => {
   );
 };
 
-// --- MEISTERHAND KACHEL (Gefixed: Kein cloneElement mehr) ---
+// --- MEISTERHAND KACHEL ---
 const MeisterhandCard = ({ icon, title, num, delay }: { icon: React.ReactNode, title: string, num: string, delay: number }) => (
   <motion.div 
     initial={{ opacity: 0, y: 20 }}
@@ -107,7 +109,6 @@ const MeisterhandCard = ({ icon, title, num, delay }: { icon: React.ReactNode, t
     </div>
     
     <div className="relative z-10 text-[#1A1A1A] group-hover:text-[#E67E22] mb-4 transition-colors duration-300">
-      {/* HIER GEÄNDERT: Wir rendern das Icon direkt, statt es zu klonen */}
       {icon}
     </div>
 
@@ -157,7 +158,6 @@ export default function LandingPage() {
                 </p>
               </motion.div>
 
-              {/* HIER GEÄNDERT: size={40} wird jetzt direkt beim Aufruf übergeben */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <MeisterhandCard icon={<Flame size={40} />} title="Kaminbau & Design" num="01" delay={0.1} />
                 <MeisterhandCard icon={<Home size={40} />} title="Schornstein Technik" num="02" delay={0.2} />
@@ -179,7 +179,7 @@ export default function LandingPage() {
                 >
                   <div className="rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white">
                     <img 
-                      src="/kamine_homepage_v1.png" 
+                      src="/kamine_homepage_v1.webp" 
                       alt="Ofenfischer Kamin Design" 
                       className="w-full h-auto object-cover"
                     />
@@ -210,7 +210,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 2. PRODUKTWELTEN */}
+      {/* 2. PRODUKTWELTEN (JETZT MIT LINKS) */}
       <section className="py-32 bg-[#1A1A1A] relative overflow-hidden text-white text-center">
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="mb-24">
@@ -220,12 +220,15 @@ export default function LandingPage() {
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-12">
             {categories.map((cat, i) => (
-              <motion.div key={i} whileHover={{ scale: 1.05 }} className="group flex flex-col items-center cursor-pointer">
-                <div className="relative w-36 h-36 md:w-52 md:h-52 rounded-full bg-[#0A0A0A] overflow-hidden shadow-2xl border-2 border-white/5 transition-all group-hover:border-orange-500/50">
-                  <img src={cat.img} alt={cat.name} className="w-full h-full rounded-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110" />
-                </div>
-                <h4 className="mt-8 font-bold text-sm uppercase tracking-widest group-hover:text-orange-500 transition-colors">{cat.name}</h4>
-              </motion.div>
+              // HIER: Das gesamte Element ist jetzt ein Link
+              <Link href={cat.link} key={i}>
+                <motion.div whileHover={{ scale: 1.05 }} className="group flex flex-col items-center cursor-pointer">
+                  <div className="relative w-36 h-36 md:w-52 md:h-52 rounded-full bg-[#0A0A0A] overflow-hidden shadow-2xl border-2 border-white/5 transition-all group-hover:border-orange-500/50">
+                    <img src={cat.img} alt={cat.name} className="w-full h-full rounded-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110" />
+                  </div>
+                  <h4 className="mt-8 font-bold text-sm uppercase tracking-widest group-hover:text-orange-500 transition-colors">{cat.name}</h4>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </div>

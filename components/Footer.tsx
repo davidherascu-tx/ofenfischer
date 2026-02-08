@@ -45,7 +45,7 @@ const Footer = () => {
           <div className="space-y-6">
             <div className="mb-6">
               <img 
-                src="/ofenfischer_logo_2023.png" 
+                src="/ofenfischer_logo.webp" 
                 alt="Ofenfischer Logo" 
                 className="h-12 w-auto object-contain mb-4"
               />

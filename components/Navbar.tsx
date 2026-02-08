@@ -45,9 +45,9 @@ export default function Navbar() {
           icon: <Flame className="text-orange-500" size={18} />,
           items: [
             { name: 'Individuelle Kaminanlagen', href: '/produkte/kaminanlagen' },
-            { name: 'Kaminöfen', href: '#kaminoefen' },
-            { name: 'Gaskamine', href: '#gaskamine' },
-            { name: 'Speicheröfen', href: '#speicheroefen' },
+            { name: 'Kaminöfen', href: '/produkte/kaminoefen' },
+            { name: 'Gaskamine', href: '/produkte/gaskamine' },
+            { name: 'Speicheröfen', href: '/produkte/speicheroefen' },
           ]
         },
         {
@@ -55,10 +55,10 @@ export default function Navbar() {
           title: '', 
           icon: <Flame className="text-transparent" size={18} />,
           items: [
-            { name: 'Kachelöfen', href: '#kachelofen' },
-            { name: 'Specksteinöfen', href: '#specksteinoefen' },
-            { name: 'Elektrokamine', href: '#elektrokamine' },
-            { name: 'Schornsteine', href: '#schornsteine' },
+            { name: 'Kachelöfen', href: '/produkte/kacheloefen' },
+            { name: 'Specksteinöfen', href: '/produkte/specksteinoefen' },
+            { name: 'Elektrokamine', href: '/produkte/elektrokamine' },
+            { name: 'Schornsteine', href: '/produkte/schornsteine' },
           ]
         },
         {
@@ -125,7 +125,7 @@ export default function Navbar() {
               scrolled ? "h-8 w-28 md:h-10 md:w-40" : "h-10 w-40 md:h-12 md:w-52"
             }`}>
               {/* Logo Bild hier einfügen */}
-              <img src="/ofenfischer_logo_2023.png" alt="Logo" className="h-full w-full object-contain" />
+              <img src="/ofenfischer_logo.webp" alt="Logo" className="h-full w-full object-contain" />
             </div>
           </Link>
 

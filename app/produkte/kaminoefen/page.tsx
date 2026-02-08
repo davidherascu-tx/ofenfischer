@@ -34,7 +34,7 @@ export default function KaminoefenPage() {
   const manufacturers = [
     {
       name: "Austroflamm",
-      logoSrc: "/logos/austroflamm-logo.webp",
+      logoSrc: "/logos/austroflamm_logo.webp",
       description: "Modernste Kamineinsätze und Kaminöfen benötigen neben Designideen auch enorme Entwicklungsarbeit im Bereich der Verbrennungstechnik. Bei allen Austroflamm-Kamineinsätzen und Kaminöfen bestehen diese wichtigen Teile aus Keramott. Das Material zeichnet sich durch ein besonderes Verhältnis zwischen Wärmedämmung und Wärmeleitung aus, wodurch schneller hohe Brennraumtemperaturen erreicht werden. Erst dadurch wird eine „saubere“, schadstoffarme Verbrennung möglich.",
       link: "https://www.austroflamm.com/de/oefen/kaminoefen"
     },
@@ -106,7 +106,7 @@ export default function KaminoefenPage() {
     },
     {
       name: "Spartherm",
-      logoSrc: "/logos/spartherm-logo.webp",
+      logoSrc: "/logos/spartherm_logo.webp",
       description: "Spartherm Kaminöfen vereinen schlichtes und zeitloses Design mit innovativer Technik. Ganz egal ob Sie einen wasserführenden, klassischen oder doch Extravaganten Kaminofen wünschen. Ob Raumluftabhängig oder Raumluftunabhängig betrieben, gerade, zweiseitig und von drei Seiten einsehbarer Feuerraums für die Ausrichtung des Feuers zu Ihrem Aufenthaltsbereich, dies sind nur einige Merkmale zwischen denen Sie wählen können.",
       link: "https://www.spartherm.com/de/produkte/kaminoefen/"
     },
