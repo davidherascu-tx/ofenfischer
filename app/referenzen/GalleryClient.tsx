@@ -6,12 +6,18 @@ import { ZoomIn, X, Camera, ArrowDown, ChevronLeft, ChevronRight } from 'lucide-
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
+// --- HELPER FÜR SWIPE GESTEN ---
+const swipeConfidenceThreshold = 10000;
+const swipePower = (offset: number, velocity: number) => {
+  return Math.abs(offset) * velocity;
+};
+
 interface GalleryClientProps {
   images: string[];
 }
 
 export default function GalleryClient({ images }: GalleryClientProps) {
-  // State für Lightbox: Wir speichern jetzt den INDEX statt nur die URL
+  // State für Lightbox: Wir speichern den INDEX statt der URL
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   
   // State für "Mehr laden" Funktion (Startwert 24 Bilder)
@@ -28,7 +34,7 @@ export default function GalleryClient({ images }: GalleryClientProps) {
     e?.stopPropagation();
     setSelectedIndex((prev) => {
       if (prev === null) return null;
-      // Wenn wir am Ende sind, fangen wir vorne wieder an (Loop)
+      // Loop: Wenn am Ende, gehe zum ersten Bild
       return prev === images.length - 1 ? 0 : prev + 1;
     });
   }, [images.length]);
@@ -38,7 +44,7 @@ export default function GalleryClient({ images }: GalleryClientProps) {
     e?.stopPropagation();
     setSelectedIndex((prev) => {
       if (prev === null) return null;
-      // Wenn wir am Anfang sind, springen wir ans Ende
+      // Loop: Wenn am Anfang, gehe zum letzten Bild
       return prev === 0 ? images.length - 1 : prev - 1;
     });
   }, [images.length]);
@@ -59,6 +65,7 @@ export default function GalleryClient({ images }: GalleryClientProps) {
 
   return (
     <main className="min-h-screen bg-white font-sans selection:bg-[#E67E22] selection:text-white">
+      
       <Navbar />
 
       {/* --- HERO SECTION --- */}
@@ -160,14 +167,15 @@ export default function GalleryClient({ images }: GalleryClientProps) {
         </div>
       </section>
 
-      {/* --- LIGHTBOX (Mit Navigation) --- */}
+      {/* --- LIGHTBOX (Mit Navigation & Swipe) --- */}
       <AnimatePresence>
         {selectedIndex !== null && (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[9999] bg-[#1A1A1A]/95 backdrop-blur-xl flex items-center justify-center p-4"
+            // 'touch-none' verhindert das Scrollen der Hintergrundseite auf Mobile beim Wischen
+            className="fixed inset-0 z-[9999] bg-[#1A1A1A]/95 backdrop-blur-xl flex items-center justify-center p-4 touch-none"
             onClick={() => setSelectedIndex(null)}
           >
             {/* Schließen Button */}
@@ -178,37 +186,53 @@ export default function GalleryClient({ images }: GalleryClientProps) {
               <X size={24} />
             </button>
 
-            {/* Linker Pfeil (Zurück) - Nur sichtbar wenn mehr als 1 Bild */}
+            {/* Linker Pfeil (Zurück) - Jetzt immer sichtbar (auch Mobile) */}
             {images.length > 1 && (
               <button 
-                className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-black/50 hover:bg-[#E67E22] text-white rounded-full flex items-center justify-center transition-colors hidden md:flex"
+                className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 bg-black/50 hover:bg-[#E67E22] text-white rounded-full flex items-center justify-center transition-colors"
                 onClick={showPrev}
               >
-                <ChevronLeft size={32} />
+                <ChevronLeft size={24} className="md:w-8 md:h-8" />
               </button>
             )}
 
-            {/* Rechter Pfeil (Weiter) - Nur sichtbar wenn mehr als 1 Bild */}
+            {/* Rechter Pfeil (Weiter) - Jetzt immer sichtbar (auch Mobile) */}
             {images.length > 1 && (
               <button 
-                className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-black/50 hover:bg-[#E67E22] text-white rounded-full flex items-center justify-center transition-colors hidden md:flex"
+                className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 bg-black/50 hover:bg-[#E67E22] text-white rounded-full flex items-center justify-center transition-colors"
                 onClick={showNext}
               >
-                <ChevronRight size={32} />
+                <ChevronRight size={24} className="md:w-8 md:h-8" />
               </button>
             )}
 
-            {/* Bild Container */}
+            {/* Bild Container mit Swipe-Logik */}
             <motion.img 
               key={selectedIndex} // Key sorgt für Animation beim Wechsel
+              src={images[selectedIndex]} 
+              alt="Referenz Großansicht"
+              className="w-auto h-auto max-w-full max-h-[85vh] object-contain rounded shadow-2xl z-10 cursor-grab active:cursor-grabbing"
+              onClick={(e) => e.stopPropagation()} // Verhindert Schließen beim Klick aufs Bild
+              
+              // --- SWIPE PROPERTIES ---
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.3 }}
-              src={images[selectedIndex]} 
-              alt="Referenz Großansicht"
-              className="w-auto h-auto max-w-full max-h-[90vh] object-contain rounded shadow-2xl z-10"
-              onClick={(e) => e.stopPropagation()} // Verhindert Schließen beim Klick aufs Bild
+              
+              drag="x" // Nur horizontales Ziehen erlauben
+              dragConstraints={{ left: 0, right: 0 }} // Springt immer in die Mitte zurück
+              dragElastic={1} // "Gummi"-Effekt
+              
+              onDragEnd={(e, { offset, velocity }) => {
+                const swipe = swipePower(offset.x, velocity.x);
+
+                if (swipe < -swipeConfidenceThreshold) {
+                  showNext(); // Wisch nach Links -> Nächstes Bild
+                } else if (swipe > swipeConfidenceThreshold) {
+                  showPrev(); // Wisch nach Rechts -> Vorheriges Bild
+                }
+              }}
             />
           </motion.div>
         )}
