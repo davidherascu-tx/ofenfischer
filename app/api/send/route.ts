@@ -26,6 +26,7 @@ const labelMapping: Record<string, string> = {
   flaeche: "Fläche (m²)"
 };
 
+// Mapping für Dropdown-Werte aus dem Kontaktformular
 const valueMapping: Record<string, Record<string, string>> = {
   subject: {
     "allgemein": "Allgemeine Anfrage",
@@ -45,6 +46,7 @@ export async function POST(request: Request) {
     const message = formData.get('message') as string;
     const file = formData.get('file') as File | null;
 
+    // Tabelle mit Details erstellen
     const detailsHtml = Array.from(formData.entries())
       .filter(([key]) => !['type', 'name', 'email', 'message', 'file', 'privacyAccepted'].includes(key))
       .map(([key, rawValue]) => {
@@ -55,6 +57,7 @@ export async function POST(request: Request) {
         if (valueMapping[key] && valueMapping[key][valueStr]) {
           displayValue = valueMapping[key][valueStr];
         } else if (key === 'subject') {
+          // Erster Buchstabe groß für sonstige Betreffzeilen
           displayValue = valueStr.charAt(0).toUpperCase() + valueStr.slice(1);
         } else {
           if (valueStr.length < 10 && !valueStr.includes(' ')) {
@@ -71,26 +74,36 @@ export async function POST(request: Request) {
 
     // --- BETREFF LOGIK ---
     let emailSubject = "";
+    let emailHeader = "";
     
     if (type === 'project') {
-        // HIER: Rakete fest eingebaut
+        // PROJEKT STARTEN
         emailSubject = `🚀 Neue Projektanfrage: ${name}`;
+        emailHeader = "Neue Projektanfrage";
+    } else if (type === 'service') {
+        // KUNDENDIENST (mit eigenem Icon)
+        const rawSubject = formData.get('subject') as string; // z.B. "Heizung & Sanitär"
+        emailSubject = `🛠️ Service-Auftrag (${rawSubject}): ${name}`;
+        emailHeader = "Neuer Service-Auftrag";
     } else {
-        // Kontaktformular
+        // KONTAKT
         let rawSubject = formData.get('subject') as string;
         let cleanSubject = "Allgemein";
         if (rawSubject && valueMapping['subject'] && valueMapping['subject'][rawSubject]) {
             cleanSubject = valueMapping['subject'][rawSubject];
         }
         emailSubject = `✉️ Neue Kontaktanfrage (${cleanSubject}): ${name}`;
+        emailHeader = "Neue Kontaktanfrage";
     }
 
+    // Anhänge
     const attachments = [];
     if (file && file.size > 0) {
       const buffer = Buffer.from(await file.arrayBuffer());
       attachments.push({ filename: file.name, content: buffer });
     }
 
+    // Senden
     const { data, error } = await resend.emails.send({
       from: 'Ofenfischer Webseite <onboarding@resend.dev>',
       to: [process.env.CONTACT_RECEIVER_EMAIL || 'info@ofenfischer.de'],
@@ -99,7 +112,7 @@ export async function POST(request: Request) {
       html: `
         <div style="font-family: Helvetica, Arial, sans-serif; max-width: 600px; color: #333; line-height: 1.6;">
           <h2 style="color: #E67E22; border-bottom: 2px solid #E67E22; padding-bottom: 10px;">
-            ${emailSubject}
+            ${emailHeader}
           </h2>
           
           <p style="font-size: 16px;"><strong>Von:</strong> ${name} (<a href="mailto:${email}" style="color: #E67E22;">${email}</a>)</p>
