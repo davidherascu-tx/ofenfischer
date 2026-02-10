@@ -112,7 +112,7 @@ export default function AGBPage() {
                   title="Seite drucken"
                 >
                   <Printer size={18} />
-                  <span>AGB drucken</span>
+                  <span>AGB's drucken</span>
                 </button>
               </div>
             </div>
