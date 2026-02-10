@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Send, Upload, X, CheckCircle2, User, Mail, Phone, MessageSquare, FileText, Paperclip, Check 
+  Send, Upload, X, CheckCircle2, User, Mail, Phone, MessageSquare, FileText, Paperclip, Check, AlertCircle 
 } from 'lucide-react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -22,6 +22,17 @@ export default function KontaktPage() {
   const [file, setFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  
+  // State für Feld-spezifische Fehler
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+
+  // --- SCROLL FIX ---
+  useEffect(() => {
+    if (isSuccess) {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+  }, [isSuccess]);
 
   // --- HANDLER ---
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -32,6 +43,15 @@ export default function KontaktPage() {
       : value;
 
     setFormData(prev => ({ ...prev, [name]: val }));
+
+    // Fehler löschen, sobald der Nutzer etwas ändert
+    if (fieldErrors[name]) {
+      setFieldErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
   };
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -44,34 +64,80 @@ export default function KontaktPage() {
     setFile(null);
   };
 
+  // --- VALIDIERUNG ---
+  const validateForm = () => {
+    const errors: Record<string, string> = {};
+    
+    if (!formData.name.trim()) errors.name = "Bitte geben Sie Ihren Namen ein.";
+    
+    if (!formData.email.trim()) errors.email = "Bitte geben Sie Ihre E-Mail-Adresse ein.";
+    else if (!/\S+@\S+\.\S+/.test(formData.email)) errors.email = "Bitte geben Sie eine gültige E-Mail ein.";
+    
+    // HIER GEÄNDERT: Betreff ist jetzt Pflichtfeld
+    if (!formData.subject) errors.subject = "Bitte wählen Sie ein Thema aus.";
+
+    if (!formData.message.trim()) errors.message = "Bitte geben Sie eine Nachricht ein.";
+    
+    if (!formData.privacyAccepted) {
+      errors.privacyAccepted = "Bitte akzeptieren Sie die Datenschutzerklärung.";
+    }
+
+    setFieldErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     
-    if (!formData.privacyAccepted) {
-      alert("Bitte akzeptieren Sie die Datenschutzerklärung.");
+    if (!validateForm()) {
+      setError("Bitte überprüfen Sie Ihre Eingaben.");
+      window.scrollTo({ top: 300, behavior: 'smooth' });
       return;
     }
 
     setIsSubmitting(true);
+    setError(null);
 
-    // Simulation eines API-Calls
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      const data = new FormData();
+      data.append('type', 'contact');
+      data.append('name', formData.name);
+      data.append('email', formData.email);
+      data.append('phone', formData.phone);
+      data.append('subject', formData.subject);
+      data.append('message', formData.message);
+      
+      if (file) {
+        data.append('file', file);
+      }
 
-    setIsSubmitting(false);
-    setIsSuccess(true);
-    
-    // Reset nach Erfolg
-    setFormData({ 
-      name: '', email: '', phone: '', subject: '', message: '', privacyAccepted: false 
-    });
-    setFile(null);
+      const response = await fetch('/api/send', {
+        method: 'POST',
+        body: data,
+      });
+
+      if (!response.ok) throw new Error('Versand fehlgeschlagen');
+
+      setIsSuccess(true);
+      
+      setFormData({ 
+        name: '', email: '', phone: '', subject: '', message: '', privacyAccepted: false 
+      });
+      setFile(null);
+      setFieldErrors({});
+
+    } catch (err) {
+      setError("Die Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.");
+      window.scrollTo({ top: 300, behavior: 'smooth' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <main className="min-h-screen bg-[#F8FAFC] font-sans selection:bg-[#E67E22] selection:text-white">
       <Navbar />
 
-    {/* --- HERO SECTION --- */}
       <section className="relative h-[60vh] bg-[#1A1A1A] overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 z-0">
           <img 
@@ -103,7 +169,6 @@ export default function KontaktPage() {
         </div>
       </section>
 
-      {/* --- KONTAKT FORMULAR --- */}
       <section className="py-24 px-6 relative -mt-20 z-20">
         <div className="max-w-3xl mx-auto">
           
@@ -114,7 +179,6 @@ export default function KontaktPage() {
             className="bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden"
           >
             {isSuccess ? (
-              // --- SUCCESS STATE ---
               <div className="p-16 text-center">
                 <motion.div 
                   initial={{ scale: 0 }} 
@@ -135,10 +199,8 @@ export default function KontaktPage() {
                 </button>
               </div>
             ) : (
-              // --- FORMULAR STATE ---
-              <form onSubmit={handleSubmit} className="p-8 md:p-12">
+              <form onSubmit={handleSubmit} className="p-8 md:p-12" noValidate>
                 
-                {/* HIER WURDEN DIE TEXTE GEÄNDERT */}
                 <div className="mb-10 text-center">
                   <h2 className="text-2xl md:text-3xl font-black text-[#1A1A1A] uppercase italic mb-2">
                     Ihre Nachricht an uns
@@ -146,39 +208,57 @@ export default function KontaktPage() {
                   <p className="text-slate-500">
                     Haben Sie Fragen, Wünsche oder Anregungen? Wir helfen Ihnen gerne weiter.
                   </p>
+                  {error && (
+                    <div className="mt-4 p-3 bg-red-50 text-red-600 rounded-lg inline-flex items-center gap-2">
+                      <AlertCircle size={18} />
+                      <span className="font-bold text-sm">{error}</span>
+                    </div>
+                  )}
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
                   {/* Name */}
-                  <div className="relative group">
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#E67E22] transition-colors">
-                      <User size={20} />
+                  <div>
+                    <div className="relative group">
+                      <div className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${fieldErrors.name ? 'text-red-400' : 'text-slate-400 group-focus-within:text-[#E67E22]'}`}>
+                        <User size={20} />
+                      </div>
+                      <input 
+                        type="text" 
+                        name="name"
+                        placeholder="Ihr Name" 
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        className={`w-full bg-slate-50 border rounded-xl py-4 pl-12 pr-4 text-[#1A1A1A] font-medium focus:outline-none transition-all placeholder:text-slate-400 ${
+                          fieldErrors.name 
+                            ? 'border-red-500 bg-red-50 focus:border-red-500' 
+                            : 'border-slate-200 focus:border-[#E67E22] focus:ring-1 focus:ring-[#E67E22]'
+                        }`}
+                      />
                     </div>
-                    <input 
-                      type="text" 
-                      name="name"
-                      required
-                      placeholder="Ihr Name" 
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 pl-12 pr-4 text-[#1A1A1A] font-medium focus:outline-none focus:border-[#E67E22] focus:ring-1 focus:ring-[#E67E22] transition-all placeholder:text-slate-400"
-                    />
+                    {fieldErrors.name && <p className="text-red-500 text-xs mt-1 ml-1 font-bold">{fieldErrors.name}</p>}
                   </div>
 
                   {/* Email */}
-                  <div className="relative group">
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#E67E22] transition-colors">
-                      <Mail size={20} />
+                  <div>
+                    <div className="relative group">
+                      <div className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${fieldErrors.email ? 'text-red-400' : 'text-slate-400 group-focus-within:text-[#E67E22]'}`}>
+                        <Mail size={20} />
+                      </div>
+                      <input 
+                        type="email" 
+                        name="email"
+                        placeholder="Ihre E-Mail Adresse" 
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className={`w-full bg-slate-50 border rounded-xl py-4 pl-12 pr-4 text-[#1A1A1A] font-medium focus:outline-none transition-all placeholder:text-slate-400 ${
+                          fieldErrors.email 
+                            ? 'border-red-500 bg-red-50 focus:border-red-500' 
+                            : 'border-slate-200 focus:border-[#E67E22] focus:ring-1 focus:ring-[#E67E22]'
+                        }`}
+                      />
                     </div>
-                    <input 
-                      type="email" 
-                      name="email"
-                      required
-                      placeholder="Ihre E-Mail Adresse" 
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 pl-12 pr-4 text-[#1A1A1A] font-medium focus:outline-none focus:border-[#E67E22] focus:ring-1 focus:ring-[#E67E22] transition-all placeholder:text-slate-400"
-                    />
+                    {fieldErrors.email && <p className="text-red-500 text-xs mt-1 ml-1 font-bold">{fieldErrors.email}</p>}
                   </div>
                 </div>
 
@@ -198,43 +278,56 @@ export default function KontaktPage() {
                     />
                   </div>
 
-                  {/* Betreff */}
-                  <div className="relative group">
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#E67E22] transition-colors">
-                      <FileText size={20} />
+                  {/* Betreff (Jetzt Pflichtfeld) */}
+                  <div>
+                    <div className="relative group">
+                      <div className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${fieldErrors.subject ? 'text-red-400' : 'text-slate-400 group-focus-within:text-[#E67E22]'}`}>
+                        <FileText size={20} />
+                      </div>
+                      <select 
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleInputChange}
+                        className={`w-full bg-slate-50 border rounded-xl py-4 pl-12 pr-4 text-[#1A1A1A] font-medium focus:outline-none transition-all appearance-none cursor-pointer ${
+                          fieldErrors.subject
+                            ? 'border-red-500 bg-red-50 focus:border-red-500' 
+                            : 'border-slate-200 focus:border-[#E67E22] focus:ring-1 focus:ring-[#E67E22]'
+                        }`}
+                      >
+                        <option value="" disabled>Bitte Thema wählen... *</option>
+                        <option value="allgemein">Allgemeine Anfrage</option>
+                        <option value="beratung">Beratungswunsch</option>
+                        <option value="service">Service / Wartung</option>
+                        <option value="sonstiges">Sonstiges</option>
+                      </select>
                     </div>
-                    <select 
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 pl-12 pr-4 text-[#1A1A1A] font-medium focus:outline-none focus:border-[#E67E22] focus:ring-1 focus:ring-[#E67E22] transition-all appearance-none cursor-pointer"
-                    >
-                      <option value="" disabled>Bitte Thema wählen...</option>
-                      <option value="allgemein">Allgemeine Anfrage</option>
-                      <option value="beratung">Beratungswunsch</option>
-                      <option value="service">Service / Wartung</option>
-                      <option value="sonstiges">Sonstiges</option>
-                    </select>
+                    {fieldErrors.subject && <p className="text-red-500 text-xs mt-1 ml-1 font-bold">{fieldErrors.subject}</p>}
                   </div>
                 </div>
 
                 {/* Nachricht */}
-                <div className="relative group mb-8">
-                  <div className="absolute left-4 top-6 text-slate-400 group-focus-within:text-[#E67E22] transition-colors">
-                    <MessageSquare size={20} />
+                <div className="mb-8">
+                  <div className="relative group">
+                    <div className={`absolute left-4 top-6 transition-colors ${fieldErrors.message ? 'text-red-400' : 'text-slate-400 group-focus-within:text-[#E67E22]'}`}>
+                      <MessageSquare size={20} />
+                    </div>
+                    <textarea 
+                      name="message"
+                      rows={5}
+                      placeholder="Ihre Nachricht an uns..." 
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      className={`w-full bg-slate-50 border rounded-xl py-4 pl-12 pr-4 text-[#1A1A1A] font-medium focus:outline-none transition-all placeholder:text-slate-400 resize-none ${
+                        fieldErrors.message
+                          ? 'border-red-500 bg-red-50 focus:border-red-500' 
+                          : 'border-slate-200 focus:border-[#E67E22] focus:ring-1 focus:ring-[#E67E22]'
+                      }`}
+                    ></textarea>
                   </div>
-                  <textarea 
-                    name="message"
-                    required
-                    rows={5}
-                    placeholder="Ihre Nachricht an uns..." 
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 pl-12 pr-4 text-[#1A1A1A] font-medium focus:outline-none focus:border-[#E67E22] focus:ring-1 focus:ring-[#E67E22] transition-all placeholder:text-slate-400 resize-none"
-                  ></textarea>
+                  {fieldErrors.message && <p className="text-red-500 text-xs mt-1 ml-1 font-bold">{fieldErrors.message}</p>}
                 </div>
 
-                {/* FILE UPLOAD AREA */}
+                {/* FILE UPLOAD */}
                 <div className="mb-8">
                   <label className="block text-sm font-bold text-[#1A1A1A] mb-2 ml-1">
                     Datei-Anhang (Optional)
@@ -255,7 +348,6 @@ export default function KontaktPage() {
                       </div>
                     </div>
                   ) : (
-                    // File Selected View
                     <motion.div 
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
@@ -290,21 +382,27 @@ export default function KontaktPage() {
                         name="privacyAccepted"
                         checked={formData.privacyAccepted}
                         onChange={handleInputChange}
-                        required
-                        className="peer h-5 w-5 cursor-pointer appearance-none rounded border border-slate-300 shadow-sm transition-all checked:border-[#E67E22] checked:bg-[#E67E22] hover:border-[#E67E22]"
+                        className={`peer h-5 w-5 cursor-pointer appearance-none rounded border shadow-sm transition-all checked:border-[#E67E22] checked:bg-[#E67E22] hover:border-[#E67E22] ${
+                          fieldErrors.privacyAccepted ? 'border-red-500 ring-1 ring-red-500' : 'border-slate-300'
+                        }`}
                       />
                       <Check size={14} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white opacity-0 peer-checked:opacity-100 pointer-events-none" strokeWidth={3} />
                     </div>
-                    <span className="text-sm text-slate-600 leading-tight group-hover:text-slate-800 transition-colors">
-                      Ich habe die <a href="/datenschutz" target="_blank" className="text-[#E67E22] underline hover:text-orange-600 font-bold decoration-2 decoration-orange-200 hover:decoration-orange-600 transition-all">Datenschutzerklärung</a> zur Kenntnis genommen. Ich stimme zu, dass meine Angaben zur Kontaktaufnahme und für Rückfragen dauerhaft gespeichert werden.
-                    </span>
+                    <div className="flex flex-col">
+                      <span className="text-sm text-slate-600 leading-tight group-hover:text-slate-800 transition-colors">
+                        Ich habe die <a href="/datenschutz" target="_blank" className="text-[#E67E22] underline hover:text-orange-600 font-bold decoration-2 decoration-orange-200 hover:decoration-orange-600 transition-all">Datenschutzerklärung</a> zur Kenntnis genommen. Ich stimme zu, dass meine Angaben zur Kontaktaufnahme und für Rückfragen dauerhaft gespeichert werden.
+                      </span>
+                      {fieldErrors.privacyAccepted && (
+                        <span className="text-red-500 text-xs font-bold mt-1">{fieldErrors.privacyAccepted}</span>
+                      )}
+                    </div>
                   </label>
                 </div>
 
                 {/* Submit Button */}
                 <button 
                   type="submit" 
-                  disabled={isSubmitting || !formData.privacyAccepted}
+                  disabled={isSubmitting}
                   className="w-full bg-[#1A1A1A] hover:bg-[#E67E22] text-white font-bold py-4 rounded-xl shadow-lg shadow-black/5 hover:shadow-orange-500/20 transition-all transform hover:scale-[1.01] active:scale-[0.99] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {isSubmitting ? (
