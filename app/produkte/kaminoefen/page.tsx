@@ -39,6 +39,12 @@ export default function KaminoefenPage() {
       link: "https://www.austroflamm.com/de/oefen/kaminoefen"
     },
     {
+      name: "Bullerjan",
+      logoSrc: "/logos/bullerjan_logo.webp",
+      description: "Der charakteristische Bullerjan-Ofen mit den gebogenen Stahlrohren wurde vor allem durch Mundpropaganda bekannt. Seine schnelle und gleichmäßige Wärmeverteilung machte ihn besonders bei Werkstätten, Hallen, Bauernhöfen und später auch in Wohnhäusern beliebt. Große Werbekampagnen waren dafür kaum nötig. Seit einem Generationswechsel im Jahr 2012 firmiert das Unternehmen als Bullerjan GmbH. Neben dem klassischen FreeFlow werden heute moderne Kaminöfen, Speicheröfen und Designmodelle angeboten. Der FreeFlow von Bullerjan gilt jedoch weiterhin als das prägende Kultmodell der Marke.",
+      link: "https://bullerjan.com/"
+    },
+    {
       name: "Cera",
       logoSrc: "/logos/cera_logo.webp",
       description: "Von Beginn an hat CERA DESIGN es sich daher zur Aufgabe gemacht, Menschen ein gutes Gefühl zu geben. Die effiziente Nutzung des Feuers als faszinierendes Element ist hierbei Mittelpunkt unserer Bemühungen – im Sinne menschlicher Bedürfnisse und stets im Einklang mit unserer Umwelt. So bietet CERA DESIGN Öfen auf neuestem Entwicklungsstand, die sich durch Qualität, Nachhaltigkeit und edles Design auszeichnen – Werte, die wir seit jeher pflegen. Individuelle Beratung gehört bei CERA DESIGN selbstverständlich dazu.",
@@ -49,6 +55,12 @@ export default function KaminoefenPage() {
       logoSrc: "/logos/contura_logo.webp",
       description: "Kaminöfen aus Schweden\n\nContura-Produkte werden von NIBE in Markaryd in der schwedischen Provinz Småland hergestellt.\nDen sparsamen Umgang mit den natürlichen Ressourcen haben wir seit jeher als Selbstverständlichkeit betrachtet. Daher legen wir Wert auf eine moderne, sparsame und effektive Produktion. Unser Qualitätsbewusstsein zieht sich wie ein roter Faden durch alle Glieder der Herstellungskette in unserer Fabrik – der größten ihrer Art in Europa und dem modernsten Fertigungsort für Kaminöfen. Unsere Produkte werden europaweit verkauft und genießen wegen ihres zeitlosen Designs, ihres hohen Wirkungsgrads und der kompromisslosen Qualität ein hohes Ansehen.",
       link: "https://www.contura.eu/de-de/kaminofen-sortiment/kaminofen"
+    },
+    {
+      name: "Dik Geurts",
+      logoSrc: "/logos/dru_logo.webp",
+      description: "Holzöfen und Holzkamine von Dik Geurts stehen seit über 40 Jahren für Qualität, Effizienz und modernes Design. Die renommierte Marke gehört seit 2007 zur DRU-Gruppe und zählt zu den führenden Herstellern hochwertiger Kaminöfen und Kamineinsätze. Dank innovativer Verbrennungstechnik bieten Dik Geurts Kaminöfen eine hohe Energieeffizienz, niedrige Emissionswerte und ein besonders schönes Flammenbild. Ob freistehender Holzofen oder moderner Kamineinsatz – mit einem Dik Geurts Kamin genießen Sie die natürliche Wärme und die einzigartige Atmosphäre eines echten Holzfeuers.",
+      link: "https://www.drufire.com/de-de/dik-geurts"
     },
     {
       name: "Ganz",
@@ -97,6 +109,12 @@ export default function KaminoefenPage() {
       logoSrc: "/logos/rika_logo.webp",
       description: "Höchste Qualität, marktführende Technologie und herausragendes Design. Überzeugen Sie sich selbst, was einen Kaminofen von RIKA so besonders macht! Vom natürlichen Flammenbild bis hin zum typischen Knistern und Knacken der Holzscheite: ein Kaminofen spricht alle Sinne an. Er spendet nicht nur angenehme Wärme, sondern schafft auch eine ganz besondere Atmosphäre. Forschung und Entwicklung, erfolgen bei RIKA stets auch unter dem Aspekt der Nachhaltigkeit. Der effiziente Umgang mit der wertvollen Ressource Holz zählt ebenso dazu, wie die ständige Entwicklungsarbeit in Richtung Emissionsreduktion.",
       link: "https://www.rika.at/stoves/woodburning"
+    },
+    {
+      name: "Skanderborg",
+      logoSrc: "/logos/skanderborg_Logo.webp",
+      description: "Die Ursprünge des Kaminofens liegen in Skandinavien. Viele Urlauber kamen dort erstmals mit der besonderen Atmosphäre eines sichtbaren, lebendigen Feuers in Berührung. Die damaligen Modelle waren jedoch einfache, mit Stahlblech verkleidete Feuerstätten und nur bedingt mit den heutigen Kaminöfen vergleichbar. Seit mehr als 20 Jahren entwickeln, konstruieren und fertigen wir bei SKANDERBORG Kaminöfen nach modernsten technischen Standards. Produkte von SKANDERBORG vereinen langjährige Erfahrung, höchste Qualitätsansprüche und handwerkliche Präzision mit innovativen Technologien und zeitgemäßen Fertigungsmethoden. Das Ergebnis sind Kaminöfen, die durch durchdachte Technik, zuverlässige Funktion und langlebige Qualität überzeugen – Eigenschaften, für die SKANDERBORG seit vielen Jahren steht.",
+      link: "https://www.skanderborg.de"
     },
     {
       name: "skantherm",
@@ -339,7 +357,7 @@ export default function KaminoefenPage() {
             Finden Sie Ihren Lieblingsplatz
           </h3>
           <p className="text-slate-600 mb-8">
-            Besuchen Sie unsere Ausstellungen in Berlin, Dresden oder Plessa und erleben Sie die Kaminöfen live.
+            Besuchen Sie unsere Ausstellungen in Berlin oder Plessa und erleben Sie die Kaminöfen live.
           </p>
           <Link 
             href="/kontakt" 

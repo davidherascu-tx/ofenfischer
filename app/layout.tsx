@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s | Ofenfischer GmbH", // Fügt automatisch den Firmennamen auf Unterseiten an
   },
   description:
-    "Ihr Meisterbetrieb für individuelle Kaminanlagen, Kachelöfen, Gaskamine, Heizung und Sanitär. Beratung, Planung & Montage in Berlin, Dresden und Plessa.",
+    "Ihr Meisterbetrieb für individuelle Kaminanlagen, Kachelöfen, Gaskamine, Heizung und Sanitär. Beratung, Planung & Montage in Berlin und Plessa.",
   keywords: [
     "Kaminbau",
     "Kachelofen",
@@ -37,7 +37,6 @@ export const metadata: Metadata = {
     "Sanitär",
     "Wärmepumpe",
     "Berlin",
-    "Dresden",
     "Plessa",
     "Ofenfischer",
   ],
@@ -82,7 +81,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ofenfischer GmbH | Kamine & Heizung",
     description:
-      "Ihr Experte für Kaminbau und Haustechnik in Berlin, Dresden & Plessa.",
+      "Ihr Experte für Kaminbau und Haustechnik in Berlin & Plessa.",
     images: ["/kamine.webp"], // KORRIGIERT: .webp statt .jpg
   },
 

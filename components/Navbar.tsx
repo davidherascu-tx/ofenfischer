@@ -82,7 +82,6 @@ export default function Navbar() {
       href: '#',
       submenu: [
         { name: 'Berlin', href: '/filialen/berlin', icon: <MapPin size={16}/> },
-        { name: 'Dresden', href: '/filialen/dresden', icon: <MapPin size={16}/> },
         { name: 'Plessa', href: '/filialen/plessa', icon: <MapPin size={16}/> },
       ]
     },

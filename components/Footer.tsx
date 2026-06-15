@@ -17,15 +17,6 @@ const Footer = () => {
       hours: ["Mo - Fr: 10 - 18 Uhr", "Sa: 10 - 14 Uhr", "sowie nach Vereinbarung"]
     },
     {
-      city: "Filiale Dresden",
-      street: "Großenhainer Str. 197",
-      zipCity: "01129 Dresden",
-      phone: "+49 (0) 351 / 843 59 602",
-      fax: "+49 (0) 351 / 847 55 490",
-      mail: "dresden@ofenfischer.de",
-      hours: ["Mo, Di, Do, Fr: 10 - 18 Uhr", "Mi: geschlossen", "Sa: nach Vereinbarung"]
-    },
-    {
       city: "Filiale Plessa",
       street: "Glück-Auf-Ring 1",
       zipCity: "04928 Plessa",

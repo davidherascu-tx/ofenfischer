@@ -181,7 +181,7 @@ export default function UnternehmenPage() {
                   Neben der Herstellung und dem Einbau von individuell gestalteten Kaminen und Öfen, sowohl mit Holz als auch mit Gas befeuert, zählt zu unserem Spezialgebiet die Kombination von wassergeführten Kaminen / Öfen mit modernen Zentralheizungen.
                 </p>
                 <p>
-                  Unsere Firmenzentrale ist im Gewerbegebiet des Südbrandenburgischen Ortes <strong>“Plessa“</strong> beheimatet. Zwei weitere Standorte mit großzügigen Schauräumen befinden sich, jeweils auch verkehrsgünstig gelegen, in <strong>Dresden</strong> und <strong>Berlin</strong>.
+                  Unsere Firmenzentrale ist im Gewerbegebiet des Südbrandenburgischen Ortes <strong>“Plessa“</strong> beheimatet. Ein weiterer Standort mit großzügigem Schauraum befindet sich, ebenfalls verkehrsgünstig gelegen, in <strong>Berlin</strong>.
                 </p>
               </div>
 
@@ -202,8 +202,8 @@ export default function UnternehmenPage() {
                     <MapPin size={22} />
                   </div>
                   <div>
-                    <span className="block font-black text-lg text-[#1A1A1A] leading-tight">3 Standorte</span>
-                    <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Plessa, Berlin, Dresden</span>
+                    <span className="block font-black text-lg text-[#1A1A1A] leading-tight">2 Standorte</span>
+                    <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Plessa, Berlin</span>
                   </div>
                 </div>
 
