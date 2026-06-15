@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, PenTool, Hammer, Plus, X } from 'lucide-react'; // ArrowRight entfernt da ungenutzt, wenn Fehler wirft
+import { motion } from 'framer-motion';
+import { ExternalLink, PenTool, Hammer, Plus } from 'lucide-react'; // ArrowRight entfernt da ungenutzt, wenn Fehler wirft
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
+import Lightbox from '../../../components/Lightbox';
 import Link from 'next/link';
 
 export default function KaminanlagenPageV3() {
@@ -34,10 +35,16 @@ export default function KaminanlagenPageV3() {
   // --- PREMIUM PARTNER DATEN ---
   const manufacturers = [
     {
-      name: "Spartherm",
-      logoSrc: "/logos/spartherm_logo.webp", 
-      description: "UNSERE GANZE LEIDENSCHAFT gilt dem Spiel mit dem Feuer. Wir nennen uns sogar “The Fire Company“. Deshalb kennen wir auch keine Kompromisse. Wir entwickeln unsere Brennzellen mit höchstem Anspruch und in technischer Vollendung. Seit vielen Jahren sind Spartherm-Kamineinsätze für innovative und ästhetische Kaminlösungen bekannt.",
-      link: "https://www.spartherm.com"
+      name: "Austroflamm",
+      logoSrc: "/logos/austroflamm_logo.webp",
+      description: "Bei allen Austroflamm-Kamineinsätzen bestehen die wichtigen Brennraumteile aus Keramott. Das Material zeichnet sich durch ein besonderes Verhältnis zwischen Wärmedämmung und Wärmeleitung aus, wodurch schneller hohe Brennraumtemperaturen für eine saubere Verbrennung erreicht werden.",
+      link: "https://www.austroflamm.com"
+    },
+    {
+      name: "Brunner",
+      logoSrc: "/logos/brunner_logo.webp",
+      description: "Schon Firmengründer Martin Brunner verfolgte das Ziel, hochwertige, ehrliche und langlebige Produkte zu schaffen. Für diese Werte steht BRUNNER seit über 70 Jahren – und daran hat sich bis heute nichts geändert. In jedem Kamin, Kachelofen und Heizkessel von BRUNNER stecken Innovationskraft, technisches Know-how, Sorgfalt sowie eine große Portion Leidenschaft. BRUNNER nimmt sich die Zeit, die es braucht, um Produkte bis ins Detail zu entwickeln und zu perfektionieren. Denn nur so entstehen Heizgeräte, die höchsten Ansprüchen gerecht werden und langfristig überzeugen. Genau das ist seit jeher der Anspruch von BRUNNER – und aller Menschen, die hinter der Marke stehen.",
+      link: "https://www.brunner.de"
     },
     {
       name: "Camina & Schmid",
@@ -52,10 +59,10 @@ export default function KaminanlagenPageV3() {
       link: "https://www.hoxter.de"
     },
     {
-      name: "Austroflamm",
-      logoSrc: "/logos/austroflamm_logo.webp",
-      description: "Bei allen Austroflamm-Kamineinsätzen bestehen die wichtigen Brennraumteile aus Keramott. Das Material zeichnet sich durch ein besonderes Verhältnis zwischen Wärmedämmung und Wärmeleitung aus, wodurch schneller hohe Brennraumtemperaturen für eine saubere Verbrennung erreicht werden.",
-      link: "https://www.austroflamm.com"
+      name: "Spartherm",
+      logoSrc: "/logos/spartherm_logo.webp",
+      description: "UNSERE GANZE LEIDENSCHAFT gilt dem Spiel mit dem Feuer. Wir nennen uns sogar “The Fire Company“. Deshalb kennen wir auch keine Kompromisse. Wir entwickeln unsere Brennzellen mit höchstem Anspruch und in technischer Vollendung. Seit vielen Jahren sind Spartherm-Kamineinsätze für innovative und ästhetische Kaminlösungen bekannt.",
+      link: "https://www.spartherm.com"
     }
   ];
 
@@ -268,34 +275,13 @@ export default function KaminanlagenPageV3() {
         </div>
       </section>
 
-      {/* --- LIGHTBOX MODAL --- */}
-      <AnimatePresence>
-        {selectedImage && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md flex items-center justify-center p-4"
-            onClick={() => setSelectedImage(null)}
-          >
-            <button 
-              className="absolute top-6 right-6 z-10 w-12 h-12 bg-white/10 hover:bg-[#E67E22] text-white rounded-full flex items-center justify-center transition-colors"
-              onClick={() => setSelectedImage(null)}
-            >
-              <X size={28} />
-            </button>
-            <motion.img 
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              src={selectedImage} 
-              alt="Großansicht"
-              className="w-auto h-auto max-w-full max-h-[90vh] object-contain rounded shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+            {/* --- LIGHTBOX MODAL --- */}
+      <Lightbox
+        images={galleryImages}
+        selected={selectedImage}
+        onSelect={setSelectedImage}
+        onClose={() => setSelectedImage(null)}
+      />
 
       <Footer />
     </main>

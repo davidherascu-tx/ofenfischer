@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ExternalLink, Flame, Zap, ShieldCheck, Plus, X, Wind, Power } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, ExternalLink, Flame, Zap, ShieldCheck, Plus, Wind, Power } from 'lucide-react';
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
+import Lightbox from '../../../components/Lightbox';
 import Link from 'next/link';
 
 export default function GaskaminePage() {
@@ -33,10 +34,22 @@ export default function GaskaminePage() {
   // --- HERSTELLER DATEN ---
   const manufacturers = [
     {
+      name: "Camina & Schmid",
+      logoSrc: "/logos/camina_schmid_logo.webp",
+      description: "Ein Gaskamin von Camina & Schmid bringt auf Knopfdruck behagliche Wärme, stimmungsvolles Ambiente und ein Höchstmaß an Komfort in Ihr Zuhause. Entdecken Sie eine moderne Feuerungstechnik, die Design, Innovation und einfache Bedienung auf einzigartige Weise vereint. Unsere Kamine überzeugen durch eine hocheffiziente Verbrennungstechnologie und ermöglichen ein nahezu CO₂-neutrales Heizen in den eigenen vier Wänden. Die Bedienung ist intuitiv, sicher und nahezu selbsterklärend. Großzügige Glaskeramikflächen setzen das Flammenspiel eindrucksvoll in Szene und machen jeden Kamineinsatz zum Blickfang Ihrer Kaminanlage. Gemeinsam mit Ihrem Ofensetzer lassen sich individuelle Gestaltungskonzepte verwirklichen. Darüber hinaus bietet Camina & Schmid ein umfangreiches Zubehörprogramm mit zahlreichen Möglichkeiten, um Ihren Kamin ganz nach Ihren persönlichen Vorstellungen zu gestalten. So entstehen maßgeschneiderte Feuerstätten, die nicht nur Wärme spenden, sondern auch ein stilvolles Wohnambiente schaffen.",
+      link: "https://camina-schmid.de/fuer-privatkunden/gaskamine"
+    },
+    {
       name: "DRU",
       logoSrc: "/logos/dru_logo.webp", // Dateiname exakt übernommen
       description: "DRU ist der größten Hersteller für Gasöfen in Europa. Durch kontinuierliche Entwicklung und hohe Qualitätsanspruch entsteht bei DRU die Motivation immer besser zu werden. Kundenzufriedenheit und Effizienz gehen bei DRU Hand in Hand mit Umweltfreundlichkeit und Sicherheit.",
       link: "https://www.drufire.com/de-de/sortiment/gaskamine"
+    },
+    {
+      name: "Hoxter",
+      logoSrc: "/logos/hoxter_logo.webp",
+      description: "Die Entwicklung der Hoxter Gas-Kamineinsätze begann mit dem Anspruch, eine Feuerstätte zu schaffen, die sowohl funktional als auch ästhetisch höchsten Anforderungen gerecht wird. Ziel bei Hoxter war es, ein authentisches Flammenbild ohne den Einsatz von Brennholz und die damit verbundenen Begleiterscheinungen zu ermöglichen. Durch den konsequenten Einsatz moderner Technologien konnten wir dieses Konzept kontinuierlich weiterentwickeln. Das Ergebnis sind Gas-Kamineinsätze mit einem besonders realistischen Flammenbild, einer intuitiven Bedienung sowie optimalen Voraussetzungen für Planung und Installation. Lernen Sie die neuen Hoxter Gas-Kamineinsätze kennen und profitieren Sie von einer modernen Feuerungslösung, die Komfort, Effizienz und Design vereint.",
+      link: "https://www.hoxter.eu/de/gas/produkte/kamineinsatze-gas"
     }
   ];
 
@@ -263,34 +276,13 @@ export default function GaskaminePage() {
         </div>
       </section>
 
-      {/* --- LIGHTBOX MODAL --- */}
-      <AnimatePresence>
-        {selectedImage && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md flex items-center justify-center p-4"
-            onClick={() => setSelectedImage(null)}
-          >
-            <button 
-              className="absolute top-6 right-6 z-10 w-12 h-12 bg-white/10 hover:bg-[#E67E22] text-white rounded-full flex items-center justify-center transition-colors"
-              onClick={() => setSelectedImage(null)}
-            >
-              <X size={28} />
-            </button>
-            <motion.img 
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              src={selectedImage} 
-              alt="Großansicht"
-              className="w-auto h-auto max-w-full max-h-[90vh] object-contain rounded shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+            {/* --- LIGHTBOX MODAL --- */}
+      <Lightbox
+        images={galleryImages}
+        selected={selectedImage}
+        onSelect={setSelectedImage}
+        onClose={() => setSelectedImage(null)}
+      />
 
       <Footer />
     </main>
