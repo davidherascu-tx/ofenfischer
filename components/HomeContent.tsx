@@ -13,7 +13,7 @@ const categories = [
   { name: "Speicheröfen", img: "/specksteinofen.webp", link: "/produkte/speicheroefen" }, 
   { name: "Kachelöfen", img: "/kachelofen.webp", link: "/produkte/kacheloefen" },
   { name: "Specksteinöfen", img: "/specksteinofen.webp", link: "/produkte/specksteinoefen" },
-  { name: "Elektrokamine", img: "/elektrokamin.webp", link: "/produkte/elektrokamine" },
+  { name: "Outdoor- & Indoor-Feuerstellen", img: "/in_outdoor/in_out_feuer_1.webp", link: "/produkte/feuerstellen" },
   { name: "Schornsteine", img: "/schornstein.webp", link: "/produkte/schornsteine" },
 ];
 

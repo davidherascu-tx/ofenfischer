@@ -55,7 +55,6 @@ export default function Navbar() {
             { name: 'Kachelöfen', href: '/produkte/kacheloefen' },
             { name: 'Specksteinöfen', href: '/produkte/specksteinoefen' },
             { name: 'Outdoor- & Indoor-Feuerstellen', href: '/produkte/feuerstellen' },
-            { name: 'Elektrokamine', href: '/produkte/elektrokamine' },
             { name: 'Schornsteine', href: '/produkte/schornsteine' },
           ]
         },
