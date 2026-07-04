@@ -17,29 +17,33 @@ const categories = [
   { name: "Schornsteine", img: "/schornstein.webp", link: "/produkte/schornsteine" },
 ];
 
-const MeisterhandCard = ({ icon, title, num, delay }: { icon: React.ReactNode, title: string, num: string, delay: number }) => (
-  <motion.div 
+const MeisterhandCard = ({ icon, title, num, delay, link }: { icon: React.ReactNode, title: string, num: string, delay: number, link: string }) => (
+  <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ delay }}
     viewport={{ once: true }}
-    className="group relative bg-[#F8FAFC] p-8 h-64 flex flex-col justify-between overflow-hidden border border-slate-200 hover:bg-white hover:shadow-2xl transition-all duration-500 z-10 cursor-pointer"
   >
-    <div className="absolute top-0 right-0 p-4 text-slate-200 font-black text-7xl transition-all duration-500 group-hover:text-orange-500/20 group-hover:scale-110 select-none leading-none italic">
-      {num}
-    </div>
-    <div className="relative z-10 text-[#1A1A1A] group-hover:text-[#E67E22] mb-4 transition-colors duration-300">
-      {icon}
-    </div>
-    <h4 className="relative z-10 font-black text-[#1A1A1A] uppercase tracking-wider text-xl md:text-2xl leading-tight italic">
-      {title}
-    </h4>
-    <div className="relative z-10 flex justify-end">
-      <div className="w-10 h-10 bg-[#1A1A1A] text-white flex items-center justify-center rounded-full group-hover:bg-[#E67E22] group-hover:rotate-45 transition-all duration-300 shadow-lg">
-        <ArrowUpRight size={20} />
+    <Link
+      href={link}
+      className="group relative bg-[#F8FAFC] p-8 h-64 flex flex-col justify-between overflow-hidden border border-slate-200 hover:bg-white hover:shadow-2xl transition-all duration-500 z-10 cursor-pointer"
+    >
+      <div className="absolute top-0 right-0 p-4 text-slate-200 font-black text-7xl transition-all duration-500 group-hover:text-orange-500/20 group-hover:scale-110 select-none leading-none italic">
+        {num}
       </div>
-    </div>
-    <div className="absolute bottom-0 left-0 h-1.5 w-0 bg-[#E67E22] group-hover:w-full transition-all duration-500 shadow-[0_0_15px_#E67E22]" />
+      <div className="relative z-10 text-[#1A1A1A] group-hover:text-[#E67E22] mb-4 transition-colors duration-300">
+        {icon}
+      </div>
+      <h4 className="relative z-10 font-black text-[#1A1A1A] uppercase tracking-wider text-xl md:text-2xl leading-tight italic">
+        {title}
+      </h4>
+      <div className="relative z-10 flex justify-end">
+        <div className="w-10 h-10 bg-[#1A1A1A] text-white flex items-center justify-center rounded-full group-hover:bg-[#E67E22] group-hover:rotate-45 transition-all duration-300 shadow-lg">
+          <ArrowUpRight size={20} />
+        </div>
+      </div>
+      <div className="absolute bottom-0 left-0 h-1.5 w-0 bg-[#E67E22] group-hover:w-full transition-all duration-500 shadow-[0_0_15px_#E67E22]" />
+    </Link>
   </motion.div>
 );
 
@@ -73,10 +77,10 @@ export default function HomeContent() {
               </motion.div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <MeisterhandCard icon={<Flame size={40} />} title="Kaminbau & Design" num="01" delay={0.1} />
-                <MeisterhandCard icon={<Home size={40} />} title="Schornstein Technik" num="02" delay={0.2} />
-                <MeisterhandCard icon={<Settings size={40} />} title="Heizungs Systeme" num="03" delay={0.3} />
-                <MeisterhandCard icon={<Droplets size={40} />} title="Sanitär & Wellness" num="04" delay={0.4} />
+                <MeisterhandCard icon={<Flame size={40} />} title="Kaminbau & Design" num="01" delay={0.1} link="/produkte/kaminanlagen" />
+                <MeisterhandCard icon={<Home size={40} />} title="Schornstein Technik" num="02" delay={0.2} link="/produkte/schornsteine" />
+                <MeisterhandCard icon={<Settings size={40} />} title="Heizungs Systeme" num="03" delay={0.3} link="/produkte/heizungssysteme" />
+                <MeisterhandCard icon={<Droplets size={40} />} title="Sanitär & Wellness" num="04" delay={0.4} link="/produkte/sanitaer" />
               </div>
             </div>
 
