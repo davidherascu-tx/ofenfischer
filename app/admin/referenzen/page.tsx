@@ -1,15 +1,13 @@
-import { getStore } from '@netlify/blobs';
 import { isAdminAuthorized } from '@/lib/adminSession';
+import { getReferenzenStore } from '@/lib/referenzenStore';
 import LoginForm from './LoginForm';
 import UploadManager, { type UploadedImage } from './UploadManager';
 
 export const dynamic = 'force-dynamic';
 
-const STORE_NAME = 'referenzen-uploads';
-
 async function loadUploadedImages(): Promise<UploadedImage[]> {
   try {
-    const store = getStore(STORE_NAME);
+    const store = getReferenzenStore();
     const { blobs } = await store.list();
 
     const images = await Promise.all(

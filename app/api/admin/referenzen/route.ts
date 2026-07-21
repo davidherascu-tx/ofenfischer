@@ -1,9 +1,8 @@
 import crypto from 'crypto';
 import { NextResponse } from 'next/server';
-import { getStore } from '@netlify/blobs';
 import { isAdminAuthorized } from '@/lib/adminSession';
+import { getReferenzenStore } from '@/lib/referenzenStore';
 
-const STORE_NAME = 'referenzen-uploads';
 const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/avif'];
 const MAX_FILE_SIZE = 6 * 1024 * 1024; // 6MB, Netlify Function Body-Limit
 
@@ -27,7 +26,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Keine Dateien übermittelt' }, { status: 400 });
     }
 
-    const store = getStore(STORE_NAME);
+    const store = getReferenzenStore();
     const uploaded: string[] = [];
 
     for (const file of files) {
@@ -78,7 +77,7 @@ export async function DELETE(request: Request) {
       return NextResponse.json({ error: 'Ungültiger Key' }, { status: 400 });
     }
 
-    const store = getStore(STORE_NAME);
+    const store = getReferenzenStore();
     await store.delete(key);
 
     return NextResponse.json({ success: true });

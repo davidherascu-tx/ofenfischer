@@ -1,6 +1,4 @@
-import { getStore } from '@netlify/blobs';
-
-const STORE_NAME = 'referenzen-uploads';
+import { getReferenzenStore } from '@/lib/referenzenStore';
 
 export async function GET(
   _request: Request,
@@ -13,7 +11,7 @@ export async function GET(
   }
 
   try {
-    const store = getStore(STORE_NAME);
+    const store = getReferenzenStore();
     const result = await store.getWithMetadata(key, { type: 'arrayBuffer' });
 
     if (!result) {

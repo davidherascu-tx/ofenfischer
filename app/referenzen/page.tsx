@@ -1,7 +1,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { getStore } from '@netlify/blobs';
+import { getReferenzenStore } from '@/lib/referenzenStore';
 import GalleryClient from './GalleryClient';
 
 // Damit vom Kunden hochgeladene Bilder ohne Redeploy sofort erscheinen
@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic';
 
 async function loadUploadedImagePaths(): Promise<string[]> {
   try {
-    const store = getStore('referenzen-uploads');
+    const store = getReferenzenStore();
     const { blobs } = await store.list();
 
     const withTimestamp = await Promise.all(
