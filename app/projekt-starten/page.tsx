@@ -1,12 +1,14 @@
 "use client";
 
-import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
+import React, { useState, useEffect, useRef, ChangeEvent, FormEvent } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Send, Upload, X, CheckCircle2, User, Home, Ruler, FileText, Check, AlertCircle 
+import {
+  Send, Upload, X, CheckCircle2, User, Home, Ruler, FileText, Check, AlertCircle
 } from 'lucide-react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
+import HoneypotField from '../../components/HoneypotField';
+import { HONEYPOT_FIELD_NAME, TIMESTAMP_FIELD_NAME } from '../../lib/antiSpam';
 
 // --- HELFER KOMPONENTEN (Jetzt außerhalb definiert) ---
 
@@ -119,6 +121,8 @@ export default function ProjektStartenPage() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const honeypotRef = useRef<HTMLInputElement>(null);
+  const formRenderedAt = useRef(Date.now());
 
   // --- SCROLL FIX ---
   useEffect(() => {
@@ -212,6 +216,8 @@ export default function ProjektStartenPage() {
 
     try {
       const data = new FormData();
+      data.append(HONEYPOT_FIELD_NAME, honeypotRef.current?.value ?? '');
+      data.append(TIMESTAMP_FIELD_NAME, String(formRenderedAt.current));
       data.append('type', 'project');
       data.append('name', `${formData.vorname} ${formData.nachname}`);
       data.append('email', formData.email);
@@ -283,6 +289,7 @@ export default function ProjektStartenPage() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="p-8 md:p-12" noValidate>
+                <HoneypotField ref={honeypotRef} />
                 {error && <div className="mb-8 p-4 bg-red-50 border border-red-100 text-red-600 rounded-xl flex items-center gap-2 animate-pulse"><AlertCircle size={20} /><span className="font-medium">{error}</span></div>}
 
                 <div className="mb-8 border-b border-slate-100 pb-8">

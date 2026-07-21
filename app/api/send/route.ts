@@ -1,5 +1,6 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
+import { HONEYPOT_FIELD_NAME, TIMESTAMP_FIELD_NAME, isLikelySpam } from '@/lib/antiSpam';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -39,7 +40,13 @@ const valueMapping: Record<string, Record<string, string>> = {
 export async function POST(request: Request) {
   try {
     const formData = await request.formData();
-    
+
+    if (isLikelySpam(formData)) {
+      // Bot erkannt (Honeypot ausgefüllt oder zu schnell abgeschickt):
+      // so tun als wäre der Versand erfolgreich, aber nichts verschicken.
+      return NextResponse.json({ success: true });
+    }
+
     const type = formData.get('type') as string;
     const name = formData.get('name') as string;
     const email = formData.get('email') as string;
@@ -48,7 +55,10 @@ export async function POST(request: Request) {
 
     // Tabelle mit Details erstellen
     const detailsHtml = Array.from(formData.entries())
-      .filter(([key]) => !['type', 'name', 'email', 'message', 'file', 'privacyAccepted'].includes(key))
+      .filter(([key]) => ![
+        'type', 'name', 'email', 'message', 'file', 'privacyAccepted',
+        HONEYPOT_FIELD_NAME, TIMESTAMP_FIELD_NAME,
+      ].includes(key))
       .map(([key, rawValue]) => {
         const valueStr = rawValue.toString();
         const label = labelMapping[key] || key.charAt(0).toUpperCase() + key.slice(1);

@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Trash2, Upload, LogOut, Camera } from 'lucide-react';
 
@@ -53,6 +53,12 @@ export default function UploadManager({ initialImages }: { initialImages: Upload
   const [deletingKey, setDeletingKey] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  // initialImages ändert sich nach router.refresh() (z.B. nach dem Upload) -
+  // useState übernimmt neue Props nach dem ersten Render nicht automatisch.
+  useEffect(() => {
+    setImages(initialImages);
+  }, [initialImages]);
+
   const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files ?? []);
     if (files.length === 0) return;
@@ -77,6 +83,16 @@ export default function UploadManager({ initialImages }: { initialImages: Upload
         return;
       }
 
+      const data: { uploaded: string[] } = await res.json();
+      const uploadedAt = Date.now();
+      const newImages: UploadedImage[] = data.uploaded.map((key, i) => ({
+        key,
+        originalName: processed[i]?.name ?? key,
+        uploadedAt,
+      }));
+
+      // Sofortige Anzeige, zusätzlich zur Server-Bestätigung per router.refresh()
+      setImages((prev) => [...newImages, ...prev]);
       router.refresh();
     } catch {
       setError('Upload fehlgeschlagen');

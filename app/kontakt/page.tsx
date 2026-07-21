@@ -1,12 +1,14 @@
 "use client";
 
-import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
+import React, { useState, useRef, ChangeEvent, FormEvent, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Send, Upload, X, CheckCircle2, User, Mail, Phone, MessageSquare, FileText, Paperclip, Check, AlertCircle 
+import {
+  Send, Upload, X, CheckCircle2, User, Mail, Phone, MessageSquare, FileText, Paperclip, Check, AlertCircle
 } from 'lucide-react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
+import HoneypotField from '../../components/HoneypotField';
+import { HONEYPOT_FIELD_NAME, TIMESTAMP_FIELD_NAME } from '../../lib/antiSpam';
 
 export default function KontaktPage() {
   // --- STATE MANAGEMENT ---
@@ -18,7 +20,9 @@ export default function KontaktPage() {
     message: '',
     privacyAccepted: false
   });
-  
+
+  const honeypotRef = useRef<HTMLInputElement>(null);
+  const formRenderedAt = useRef(Date.now());
   const [file, setFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -100,6 +104,8 @@ export default function KontaktPage() {
 
     try {
       const data = new FormData();
+      data.append(HONEYPOT_FIELD_NAME, honeypotRef.current?.value ?? '');
+      data.append(TIMESTAMP_FIELD_NAME, String(formRenderedAt.current));
       data.append('type', 'contact');
       data.append('name', formData.name);
       data.append('email', formData.email);
@@ -200,7 +206,8 @@ export default function KontaktPage() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="p-8 md:p-12" noValidate>
-                
+                <HoneypotField ref={honeypotRef} />
+
                 <div className="mb-10 text-center">
                   <h2 className="text-2xl md:text-3xl font-black text-[#1A1A1A] uppercase italic mb-2">
                     Ihre Nachricht an uns

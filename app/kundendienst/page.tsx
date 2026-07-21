@@ -1,13 +1,15 @@
 "use client";
 
-import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
+import React, { useState, useRef, ChangeEvent, FormEvent, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Wrench, Phone, CheckCircle2, Clock, ShieldCheck, 
-  Hammer, ArrowRight, Mail, AlertCircle 
+import {
+  Wrench, Phone, CheckCircle2, Clock, ShieldCheck,
+  Hammer, ArrowRight, Mail, AlertCircle
 } from 'lucide-react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
+import HoneypotField from '../../components/HoneypotField';
+import { HONEYPOT_FIELD_NAME, TIMESTAMP_FIELD_NAME } from '../../lib/antiSpam';
 
 export default function KundendienstPage() {
   // --- STATE ---
@@ -20,6 +22,8 @@ export default function KundendienstPage() {
     privacyAccepted: false
   });
 
+  const honeypotRef = useRef<HTMLInputElement>(null);
+  const formRenderedAt = useRef(Date.now());
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -74,6 +78,8 @@ export default function KundendienstPage() {
 
     try {
       const data = new FormData();
+      data.append(HONEYPOT_FIELD_NAME, honeypotRef.current?.value ?? '');
+      data.append(TIMESTAMP_FIELD_NAME, String(formRenderedAt.current));
       // HIER GEÄNDERT: Typ ist jetzt explizit 'service'
       data.append('type', 'service');
       data.append('name', formData.name);
@@ -165,6 +171,7 @@ export default function KundendienstPage() {
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+                  <HoneypotField ref={honeypotRef} />
                   <div className="mb-6">
                     <h3 className="text-2xl font-black uppercase italic">Schreiben Sie uns</h3>
                     <p className="text-slate-500 text-sm mt-1">Wir leiten Ihre Nachricht direkt an den richtigen Ansprechpartner weiter.</p>
