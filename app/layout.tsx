@@ -19,8 +19,7 @@ const geistMono = Geist_Mono({
 // SEO Konfiguration
 export const metadata: Metadata = {
   // MetadataBase ist wichtig, damit Bilder für Social Media korrekt gefunden werden
-  // Ersetzen Sie dies später durch Ihre echte Domain (z.B. https://www.ofenfischer.de)
-  metadataBase: new URL("https://ofenfischer-demo.vercel.app"),
+  metadataBase: new URL("https://ofenfischer.de"),
 
   title: {
     default: "Ofenfischer GmbH | Kamine, Öfen & Heizungstechnik",
@@ -91,12 +90,42 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
+
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/manifest.webmanifest",
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Ofenfischer GmbH",
+  url: "https://ofenfischer.de",
+  logo: "https://ofenfischer.de/ofenfischer_logo.webp",
+  sameAs: [
+    "https://www.instagram.com/ofenfischer/",
+    "https://www.houzz.de/experten/kamine/ofen-fischer-gmbh-pfvwde-pf~2082523877",
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+49-3533-48120",
+    contactType: "customer service",
+    email: "info@ofenfischer.de",
+    areaServed: ["DE", "AT", "CH"],
+    availableLanguage: "German",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="de" className="...">
       <body className="antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         {children}
         <CookieBanner />
       </body>

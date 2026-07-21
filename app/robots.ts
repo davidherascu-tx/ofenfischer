@@ -5,9 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: "/private/", // Optional: Ordner, die nicht indexiert werden sollen
+      disallow: "/admin",
     },
-    // Passe die URL an deine Domain an (basierend auf deiner layout.tsx)
-    sitemap: "https://ofenfischer-demo.vercel.app/sitemap.xml",
+    sitemap: "https://ofenfischer.de/sitemap.xml",
   };
 }

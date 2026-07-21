@@ -73,9 +73,9 @@ export default function GalleryClient({ images }: GalleryClientProps) {
         <div className="absolute inset-0 z-0">
           {/* Wir nehmen das erste Bild aus dem Ordner als Hintergrund */}
           {images.length > 0 ? (
-            <img 
-              src={images[0]} 
-              alt="Referenz Header" 
+            <img
+              src={images[0]}
+              alt="Realisierte Kaminanlage von Ofenfischer"
               className="w-full h-full object-cover opacity-30 grayscale"
             />
           ) : (
@@ -130,9 +130,9 @@ export default function GalleryClient({ images }: GalleryClientProps) {
                     className="break-inside-avoid group cursor-pointer relative rounded-2xl overflow-hidden shadow-lg border border-slate-100 bg-white"
                     onClick={() => setSelectedIndex(index)} // Hier wird jetzt der Index gesetzt
                   >
-                    <img 
-                      src={src} 
-                      alt={`Referenzprojekt ${index + 1}`} 
+                    <img
+                      src={src}
+                      alt={`Ofenfischer Referenzprojekt ${index + 1}: realisierte Kaminanlage`}
                       className="w-full h-auto transform transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
                     />
