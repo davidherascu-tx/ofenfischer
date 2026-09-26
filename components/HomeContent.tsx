@@ -177,7 +177,7 @@ export default function HomeContent() {
                   </div>
                   <div>
                     <h3 className="font-black uppercase text-sm tracking-widest">Wärmepumpen</h3>
-                    <p className="text-slate-600 text-xs mt-1 italic">Maximale Effizienz durch Umweltwärme.</p>
+                    <p className="text-slate-600 text-xs mt-1 italic">Heizen mit Wärme aus Luft, Erde oder Wasser.</p>
                   </div>
                 </div>
                 <div className="flex gap-4 items-start group">

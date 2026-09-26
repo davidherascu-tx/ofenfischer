@@ -101,12 +101,12 @@ export const faqData: FaqItem[] = [
     ),
   },
   {
-    question: "Warum ist naturbelassenes Holz ein ökologischer Brennstoff?",
+    question: "Warum sollte man nur naturbelassenes, trockenes Holz verwenden?",
     answerText:
-      "Holz ist ein regenerativer, CO₂-neutraler Brennstoff: Ein Baum nimmt beim Wachstum exakt die Menge CO₂ auf, die er später bei der Verbrennung wieder abgibt – im Gegensatz zu fossilen Brennstoffen wie Öl, Gas oder Kohle.",
+      "Holz ist ein nachwachsender Rohstoff. Zugelassen sind in Kaminöfen nur naturbelassenes, unbehandeltes Holz (1. BImSchV). Scheitholz sollte eine Restfeuchte von unter 25 % haben – feuchtes Holz verbrennt schlechter, erzeugt mehr Rauch und Ruß und liefert weniger Wärme.",
     answer: (
       <p>
-        Holz ist ein regenerativer Brennstoff und CO₂-neutral. Ein Baum nimmt während seines Wachstums exakt die Menge an CO₂ auf, die er später bei der Verbrennung (oder beim natürlichen Verrotten) wieder abgibt. Damit belastet Heizen mit Holz das Klima nicht zusätzlich, im Gegensatz zu fossilen Brennstoffen wie Öl, Gas oder Kohle.
+        Holz ist ein nachwachsender Rohstoff. In Kaminöfen darf laut 1. BImSchV nur naturbelassenes, unbehandeltes Holz verbrannt werden – lackiertes, beschichtetes oder behandeltes Holz ist verboten. Scheitholz sollte eine Restfeuchte von unter 25 % haben: Feuchtes Holz verbrennt schlechter, erzeugt mehr Rauch und Ruß und liefert deutlich weniger Wärme. Lagern Sie Ihr Holz daher luftig und überdacht, idealerweise ein bis zwei Jahre.
       </p>
     ),
   },

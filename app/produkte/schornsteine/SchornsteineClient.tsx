@@ -98,7 +98,7 @@ export default function SchornsteineClient() {
                 Die Lebensader <br/> Ihres Kamins
               </h2>
               <p className="text-slate-600 text-lg leading-relaxed mb-6">
-                Ein Schornstein ist weit mehr als nur ein Rohr. Er ist der "Motor" jeder Feuerstätte. Nur wenn der Schornstein optimal dimensioniert und gedämmt ist, kann das Feuer sauber brennen und effizient wärmen.
+                Ein Schornstein ist weit mehr als nur ein Rohr. Er ist der "Motor" jeder Feuerstätte. Nur wenn der Schornstein optimal dimensioniert und gedämmt ist, kann das Feuer gut ziehen und effizient wärmen.
               </p>
               <p className="text-slate-600 text-lg leading-relaxed">
                 Egal ob Neubau oder Nachrüstung im Bestand: Mit modernen Edelstahl-Systemen oder Leichtbauschornsteinen finden wir für jedes Haus die passende Lösung – optisch dezent oder als bewusstes Gestaltungselement.
@@ -119,7 +119,7 @@ export default function SchornsteineClient() {
                 </div>
                 <div>
                   <h4 className="font-bold text-[#1A1A1A] text-lg">Optimaler Zug</h4>
-                  <p className="text-slate-500 text-sm mt-1">Berechnung und Planung für perfektes Anzündverhalten und saubere Verbrennung.</p>
+                  <p className="text-slate-500 text-sm mt-1">Berechnung und Planung für perfektes Anzündverhalten und zuverlässigen Zug.</p>
                 </div>
               </motion.div>
 

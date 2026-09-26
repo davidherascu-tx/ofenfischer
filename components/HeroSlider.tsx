@@ -16,7 +16,7 @@ const slides = [
     id: 2,
     title: "Zukunft Heiztechnik",
     highlight: "Effizienz erleben",
-    text: "Nachhaltige Wärmepumpen und intelligente Systeme für ein energieeffizientes Zuhause.",
+    text: "Wärmepumpen und intelligente Systeme für Ihr Zuhause.",
     image: "/banner_2.webp",
   },
   {

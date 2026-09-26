@@ -37,7 +37,7 @@ export default function KaminanlagenClient() {
     {
       name: "Austroflamm",
       logoSrc: "/logos/austroflamm_logo.webp",
-      description: "Bei allen Austroflamm-Kamineinsätzen bestehen die wichtigen Brennraumteile aus Keramott. Das Material zeichnet sich durch ein besonderes Verhältnis zwischen Wärmedämmung und Wärmeleitung aus, wodurch schneller hohe Brennraumtemperaturen für eine saubere Verbrennung erreicht werden.",
+      description: "Bei allen Austroflamm-Kamineinsätzen bestehen die wichtigen Brennraumteile aus Keramott. Das Material zeichnet sich durch ein besonderes Verhältnis zwischen Wärmedämmung und Wärmeleitung aus, wodurch schneller hohe Brennraumtemperaturen erreicht werden – wichtig für einen gleichmäßigen Abbrand.",
       link: "https://www.austroflamm.com"
     },
     {
@@ -49,7 +49,7 @@ export default function KaminanlagenClient() {
     {
       name: "Camina & Schmid",
       logoSrc: "/logos/camina_schmid_logo.webp",
-      description: "Modernste Kamineinsätze und Kaminöfen benötigen neben Designideen auch enorme Entwicklungsarbeit im Bereich der Verbrennungstechnik. Bei allen Kamineinsätzen bestehen diese wichtigen Teile aus hochwertigen Materialien für eine „saubere“, schadstoffarme Verbrennung.",
+      description: "Modernste Kamineinsätze und Kaminöfen benötigen neben Designideen auch enorme Entwicklungsarbeit im Bereich der Verbrennungstechnik. Bei allen Kamineinsätzen bestehen diese wichtigen Teile aus hochwertigen, hitzebeständigen Materialien.",
       link: "https://www.camina-schmid.de"
     },
     {

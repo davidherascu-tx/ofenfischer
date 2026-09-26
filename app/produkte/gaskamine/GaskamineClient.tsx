@@ -36,13 +36,13 @@ export default function GaskamineClient() {
     {
       name: "Camina & Schmid",
       logoSrc: "/logos/camina_schmid_logo.webp",
-      description: "Ein Gaskamin von Camina & Schmid bringt auf Knopfdruck behagliche Wärme, stimmungsvolles Ambiente und ein Höchstmaß an Komfort in Ihr Zuhause. Entdecken Sie eine moderne Feuerungstechnik, die Design, Innovation und einfache Bedienung auf einzigartige Weise vereint. Unsere Kamine überzeugen durch eine hocheffiziente Verbrennungstechnologie und ermöglichen ein nahezu CO₂-neutrales Heizen in den eigenen vier Wänden. Die Bedienung ist intuitiv, sicher und nahezu selbsterklärend. Großzügige Glaskeramikflächen setzen das Flammenspiel eindrucksvoll in Szene und machen jeden Kamineinsatz zum Blickfang Ihrer Kaminanlage. Gemeinsam mit Ihrem Ofensetzer lassen sich individuelle Gestaltungskonzepte verwirklichen. Darüber hinaus bietet Camina & Schmid ein umfangreiches Zubehörprogramm mit zahlreichen Möglichkeiten, um Ihren Kamin ganz nach Ihren persönlichen Vorstellungen zu gestalten. So entstehen maßgeschneiderte Feuerstätten, die nicht nur Wärme spenden, sondern auch ein stilvolles Wohnambiente schaffen.",
+      description: "Ein Gaskamin von Camina & Schmid bringt auf Knopfdruck behagliche Wärme, stimmungsvolles Ambiente und ein Höchstmaß an Komfort in Ihr Zuhause. Entdecken Sie eine moderne Feuerungstechnik, die Design, Innovation und einfache Bedienung auf einzigartige Weise vereint. Die Kamine überzeugen durch eine moderne Verbrennungstechnologie. Die Bedienung ist intuitiv, sicher und nahezu selbsterklärend. Großzügige Glaskeramikflächen setzen das Flammenspiel eindrucksvoll in Szene und machen jeden Kamineinsatz zum Blickfang Ihrer Kaminanlage. Gemeinsam mit Ihrem Ofensetzer lassen sich individuelle Gestaltungskonzepte verwirklichen. Darüber hinaus bietet Camina & Schmid ein umfangreiches Zubehörprogramm mit zahlreichen Möglichkeiten, um Ihren Kamin ganz nach Ihren persönlichen Vorstellungen zu gestalten. So entstehen maßgeschneiderte Feuerstätten, die nicht nur Wärme spenden, sondern auch ein stilvolles Wohnambiente schaffen.",
       link: "https://camina-schmid.de/fuer-privatkunden/gaskamine"
     },
     {
       name: "DRU",
       logoSrc: "/logos/dru_logo.webp", // Dateiname exakt übernommen
-      description: "DRU ist der größten Hersteller für Gasöfen in Europa. Durch kontinuierliche Entwicklung und hohe Qualitätsanspruch entsteht bei DRU die Motivation immer besser zu werden. Kundenzufriedenheit und Effizienz gehen bei DRU Hand in Hand mit Umweltfreundlichkeit und Sicherheit.",
+      description: "DRU ist der größten Hersteller für Gasöfen in Europa. Durch kontinuierliche Entwicklung und hohe Qualitätsanspruch entsteht bei DRU die Motivation immer besser zu werden. Kundenzufriedenheit und Effizienz gehen bei DRU Hand in Hand mit Sicherheit.",
       link: "https://www.drufire.com/de-de/sortiment/gaskamine"
     },
     {
@@ -83,7 +83,7 @@ export default function GaskamineClient() {
               Gaskamine
             </h1>
             <p className="text-xl text-slate-300 font-light max-w-2xl mx-auto leading-relaxed">
-              Erleben Sie faszinierendes Feuer ohne Holzhacken. Maximale Bequemlichkeit, saubere Verbrennung und täuschend echte Flammen.
+              Erleben Sie faszinierendes Feuer ohne Holzhacken. Maximale Bequemlichkeit, keine Asche und täuschend echte Flammen.
             </p>
           </motion.div>
         </div>
@@ -111,7 +111,7 @@ export default function GaskamineClient() {
                 Ein Gaskamin ist die perfekte Lösung für den modernen Lebensstil. Sie genießen die Atmosphäre eines offenen Feuers, steuern das Flammenspiel jedoch bequem per Fernbedienung oder Smartphone-App.
               </p>
               <p className="text-slate-600 text-lg leading-relaxed">
-                Dank innovativer Brennertechnologie und keramischer Holzscheite ist das Feuer kaum noch von einem echten Holzfeuer zu unterscheiden. Sauber, effizient und sofort verfügbar, wann immer Sie es wünschen.
+                Dank innovativer Brennertechnologie und keramischer Holzscheite ist das Feuer kaum noch von einem echten Holzfeuer zu unterscheiden. Komfortabel und sofort verfügbar, wann immer Sie es wünschen.
               </p>
             </motion.div>
 
@@ -160,7 +160,7 @@ export default function GaskamineClient() {
                   <Wind size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-[#1A1A1A] text-lg">Sauber & Wartungsarm</h4>
+                  <h4 className="font-bold text-[#1A1A1A] text-lg">Keine Asche & wartungsarm</h4>
                   <p className="text-slate-500 text-sm mt-1">Keine Asche, kein Holzlager, kaum Reinigungsaufwand.</p>
                 </div>
               </motion.div>

@@ -42,7 +42,7 @@ export default function KacheloefenClient() {
     {
       name: "Gabriel",
       logoSrc: "/logos/gabriel_logo.webp",
-      description: "Gabriel Kakelugnar fertigen klassische und moderne Kachelöfen, die die heutigen Anforderungen an Effizienz und Umweltverträglichkeit erfüllen. Durch die effektive Wärmespeicherung mit der gleichmäßigen Wärmeabgabe an den Raum, erreicht man ein wohliges Raumklima.",
+      description: "Gabriel Kakelugnar fertigen klassische und moderne Kachelöfen, die die geltenden gesetzlichen Anforderungen der 1. BImSchV erfüllen. Durch die effektive Wärmespeicherung mit der gleichmäßigen Wärmeabgabe an den Raum, erreicht man ein wohliges Raumklima.",
       link: "https://gabrielkakelugnar.com/de/kachelofen/gabriel/"
     },
     {

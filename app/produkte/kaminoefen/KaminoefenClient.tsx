@@ -36,7 +36,7 @@ export default function KaminoefenClient() {
     {
       name: "Austroflamm",
       logoSrc: "/logos/austroflamm_logo.webp",
-      description: "Modernste Kamineinsätze und Kaminöfen benötigen neben Designideen auch enorme Entwicklungsarbeit im Bereich der Verbrennungstechnik. Bei allen Austroflamm-Kamineinsätzen und Kaminöfen bestehen diese wichtigen Teile aus Keramott. Das Material zeichnet sich durch ein besonderes Verhältnis zwischen Wärmedämmung und Wärmeleitung aus, wodurch schneller hohe Brennraumtemperaturen erreicht werden. Erst dadurch wird eine „saubere“, schadstoffarme Verbrennung möglich.",
+      description: "Modernste Kamineinsätze und Kaminöfen benötigen neben Designideen auch enorme Entwicklungsarbeit im Bereich der Verbrennungstechnik. Bei allen Austroflamm-Kamineinsätzen und Kaminöfen bestehen diese wichtigen Teile aus Keramott. Das Material zeichnet sich durch ein besonderes Verhältnis zwischen Wärmedämmung und Wärmeleitung aus, wodurch schneller hohe Brennraumtemperaturen erreicht werden. Das ist eine wichtige Voraussetzung für einen gleichmäßigen Abbrand.",
       link: "https://www.austroflamm.com/de/oefen/kaminoefen"
     },
     {
@@ -48,19 +48,19 @@ export default function KaminoefenClient() {
     {
       name: "Cera",
       logoSrc: "/logos/cera_logo.webp",
-      description: "Von Beginn an hat CERA DESIGN es sich daher zur Aufgabe gemacht, Menschen ein gutes Gefühl zu geben. Die effiziente Nutzung des Feuers als faszinierendes Element ist hierbei Mittelpunkt unserer Bemühungen – im Sinne menschlicher Bedürfnisse und stets im Einklang mit unserer Umwelt. So bietet CERA DESIGN Öfen auf neuestem Entwicklungsstand, die sich durch Qualität, Nachhaltigkeit und edles Design auszeichnen – Werte, die wir seit jeher pflegen. Individuelle Beratung gehört bei CERA DESIGN selbstverständlich dazu.",
+      description: "Von Beginn an hat CERA DESIGN es sich daher zur Aufgabe gemacht, Menschen ein gutes Gefühl zu geben. Die effiziente Nutzung des Feuers als faszinierendes Element ist hierbei Mittelpunkt unserer Bemühungen – im Sinne menschlicher Bedürfnisse. So bietet CERA DESIGN Öfen auf neuestem Entwicklungsstand, die sich durch Qualität und edles Design auszeichnen – Werte, die wir seit jeher pflegen. Individuelle Beratung gehört bei CERA DESIGN selbstverständlich dazu.",
       link: "https://www.cera.de/kaminoefen/"
     },
     {
       name: "Contura",
       logoSrc: "/logos/contura_logo.webp",
-      description: "Kaminöfen aus Schweden\n\nContura-Produkte werden von NIBE in Markaryd in der schwedischen Provinz Småland hergestellt.\nDen sparsamen Umgang mit den natürlichen Ressourcen haben wir seit jeher als Selbstverständlichkeit betrachtet. Daher legen wir Wert auf eine moderne, sparsame und effektive Produktion. Unser Qualitätsbewusstsein zieht sich wie ein roter Faden durch alle Glieder der Herstellungskette in unserer Fabrik – der größten ihrer Art in Europa und dem modernsten Fertigungsort für Kaminöfen. Unsere Produkte werden europaweit verkauft und genießen wegen ihres zeitlosen Designs, ihres hohen Wirkungsgrads und der kompromisslosen Qualität ein hohes Ansehen.",
+      description: "Kaminöfen aus Schweden\n\nContura-Produkte werden von NIBE in Markaryd in der schwedischen Provinz Småland hergestellt.\nWir legen Wert auf eine moderne und effektive Produktion. Unser Qualitätsbewusstsein zieht sich wie ein roter Faden durch alle Glieder der Herstellungskette in unserer Fabrik – der größten ihrer Art in Europa und dem modernsten Fertigungsort für Kaminöfen. Unsere Produkte werden europaweit verkauft und genießen wegen ihres zeitlosen Designs, ihres hohen Wirkungsgrads und der kompromisslosen Qualität ein hohes Ansehen.",
       link: "https://www.contura.eu/de-de/kaminofen-sortiment/kaminofen"
     },
     {
       name: "Dik Geurts",
       logoSrc: "/logos/dru_logo.webp",
-      description: "Holzöfen und Holzkamine von Dik Geurts stehen seit über 40 Jahren für Qualität, Effizienz und modernes Design. Die renommierte Marke gehört seit 2007 zur DRU-Gruppe und zählt zu den führenden Herstellern hochwertiger Kaminöfen und Kamineinsätze. Dank innovativer Verbrennungstechnik bieten Dik Geurts Kaminöfen eine hohe Energieeffizienz, niedrige Emissionswerte und ein besonders schönes Flammenbild. Ob freistehender Holzofen oder moderner Kamineinsatz – mit einem Dik Geurts Kamin genießen Sie die natürliche Wärme und die einzigartige Atmosphäre eines echten Holzfeuers.",
+      description: "Holzöfen und Holzkamine von Dik Geurts stehen seit über 40 Jahren für Qualität, Effizienz und modernes Design. Die renommierte Marke gehört seit 2007 zur DRU-Gruppe und zählt zu den führenden Herstellern hochwertiger Kaminöfen und Kamineinsätze. Dank innovativer Verbrennungstechnik bieten Dik Geurts Kaminöfen eine hohe Energieeffizienz und ein besonders schönes Flammenbild. Ob freistehender Holzofen oder moderner Kamineinsatz – mit einem Dik Geurts Kamin genießen Sie die Wärme und die einzigartige Atmosphäre eines echten Holzfeuers.",
       link: "https://www.drufire.com/de-de/dik-geurts"
     },
     {
@@ -72,13 +72,13 @@ export default function KaminoefenClient() {
     {
       name: "Hase",
       logoSrc: "/logos/hase_logo.webp",
-      description: "An einem einzigen Standort, an dem wir von Hand und mit Unterstützung modernster Fertigungsverfahren Öfen herstellen, die von höchster Qualität sind. Mit 170 Mitarbeiter arbeiten wir Hand in Hand an einem Ziel: Den besten Kaminofen für Ihr Zuhause zu bauen. Die Hase Kaminöfen sind so gestaltet, dass sie zeitlos und schön einen Raum bereichern. Jede einzelne Keramikkachel an einem Hase-Kaminofen wird von Hand ausgeformt, sorgfältig lasiert und dann gebrannt. Hase Kaminöfen entstehen zu 100 Prozent in Deutschland. Mit einem Wirkungsgrad von über 80 Prozent sind sie vorbildlich und haben einen sehr geringen Holzverbrauch. Hase-Kaminöfen brauchen dank ihrer guten Brenntechnik keine Feinstaubfilter. Sie verbrennen Holz so effizient, dass ihre Feinstaub- und CO-Werte weit unter den geforderten Grenzwerten liegen.",
+      description: "An einem einzigen Standort, an dem wir von Hand und mit Unterstützung modernster Fertigungsverfahren Öfen herstellen, die von höchster Qualität sind. Mit 170 Mitarbeiter arbeiten wir Hand in Hand an einem Ziel: Den besten Kaminofen für Ihr Zuhause zu bauen. Die Hase Kaminöfen sind so gestaltet, dass sie zeitlos und schön einen Raum bereichern. Jede einzelne Keramikkachel an einem Hase-Kaminofen wird von Hand ausgeformt, sorgfältig lasiert und dann gebrannt. Hase Kaminöfen entstehen zu 100 Prozent in Deutschland. Laut Hersteller erreichen sie einen Wirkungsgrad von über 80 Prozent. Hase-Kaminöfen erfüllen die Grenzwerte der 2. Stufe der 1. BImSchV ohne zusätzlichen Feinstaubfilter.",
       link: "https://www.hase.de/kaminoefen"
     },
     {
       name: "Lotus",
       logoSrc: "/logos/lotus_logo.webp",
-      description: "Bei Lotus haben Qualität und Funktionalität in Design und Werkstoffwahl einen hohen Stellenwert. Lotus stellt die Technik in den Dienst der Funktionalität. Das bedeutet, dass alle Lotus-Öfen besonders im Hinblick auf problemlose Bedienungen und Wartung konstruiert werden. Ein Kaminofen soll einfach und schnell zu bedienen sein Deshalb sind alle Lotus-Öfen im Hinblick auf Benutzerfreundlichkeit konstruiert. Lotus Kaminöfen und Kamineinsätze werden gemäß den strengsten Umweltvorschriften hergestellt.",
+      description: "Bei Lotus haben Qualität und Funktionalität in Design und Werkstoffwahl einen hohen Stellenwert. Lotus stellt die Technik in den Dienst der Funktionalität. Das bedeutet, dass alle Lotus-Öfen besonders im Hinblick auf problemlose Bedienungen und Wartung konstruiert werden. Ein Kaminofen soll einfach und schnell zu bedienen sein Deshalb sind alle Lotus-Öfen im Hinblick auf Benutzerfreundlichkeit konstruiert. Lotus Kaminöfen und Kamineinsätze erfüllen die geltenden europäischen Normen für Feuerstätten.",
       link: "https://www.lotusstoves.com/de/produkte/alle-kaminofen"
     },
     {
@@ -96,19 +96,19 @@ export default function KaminoefenClient() {
     {
       name: "Olsberg",
       logoSrc: "/logos/olsberg_logo.webp",
-      description: "Olsbergs langjährige Erfahrung und Kreativität bilden den Kern des Erfolgs. Olsberg sind die Pioniere der modernen Feuerungstechnologie. In den letzten Jahren gelangen uns zahlreiche Innovationen, die unsere Feuerstätten heute maßgeblich prägen. Olsbergs innovative Wirbelbrennkammer ist die Antwort auf strengere Feinstaub-Grenzwerte (2. Stufe BImSchV). Sie sorgt für einen besseren Wirkungsgrad und senkt die Staub- und Kohlenmonoxid-Anteile im Rauchgas sowie den Brennstoffverbrauch. Und für ein Plus an Komfort und Sicherheit sorgt unser Compact- Türschließsystem. Damit schließt die Tür geräuscharm und bleibt dauerhaft dicht – nahezu ohne Verschleiß. Natürlich gibt’s die bauaufsichtliche Zulassung (DIBt) für raumluftunabhängigen Betrieb dazu!",
+      description: "Olsbergs langjährige Erfahrung und Kreativität bilden den Kern des Erfolgs. Olsberg sind die Pioniere der modernen Feuerungstechnologie. In den letzten Jahren gelangen uns zahlreiche Innovationen, die unsere Feuerstätten heute maßgeblich prägen. Olsbergs Wirbelbrennkammer wurde für die Grenzwerte der 2. Stufe der 1. BImSchV entwickelt und sorgt für eine gezielte Luftführung im Brennraum. Und für ein Plus an Komfort und Sicherheit sorgt unser Compact- Türschließsystem. Damit schließt die Tür geräuscharm und bleibt dauerhaft dicht – nahezu ohne Verschleiß. Natürlich gibt’s die bauaufsichtliche Zulassung (DIBt) für raumluftunabhängigen Betrieb dazu!",
       link: "https://www.olsberg-ofen.com/kaminoefen/"
     },
     {
       name: "Oranier",
       logoSrc: "/logos/oranier_logo.webp",
-      description: "Kaminofen-Kultur, das ist ORANIER. – Dieses klare Statement begleitet den namhaften deutschen Hersteller von Kaminöfen. In Sachen saubere Verbrennung und hoher Anspruch an Design und Gestaltung steht ORANIER Heiztechnik schon immer in der ersten Reihe. Oranier arbeitet weiter an den zukunftsweisenden Technologien und bringen die CO2-neutrale Verbrennung von Scheitholz und Pellets in Kaminöfen voran.",
+      description: "Kaminofen-Kultur, das ist ORANIER. – Dieses klare Statement begleitet den namhaften deutschen Hersteller von Kaminöfen. In Sachen Verbrennungstechnik und Anspruch an Design und Gestaltung steht ORANIER Heiztechnik schon immer in der ersten Reihe. ORANIER entwickelt seine Kaminöfen für Scheitholz und Pellets kontinuierlich weiter.",
       link: "https://oranier.com/heiztechnik/produkte/kaminoefen/"
     },
     {
       name: "Rika",
       logoSrc: "/logos/rika_logo.webp",
-      description: "Höchste Qualität, marktführende Technologie und herausragendes Design. Überzeugen Sie sich selbst, was einen Kaminofen von RIKA so besonders macht! Vom natürlichen Flammenbild bis hin zum typischen Knistern und Knacken der Holzscheite: ein Kaminofen spricht alle Sinne an. Er spendet nicht nur angenehme Wärme, sondern schafft auch eine ganz besondere Atmosphäre. Forschung und Entwicklung, erfolgen bei RIKA stets auch unter dem Aspekt der Nachhaltigkeit. Der effiziente Umgang mit der wertvollen Ressource Holz zählt ebenso dazu, wie die ständige Entwicklungsarbeit in Richtung Emissionsreduktion.",
+      description: "Höchste Qualität, marktführende Technologie und herausragendes Design. Überzeugen Sie sich selbst, was einen Kaminofen von RIKA so besonders macht! Vom natürlichen Flammenbild bis hin zum typischen Knistern und Knacken der Holzscheite: ein Kaminofen spricht alle Sinne an. Er spendet nicht nur angenehme Wärme, sondern schafft auch eine ganz besondere Atmosphäre. Forschung und Entwicklung zielen bei RIKA auf eine effiziente Nutzung des Brennstoffs Holz und eine komfortable Bedienung.",
       link: "https://www.rika.at/stoves/woodburning"
     },
     {
@@ -132,7 +132,7 @@ export default function KaminoefenClient() {
     {
       name: "TermaTech",
       logoSrc: "/logos/termatech_logo.webp",
-      description: "Termatech produziert Kaminöfen, bei denen Ihnen auf mehrere Arten warm ums Herz wird: sowohl in Bezug auf das Design als auch auf den Preis und auf die Umwelt. Wer sagt, dass ein Kamin nicht genauso schön sein kann, wie er effizient und umweltschonend ist? Wenn die TermaTech- Architekten beginnen, einen Kamin zu zeichnen, setzen Sie darauf, ein Zusammenspiel aus Ästhetik, Qualität und Wirkungsgrad zu kreieren. Ihr neuer Kamin ist ja etwas, das Sie viele Jahre lang haben werden: Er muss eine Freude für Auge, Umwelt und die Wirtschaftlichkeit sein.",
+      description: "Termatech produziert Kaminöfen, bei denen Ihnen auf mehrere Arten warm ums Herz wird: sowohl in Bezug auf das Design als auch auf den Preis. Wenn die TermaTech-Architekten beginnen, einen Kamin zu zeichnen, setzen sie darauf, ein Zusammenspiel aus Ästhetik, Qualität und Wirkungsgrad zu kreieren. Ihr neuer Kamin ist ja etwas, das Sie viele Jahre lang haben werden: Er muss eine Freude für das Auge sein und sich wirtschaftlich betreiben lassen.",
       link: "https://termatech.com/de/kaminoefen/"
     },
     {
@@ -199,7 +199,7 @@ export default function KaminoefenClient() {
               </h2>
               <p className="text-slate-600 text-lg leading-relaxed mb-6">
                 Ein Kaminofen ist die ideale Lösung für alle, die sich das Erlebnis Feuer schnell und unkompliziert in die eigenen vier Wände holen möchten.
-                Dank modernster Verbrennungstechnik heizen Sie nicht nur effizient, sondern auch umweltschonend.
+                Dank modernster Verbrennungstechnik heizen Sie effizient und komfortabel.
               </p>
               <p className="text-slate-600 text-lg leading-relaxed">
                 Ob aus Stahl, Keramik oder Speckstein, drehbar oder speichernd – wir führen die renommiertesten Marken Europas und finden gemeinsam das Modell, das perfekt zu Ihnen passt.
@@ -220,7 +220,7 @@ export default function KaminoefenClient() {
                 </div>
                 <div>
                   <h3 className="font-bold text-[#1A1A1A] text-lg">Effiziente Wärme</h3>
-                  <p className="text-slate-500 text-sm mt-1">Hohe Wirkungsgrade und geringer Holzverbrauch für nachhaltiges Heizen.</p>
+                  <p className="text-slate-500 text-sm mt-1">Hohe Wirkungsgrade für eine gute Ausnutzung Ihres Brennholzes.</p>
                 </div>
               </motion.div>
 

@@ -131,7 +131,7 @@ export default function SpeicheroefenClient() {
                 </div>
                 <div>
                   <h4 className="font-bold text-[#1A1A1A] text-lg">Maximale Effizienz</h4>
-                  <p className="text-slate-500 text-sm mt-1">Ressourcenschonend durch optimale Energieausnutzung.</p>
+                  <p className="text-slate-500 text-sm mt-1">Hohe Energieausnutzung durch lange Wärmespeicherung.</p>
                 </div>
               </motion.div>
 

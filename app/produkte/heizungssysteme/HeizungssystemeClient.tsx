@@ -28,17 +28,16 @@ export default function HeizungssystemeClient() {
     {
       icon: <Thermometer size={32} />,
       title: "Smarte Regelung",
-      description: "Mit elektronischen Abbrandsteuerungen (EAS) wird die Luftzufuhr automatisch geregelt. Das garantiert maximale Effizienz, geringste Emissionen und verlängert die Glutphase."
+      description: "Mit elektronischen Abbrandsteuerungen (EAS) wird die Luftzufuhr automatisch geregelt. So wird die Verbrennungsluft in jeder Abbrandphase passend dosiert, Bedienfehler werden vermieden und die Glutphase verlängert."
     }
   ];
 
   const benefits = [
     "Reduzierung der Heizkosten durch Holznutzung",
     "Entlastung der primären Heizanlage (z.B. Öl/Gas/Wärmepumpe)",
-    "Unabhängigkeit von fossilen Brennstoffen",
-    "CO2-neutrale Verbrennung",
+    "Weniger Abhängigkeit von Öl und Gas",
     "Wertsteigerung Ihrer Immobilie",
-    "Förderfähig durch staatliche Programme (BAFA)"
+    "Beratung zu möglichen Förderprogrammen"
   ];
 
   return (
@@ -72,7 +71,7 @@ export default function HeizungssystemeClient() {
               Intelligente <br/> Heizungssysteme
             </h1>
             <p className="text-xl text-slate-300 font-light max-w-2xl mx-auto leading-relaxed">
-              Verbinden Sie die Atmosphäre eines Kamins mit modernster Heiztechnik. Effizient, nachhaltig und zukunftssicher.
+              Verbinden Sie die Atmosphäre eines Kamins mit modernster Heiztechnik. Wärme aus dem Kamin, sinnvoll eingebunden in Ihr Heizsystem.
             </p>
           </motion.div>
         </div>

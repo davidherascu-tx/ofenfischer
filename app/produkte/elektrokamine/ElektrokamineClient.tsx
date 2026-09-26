@@ -36,7 +36,7 @@ export default function ElektrokamineClient() {
     {
       name: "Faber",
       logoSrc: "/logos/faber-logo.webp",
-      description: "Faber ist Pionier in der Entwicklung revolutionärer Flammeneffekte. Mit der patentierten e-MatriX-Technologie erzeugt Faber Feuer aus Licht und Wassernebel, das von echten Flammen kaum zu unterscheiden ist. Ideal für alle, die keine Kompromisse bei der Atmosphäre eingehen wollen, aber auf einen Gas- oder Holzanschluss verzichten müssen. 'Future Proof' genießen ohne Emissionen.",
+      description: "Faber ist Pionier in der Entwicklung revolutionärer Flammeneffekte. Mit der patentierten e-MatriX-Technologie erzeugt Faber Feuer aus Licht und Wassernebel, das von echten Flammen kaum zu unterscheiden ist. Ideal für alle, die keine Kompromisse bei der Atmosphäre eingehen wollen, aber auf einen Gas- oder Holzanschluss verzichten müssen. Ganz ohne Rauch, Asche oder Schornstein.",
       link: "https://www.faberfires.com/de-de"
     },
     {
@@ -83,7 +83,7 @@ export default function ElektrokamineClient() {
               Elektrokamine
             </h1>
             <p className="text-xl text-slate-300 font-light max-w-2xl mx-auto leading-relaxed">
-              Feuer aus Licht und Wasser. Die moderne Alternative für jedes Zuhause – ohne Schornstein, ohne Emissionen, aber mit voller Atmosphäre.
+              Feuer aus Licht und Wasser. Die moderne Alternative für jedes Zuhause – ohne Schornstein, ohne Rauch, aber mit voller Atmosphäre.
             </p>
           </motion.div>
         </div>

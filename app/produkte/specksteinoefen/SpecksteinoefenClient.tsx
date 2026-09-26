@@ -36,7 +36,7 @@ export default function SpecksteinoefenClient() {
     {
       name: "NunnaUuni",
       logoSrc: "/logos/nunnauuni_logo.webp",
-      description: "Entstanden vor 2 Milliarden Jahren durch den hohen Druck der übergelagerten Erd- und Gesteinsschichten, gilt der perlgraue, hochtemperaturbeständige SPECKSTEIN aus dem Norden Finnlands, als der beste Wärmespeicherstein der Neuzeit. Auch als “Mammuttistein“ bezeichnet, besitzt dieses außergewöhnliche und einzigartige Gestein auch sehr gute Wärmeleiteigenschaften. Die mit massiven Gusstüren und großen Sichtfenstern ausgestatteten SPECKSTEINÖFEN von NunnaUuni, zeichnen sich neben hohen Wirkungsgraden und geringen Emissionen, durch kurze Aufheizzeiten von 1-3 Stunden und lang anhaltender Wärmespeicherung von 24 Stunden und mehr aus.",
+      description: "Entstanden vor 2 Milliarden Jahren durch den hohen Druck der übergelagerten Erd- und Gesteinsschichten, gilt der perlgraue, hochtemperaturbeständige SPECKSTEIN aus dem Norden Finnlands, als der beste Wärmespeicherstein der Neuzeit. Auch als “Mammuttistein“ bezeichnet, besitzt dieses außergewöhnliche und einzigartige Gestein auch sehr gute Wärmeleiteigenschaften. Die mit massiven Gusstüren und großen Sichtfenstern ausgestatteten SPECKSTEINÖFEN von NunnaUuni, zeichnen sich neben hohen Wirkungsgraden durch kurze Aufheizzeiten von 1-3 Stunden und lang anhaltender Wärmespeicherung von 24 Stunden und mehr aus.",
       link: "https://www.nunnauuni.com/de/"
     }
   ];
@@ -132,8 +132,8 @@ export default function SpecksteinoefenClient() {
                   <Flame size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-[#1A1A1A] text-lg">Saubere Verbrennung</h4>
-                  <p className="text-slate-500 text-sm mt-1">Das patentierte Goldene Feuer Verfahren sorgt für minimale Emissionen.</p>
+                  <h4 className="font-bold text-[#1A1A1A] text-lg">Durchdachte Brenntechnik</h4>
+                  <p className="text-slate-500 text-sm mt-1">Das patentierte Goldene-Feuer-Verfahren steuert die Luftzufuhr im Brennraum.</p>
                 </div>
               </motion.div>
 
